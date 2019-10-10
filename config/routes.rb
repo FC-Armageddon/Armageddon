@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+root :to => 'cds#index'
+
 devise_for :admins, controllers: {
   sessions:      'admins/sessions',
   passwords:     'admins/passwords',
@@ -19,7 +21,7 @@ post 'users/admins_edit/:id' => 'users#admins_edit', as:'user_admins_edit'
 post 'users/admins/:id' => 'users#admins_update', as:'user_admins_update'
 post 'users/admins/deleted/:id' => 'users#admins_deleted_flag', as:'admins_deleted_flag'
 
-resources :cds, only: [:index, :search, :show]
+resources :cds, only: [:search, :show]
 get 'cds/admins_index' => 'cds#admins_index', as:'cds_admins'
 get 'cds/search', as: 'search'
 get 'cds/admins/:id' => 'cds#admins_show', as:'cd_admins'
