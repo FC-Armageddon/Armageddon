@@ -47,5 +47,7 @@ post 'carts/deleted/:id' => 'carts#deleted_flag', as:'carts_deleted_flag'
 
 resources :buy_informations, only: [:new, :create, :updates]
 
+resources :sales_statuses, only: [:create, :updates]
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
