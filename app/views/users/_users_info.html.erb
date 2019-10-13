@@ -17,5 +17,5 @@
     <tr><td><%= user.postal_code %></td></tr>
     <tr><td><%= user.address %></td></tr>
     <tr><td><%= user.email %></td></tr>
-    <tr><td><%= link_to_if admin? ? "編集", user_admins_path(user.id) : edit_user(user.id)%></td></tr>
+    <tr><td><%= link_to_if admin ? "編集", user_admins_path(user.id) : edit_user(user.id)%></td></tr>
 </table>
