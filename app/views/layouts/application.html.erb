@@ -13,7 +13,33 @@
         <% if user_signed_in? %>
 
           <li class="">
+            <%= link_to "#{current_user.first_name} 様", user_path(current_user.id) %>
+          </li>
+
+           <li class="">
+            <%= link_to "カート", carts_path %>
+          </li>
+
+          <li class="">
             <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+          </li>
+
+        <% elsif admin_signed_in? %>
+
+          <li class="">
+            <%= link_to "販売一覧", cds_admins_path %>
+          </li>
+
+          <li class="">
+            <%= link_to "ユーザ一覧", users_admins_path %>
+          </li>
+
+          <li class="">
+            <%= link_to "商品登録", cds_new_path %>
+          </li>
+
+          <li class="">
+            <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
           </li>
 
         <% else %>

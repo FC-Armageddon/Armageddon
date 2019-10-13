@@ -16,7 +16,7 @@ devise_for :users, controllers: {
 post 'users/deleted/:id' => 'users#deleted_flag', as:'deleted_flag'
 get 'users/admins_index' => "users#admins_index", as:'users_admins'
 get 'users/admins/:id' => 'users#admins_show', as:'user_admins'
-post 'users/admins_edit/:id' => 'users#admins_edit', as:'user_admins_edit'
+get 'users/admins_edit/:id' => 'users#admins_edit', as:'user_admins_edit'
 post 'users/admins/:id' => 'users#admins_update', as:'user_admins_update'
 post 'users/admins/deleted/:id' => 'users#admins_deleted_flag', as:'admins_deleted_flag'
 resources :users, only: [:update, :show, :edit]
