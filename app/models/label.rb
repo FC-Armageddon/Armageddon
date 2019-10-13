@@ -4,4 +4,8 @@ class Label < ApplicationRecord
 	accepts_nested_attributes_for :cds
 	
 	validates :quantity, uniqueness: true
+
+	def self.search_all(search)
+    Label.find_by(['label LIKE ?', "#{search}"])
+  	end
 end

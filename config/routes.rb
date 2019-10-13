@@ -13,15 +13,14 @@ devise_for :users, controllers: {
   registrations: 'users/registrations'
 }
 
-resources :users, only: [:update, :show, :edit]
 post 'users/deleted/:id' => 'users#deleted_flag', as:'deleted_flag'
 get 'users/admins_index' => "users#admins_index", as:'users_admins'
 get 'users/admins/:id' => 'users#admins_show', as:'user_admins'
 post 'users/admins_edit/:id' => 'users#admins_edit', as:'user_admins_edit'
 post 'users/admins/:id' => 'users#admins_update', as:'user_admins_update'
 post 'users/admins/deleted/:id' => 'users#admins_deleted_flag', as:'admins_deleted_flag'
+resources :users, only: [:update, :show, :edit]
 
-resources :cds, only: [:search, :show]
 get 'cds/admins_index' => 'cds#admins_index', as:'cds_admins'
 get 'cds/search', as: 'search'
 get 'cds/admins/:id' => 'cds#admins_show', as:'cd_admins'
@@ -31,6 +30,8 @@ delete 'cds/admins/:id' => 'cds#admins_destroy', as:'cd_admins_destroy'
 post 'cds/admins' => 'cds#admins_create', as:'cds_new_create'
 get 'cds/admins_new' => 'cds#admins_new', as:'cds_new'
 get 'cds/admins_search', as:'admins_search'
+resources :cds, only: [:show]
+
 
 resources :genres, only: [:create, :update]
 
