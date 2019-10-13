@@ -1,35 +1,36 @@
 <h1>商品登録</h1>
 
 <%= form_for @cd, url: cds_new_create_path do |f| %>
+	<p><%= f.label :jacket_image, "商品写真" %></p>
+	<p><%= f.attachment_field :jacket_image %>
+	</p>
+	<p><%= f.text_field :cd_name, :placeholder => "商品名" %></p>
+	<p><%= f.text_field :price, :placeholder => "価格（税抜き）" %></p>
 
-	<p><%= attachment_image_tag @cd, :jacket_image %></p>
-	<p><%= f.text_field :cd_name %></p>
-	<p><%= f.text_field :price %></p>
-	<p><%= f.text_field :arrival %></p>
+	<%= f.fields_for :arrivals do |arrival| %>
+	<p><%= arrival.text_field :arrival, :placeholder => "入荷数" %></p>
+	<% end %>
 
-	<p><%= f.text_field_tag :search_artist %></p>
-	<p><%= f.text_field_tag :search_genre %></p>
-	<p><%= f.text_field_tag :search_label %></p>
-	<p><%= f.text_field_tag :search_sales %></p>
+	<p><%= text_field_tag :search_artist, '', :placeholder =>  "アーティスト名" %>
+	</p>
+	<p><%= text_field_tag :search_genre, '', :placeholder => "ジャンル" %>
+	</p>
+	<p><%= text_field_tag :search_label,'', :placeholder => "レーベル" %>
+	</p>
+	<p><%= select_tag 'search_sales', options_for_select([["販売中", "販売中"], ["販売停止中", "販売停止中"]]) %>
+	</p>
 
-
+ <div class="tags">
 	<%= f.fields_for :discs do |d| %>
 	<%= d.label "Disc" %>
-		<p><%= d.text_field :disc %>
-			<%= d.text_field :sort %>
+	<%= render'disc_fields',f: d %>
 	<% end %>
-			<%= link_to_remove_association "remone task", f %>
-		</p>
+	<div class="links">
+		<%= link_to_add_association "ディスクを追加", f, :discs %>
+	</div>
+</div>
 
-		<%= f.fields_for :songs do |songs| %>
-			<p><%= songs.text_field :song %>
-				<%= songs.text_field :song_order %>
-			</p>
-		<% end %>
-
-			<%= link_to_add_association "曲を追加", f, :songs %>
-
-	<P><%= f.submit %></P>
+	<P class="actions"><%= f.submit %></P>
 <% end %>
 
 

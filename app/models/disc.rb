@@ -4,6 +4,4 @@ class Disc < ApplicationRecord
 	accepts_nested_attributes_for :songs
 
 	belongs_to :cd
-	
-	validates :cd_id, presence: true
 end
