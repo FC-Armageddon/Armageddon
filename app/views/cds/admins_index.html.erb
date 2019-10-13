@@ -1,2 +1,15 @@
-<h1>Cds#admins_index</h1>
-<p>Find me in app/views/cds/admins_index.html.erb</p>
+<h1>販売商品一覧</h1>
+
+<% @cds.each do |cd| %>
+	<p><%= attachment_image_tag @cd, :jacket_image, :fill, 60, 60, format: 'jpeg', fallback: "no_image_cd.jpg" %>
+	</p>
+	<p><%= cd.cd_name %></p>
+	<p><%= cd.price %>円</p>
+	<%= form_for @arrival, url: arrivals_path, method: :post do |f| %>
+		<%= f.text_field :arrival %>
+		<%= f.hidden_field :cd_id, value: cd.id %>
+		<%= f.submit '入荷数登録' %>
+	<% end %>
+
+<% end %>
+

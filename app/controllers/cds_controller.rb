@@ -15,7 +15,8 @@ class CdsController < ApplicationController
   end
 
   def admins_index
-    @cds = CD.all
+    @cds = Cd.all
+    @arrival = Arrival.new
   end
 
   def admins_show
@@ -75,6 +76,9 @@ class CdsController < ApplicationController
     @arrival.cd_id = cd.id
     @arrival.save
     redirect_to cds_admins_path
+  end
+
+  def admins_arrival_create
   end
 
 
