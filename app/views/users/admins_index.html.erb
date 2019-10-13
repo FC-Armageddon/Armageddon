@@ -1,2 +1,23 @@
-<h1>Users#admins_index</h1>
-<p>Find me in app/views/users/admins_index.html.erb</p>
+<h2>顧客一覧</h2>
+
+<table>
+	<tr>
+		<th></th>
+	</tr>
+
+  <% @users.each do |user| %>
+       <!-- プロフィール画像 -->
+    <tr>
+       <td><span><%= user.first_name %></span></td>
+       <td><span><%= user.last_name %></span></td>
+    </tr>
+    <tr>
+       <td><span><%= user.kana_first_name %></span></td>
+       <td><span><%= user.kana_last_name %></span></td>
+    </tr>
+    <tr>
+       <td><span><%= link_to "購入履歴", user_admins_path(user.id), class: 'btn btn-info btn-block' %></span></td>
+       <td><span><%= link_to "編集", user_admins_edit_path(user.id), class: 'btn btn-success btn-block' %></span></td>
+    </tr>
+  <% end %>
+</table>

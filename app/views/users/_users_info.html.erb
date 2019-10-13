@@ -1,0 +1,21 @@
+<table class='table'>
+    <tr>
+    	<!-- ここにattachment_image_tag userの記載 -->
+        <!-- attachment_image_tag user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" -->
+    </tr>
+    <tr>
+        <th>User info</th>
+    </tr>
+    <tr>
+        <td><%= user.first_name %></td>
+        <td><%= user.last_name %></td>
+    </tr>
+    <tr>
+        <td><%= user.kana_first_name %></td>
+        <td><%= user.kana_last_name %></td>
+    </tr>
+    <tr><td><%= user.postal_code %></td></tr>
+    <tr><td><%= user.address %></td></tr>
+    <tr><td><%= user.email %></td></tr>
+    <tr><td><%= link_to_if admin? ? "編集", user_admins_path(user.id) : edit_user(user.id)%></td></tr>
+</table>
