@@ -1,2 +1,36 @@
-<h1>Cds#admins_new</h1>
-<p>Find me in app/views/cds/admins_new.html.erb</p>
+<h1>商品登録</h1>
+
+<%= form_for @cd, url: cds_new_create_path do |f| %>
+
+	<p><%= attachment_image_tag @cd, :jacket_image %></p>
+	<p><%= f.text_field :cd_name %></p>
+	<p><%= f.text_field :price %></p>
+	<p><%= f.text_field :arrival %></p>
+
+	<p><%= f.text_field_tag :search_artist %></p>
+	<p><%= f.text_field_tag :search_genre %></p>
+	<p><%= f.text_field_tag :search_label %></p>
+	<p><%= f.text_field_tag :search_sales %></p>
+
+
+	<%= f.fields_for :discs do |d| %>
+	<%= d.label "Disc" %>
+		<p><%= d.text_field :disc %>
+			<%= d.text_field :sort %>
+	<% end %>
+			<%= link_to_remove_association "remone task", f %>
+		</p>
+
+		<%= f.fields_for :songs do |songs| %>
+			<p><%= songs.text_field :song %>
+				<%= songs.text_field :song_order %>
+			</p>
+		<% end %>
+
+			<%= link_to_add_association "曲を追加", f, :songs %>
+
+	<P><%= f.submit %></P>
+<% end %>
+
+
+
