@@ -23,12 +23,16 @@ class UsersController < ApplicationController
   end
 
   def admins_index
+    @users = User.all
   end
 
   def admins_show
+    @user = User.find(params[:id])
+    @buy_infomations = Buy_infomations.all
   end
 
   def admins_edit
+    @user = User.find(params[:id])
   end
 
   def admins_update

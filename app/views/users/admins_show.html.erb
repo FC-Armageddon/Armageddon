@@ -1,2 +1,21 @@
-<h1>Users#admins_show</h1>
-<p>Find me in app/views/users/admins_show.html.erb</p>
+
+<%= flash[:notice] %>
+
+<div class="container">
+	<div class="row">
+		<div class="col-sm-3">
+           <%= render 'users/users_info',user: @user %>
+        </div>
+
+        <div class="col-sm-9">
+            <h2>顧客詳細</h2>
+                <!-- 商品購入履歴画面 -->
+                <% @buy_infomations.each do |b| %>
+                <span><%=  %></span>
+                <span><%=  %></span>
+                <span><%=  %></span>
+                <span><%=  %></span>
+                <span><%=  %></span>
+        </div>
+    </div>
+</div>

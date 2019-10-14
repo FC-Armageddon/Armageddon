@@ -1,11 +1,14 @@
 class Cd < ApplicationRecord
-	has_many :genres
-	has_many :labels
-	has_many :sales_statuses
-	has_many :artists
+	belongs_to :genre
+	belongs_to :label
+	belongs_to :sales_status
+	belongs_to :artist
 
-	belongs_to :disc
-	belongs_to :arrival
+	has_many :discs
+	accepts_nested_attributes_for :discs
+	has_many :arrivals
+
+	attachment :jacket_image
 
 	validates :genre_id, presence: true
 	validates :label_id, presence: true

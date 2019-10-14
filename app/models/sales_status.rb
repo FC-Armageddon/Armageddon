@@ -2,7 +2,9 @@ class SalesStatus < ApplicationRecord
 
 	has_many :cds
 	
-	validates :sales_status, presence: true
+	validates :sales_status, presence: true, uniqueness: true
 
-	enum sales_status: [ :sold, :preparing, :sold_out ]
+	def self.search_all(search)
+    SalesStatus.find_by(['sales_status LIKE ?', "#{search}"])
+  	end
 end

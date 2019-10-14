@@ -14,14 +14,14 @@ devise_for :users, controllers: {
 }
 
 resources :users, only: [:update, :show, :edit]
-patch 'users/deleted/:id' => 'users#deleted_flag', as:'deleted_flag'
+post 'users/deleted/:id' => 'users#deleted_flag', as:'deleted_flag'
 get 'users/admins_index' => "users#admins_index", as:'users_admins'
 get 'users/admins/:id' => 'users#admins_show', as:'user_admins'
-post 'users/admins_edit/:id' => 'users#admins_edit', as:'user_admins_edit'
+get 'users/admins_edit/:id' => 'users#admins_edit', as:'user_admins_edit'
 post 'users/admins/:id' => 'users#admins_update', as:'user_admins_update'
 post 'users/admins/deleted/:id' => 'users#admins_deleted_flag', as:'admins_deleted_flag'
+resources :users, only: [:update, :show, :edit]
 
-resources :cds, only: [:search, :show]
 get 'cds/admins_index' => 'cds#admins_index', as:'cds_admins'
 get 'cds/search', as: 'search'
 get 'cds/admins/:id' => 'cds#admins_show', as:'cd_admins'
@@ -31,6 +31,8 @@ delete 'cds/admins/:id' => 'cds#admins_destroy', as:'cd_admins_destroy'
 post 'cds/admins' => 'cds#admins_create', as:'cds_new_create'
 get 'cds/admins_new' => 'cds#admins_new', as:'cds_new'
 get 'cds/admins_search', as:'admins_search'
+resources :cds, only: [:show]
+
 
 resources :genres, only: [:create, :update]
 
@@ -48,6 +50,8 @@ resources :carts, only: [:index, :create, :destroy, :update]
 post 'carts/deleted/:id' => 'carts#deleted_flag', as:'carts_deleted_flag'
 
 resources :buy_informations, only: [:new, :create, :updates]
+
+resources :sales_statuses, only: [:create, :updates]
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
