@@ -1,7 +1,7 @@
 <h1>販売商品一覧</h1>
 
 <% @cds.each do |cd| %>
-	<p><%= attachment_image_tag @cd, :jacket_image, :fill, 60, 60, format: 'jpeg', fallback: "no_image_cd.jpg" %>
+	<p><%= attachment_image_tag cd, :jacket_image, :fill, 60, 60, format: 'jpeg', fallback: "no_image_cd.jpg" %>
 	</p>
 	<p><%= cd.cd_name %></p>
 	<p><%= cd.price %>円</p>
