@@ -17,6 +17,7 @@ class CdsController < ApplicationController
   end
 
   def show
+    @cart = Cart.new
     @cd = Cd.find(params[:id])
     @discs = @cd.discs
     # ransackの記載
