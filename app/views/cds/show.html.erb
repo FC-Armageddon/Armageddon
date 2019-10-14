@@ -8,12 +8,19 @@
 <% end %>
 
 
-
-
 <h1>CD詳細</h1>
 
 <div><%= attachment_image_tag @cd, :jacket_image, :fill, 60, 60, format: 'jpeg', fallback: "no_image_cd.jpg" %>
 </div>
+
+
+<!-- カートに入れる情報 -->
+<%= form_for @cart, url: carts_path, method: :post do |c| %>
+   <%= c.text_field :quantity %>
+   <%= c.hidden_field :cd_id, value:@cd.id %>
+   <%= c.submit ("カートに入れる") %>
+<% end %>
+
 
 <div><p><%= @cd.cd_name %></p>
 	 <p><%= @cd.price %> 円</p>

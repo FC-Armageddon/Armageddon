@@ -4,6 +4,9 @@ class CartsController < ApplicationController
   end
 
   def create
+    cart = Cart.new(cart_params)
+    cart.user_id = current_user.id
+    cart.save
   end
 
   def destroy
@@ -14,4 +17,8 @@ class CartsController < ApplicationController
 
   def deleted_flag
   end
+  private
+  def cart_params
+     params.require(:cart).permit(:cd_id, :quantity, :user_id)
+   end
 end
