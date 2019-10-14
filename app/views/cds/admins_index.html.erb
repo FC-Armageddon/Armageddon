@@ -1,6 +1,11 @@
 <h1>販売商品一覧</h1>
 
-<% @cds.each do |cd| %>
+<%= search_form_for @search, url: root_path do |f| %>
+  <%= f.text_field :cd_name_cont, placeholder: 'CD名を入力...' %>
+  <%= f.submit ("検索する") %>
+<% end %>
+
+<% @search_cds.each do |cd| %>
 	<p><%= attachment_image_tag cd, :jacket_image, :fill, 60, 60, format: 'jpeg', fallback: "no_image_cd.jpg" %>
 	</p>
 	<p><%= cd.cd_name %></p>
