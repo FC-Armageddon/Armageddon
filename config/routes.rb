@@ -13,7 +13,6 @@ devise_for :users, controllers: {
   registrations: 'users/registrations'
 }
 
-resources :users, only: [:update, :show, :edit]
 post 'users/deleted/:id' => 'users#deleted_flag', as:'deleted_flag'
 get 'users/admins_index' => "users#admins_index", as:'users_admins'
 get 'users/admins/:id' => 'users#admins_show', as:'user_admins'
@@ -46,8 +45,8 @@ resources :songs, only: [:create, :update]
 
 resources :arrivals, only: [:create, :index]
 
-resources :carts, only: [:index, :create, :destroy, :update]
 post 'carts/deleted/:id' => 'carts#deleted_flag', as:'carts_deleted_flag'
+resources :carts, only: [:index, :create, :destroy, :update]
 
 resources :buy_informations, only: [:new, :create, :updates]
 
