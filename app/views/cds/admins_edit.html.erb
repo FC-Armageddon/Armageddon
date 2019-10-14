@@ -1,2 +1,5 @@
-<h1>Cds#admins_edit</h1>
-<p>Find me in app/views/cds/admins_edit.html.erb</p>
+<h1>商品編集</h1>
+<%= form_for @cd, url: cd_admins_update_path do |f| %>
+<%= render 'cds/cd_form', f: f %>
+<% end %>
+
