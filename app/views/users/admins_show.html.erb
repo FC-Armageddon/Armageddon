@@ -9,13 +9,11 @@
 
         <div class="col-sm-9">
             <h2>顧客詳細</h2>
-                <!-- 商品購入履歴画面 -->
-                <% @buy_infomations.each do |b| %>
-                <span><%=  %></span>
-                <span><%=  %></span>
-                <span><%=  %></span>
-                <span><%=  %></span>
-                <span><%=  %></span>
-        </div>
+                <!-- 商品購入履歴画面めっちゃ途中。ParchaseHistoryできたらやるわ -->
+                <!-- @purchase_histories.each do |p| >
+                <span>< attachment_image_tag @cd, :jacket_image, :fill, 60, 60, fallback: "no_image_cd.jpg", size: "60x60" ></span>
+                <span>< link_to "#{p.cd_name}", cd_admins_path(@cd.id) ></span>
+                <span>< link_to "#{p.buy_infomation.subtotal}",  --></span>
+
     </div>
 </div>
