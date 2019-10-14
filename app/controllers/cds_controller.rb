@@ -1,4 +1,5 @@
 class CdsController < ApplicationController
+
   def admins_new
     @cd = Cd.new
     @discs = @cd.discs.build
@@ -23,9 +24,12 @@ class CdsController < ApplicationController
 
   def admins_show
     @cd = Cd.find(params[:id])
+    @discs = @cd.discs
   end
 
   def admins_edit
+    @cd = Cd.find(params[:id])
+    @discs = @cd.discs
   end
 
   def admins_update

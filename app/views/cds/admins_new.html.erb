@@ -1,6 +1,6 @@
 <h1>商品登録</h1>
-
 <%= form_for @cd, url: cds_new_create_path do |f| %>
+
 	<p><%= f.label :jacket_image, "商品写真" %></p>
 	<p><%= f.attachment_field :jacket_image %>
 	</p>
