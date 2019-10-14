@@ -1,13 +1,21 @@
 <h1>Cds#index</h1>
-<p>Find me in app/views/cds/index.html.erb</p>
 
 
-<h1>販売商品一覧</h1>
 
-<% @cds.each do |cd| %>
-	<p><%= attachment_image_tag cd, :jacket_image, :fill, 60, 60, format: 'jpeg', fallback: "no_image_cd.jpg" %>
-	</p>
-	<p><%= cd.cd_name %></p>
-	<p><%= cd.price %>円</p>
-    <p><%= link_to "詳細ページへ", cd_path(cd.id) %></p>
+
+<!-- 検索窓 -->
+<%= search_form_for @search, url: root_path do |f| %>
+  <%= f.text_field :cd_name_cont, placeholder: 'CD名を入力...' %>
+  <%= f.submit ("検索する") %>
 <% end %>
+
+<% @search_cds.each do |cds| %>
+  <tr>
+    <td><%= attachment_image_tag cds, :jacket_image, :fill, 60, 60, format: 'jpeg', fallback: "no_image_cd.jpg" %></td>
+    <td><%= cds.cd_name %></td>
+    <td><%= link_to "詳細ページへ", cd_path(cds.id) %></td>
+  </tr>
+<% end %>
+
+
+
