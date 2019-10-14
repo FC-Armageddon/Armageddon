@@ -1,5 +1,35 @@
 <h1>商品編集</h1>
 <%= form_for @cd, url: cd_admins_update_path do |f| %>
-<%= render 'cds/cd_form', f: f %>
+
+	<p><%= f.label :jacket_image, "商品写真" %></p>
+	<p><%= f.attachment_field :jacket_image %>
+	</p>
+	<p><%= f.text_field :cd_name, :placeholder => "商品名" %></p>
+	<p><%= f.text_field :price, :placeholder => "価格（税抜き）" %></p>
+
+	<%= f.fields_for :arrivals do |arrival| %>
+	<p><%= arrival.text_field :arrival, :placeholder => "入荷数" %></p>
+	<% end %>
+
+	<p><%= text_field_tag :search_artist, '', :placeholder =>  "アーティスト名" %>
+	</p>
+	<p><%= text_field_tag :search_genre, '', :placeholder => "ジャンル" %>
+	</p>
+	<p><%= text_field_tag :search_label,'', :placeholder => "レーベル" %>
+	</p>
+	<p><%= select_tag 'search_sales', options_for_select([["販売中", "販売中"], ["販売停止中", "販売停止中"]]) %>
+	</p>
+
+ <div class="tags">
+	<%= f.fields_for :discs do |d| %>
+	<%= d.label "Disc" %>
+	<%= render'disc_fields',f: d %>
+	<% end %>
+	<div class="links">
+		<%= link_to_add_association "ディスクを追加", f, :discs %>
+	</div>
+</div>
+
+	<P class="actions"><%= f.submit %></P>
 <% end %>
 
