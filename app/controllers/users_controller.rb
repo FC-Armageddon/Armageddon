@@ -28,7 +28,8 @@ class UsersController < ApplicationController
 
   def admins_show
     @user = User.find(params[:id])
-    @buy_infomations = Buy_infomations.all
+    # @purchase_historises = Purchase_history.all
+    @cd = Cd.find(params[:id])
   end
 
   def admins_edit
@@ -36,10 +37,17 @@ class UsersController < ApplicationController
   end
 
   def admins_update
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+       flash[:notice] = "OK!!!"
+       redirect_to user_admins(@user_admins.id)
+    else
+      render("users/admins_edit")
+    end
   end
 
   def admins_deleted_flag
-    @user = User.find(paarams[:id])
+    @user = User.find(params[:id])
     @user.deleted_flag = true
     @user.save
     redirect_to users_admins_path
