@@ -6,12 +6,14 @@ class CdsController < ApplicationController
   end
 
   def index
+    @cds = Cd.all
   end
 
   def search
   end
 
   def show
+    @cd = Cd.find(params[:id])
   end
 
   def admins_index
