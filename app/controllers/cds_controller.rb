@@ -20,6 +20,7 @@ class CdsController < ApplicationController
   end
 
   def admins_show
+    @cd = Cd.find(params[:id])
   end
 
   def admins_edit
