@@ -15,6 +15,11 @@ class UsersController < ApplicationController
   end
 
   def deleted_flag
+    @user = User.find(params[:id])
+    @user.deleted_flag = true
+    # updateでもできるらしいけど、ストロングパラメータから取ってくる記述してね
+    @user.save
+    redirect_to root_path
   end
 
   def admins_index
@@ -34,10 +39,14 @@ class UsersController < ApplicationController
   end
 
   def admins_deleted_flag
+    @user = User.find(paarams[:id])
+    @user.deleted_flag = true
+    @user.save
+    redirect_to users_admins_path
   end
 
 private
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :kana_first_name, :kana_last_name, :postal_code, :address, :email)
+    params.require(:user).permit(:first_name, :last_name, :kana_first_name, :kana_last_name, :postal_code, :address, :email, :profile_image,)
   end
 end
