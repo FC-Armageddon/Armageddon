@@ -2,9 +2,35 @@
 <p>Find me in app/views/cds/show.html.erb</p>
 
 
+<%= search_form_for @search, url: root_path do |f| %>
+  <%= f.text_field :cd_name_cont, placeholder: 'CD名を入力...' %>
+  <%= f.submit ("検索する") %>
+<% end %>
+
+
+
+
 <h1>CD詳細</h1>
 
-	<p><%= attachment_image_tag @cd, :jacket_image, :fill, 60, 60, format: 'jpeg', fallback: "no_image_cd.jpg" %>
-	</p>
-	<p><%= @cd.cd_name %></p>
-	<p><%= @cd.price %>円</p>
+<div><%= attachment_image_tag @cd, :jacket_image, :fill, 60, 60, format: 'jpeg', fallback: "no_image_cd.jpg" %>
+</div>
+
+<div><p><%= @cd.cd_name %></p>
+	 <p><%= @cd.price %> 円</p>
+	 <P><%= @cd.sales_status.sales_status %></P>
+	 <p><%= @cd.stock %> 個</p>
+	<p><%= @cd.artist.artist %></p>
+	<p><%= @cd.label.label %></p>
+	<p><%= @cd.genre.genre %></p>
+	<% @discs.each do |disc| %>
+		<P><%= disc.disc %>
+	   	   <%= disc.sort %>
+		</P>
+		<% disc.songs.each do |song| %>
+		<p><%= song.song_order %>
+			<%= song.song %>
+		</p>
+		<% end %>
+	<% end %>
+	 <p><%= link_to '商品編集', cd_admins_edit_path(@cd.id) %></p>
+</div>
