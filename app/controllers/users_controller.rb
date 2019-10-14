@@ -39,6 +39,10 @@ class UsersController < ApplicationController
   end
 
   def admins_deleted_flag
+    @user = User.find(paarams[:id])
+    @user.deleted_flag = true
+    @user.save
+    redirect_to users_admins_path
   end
 
 private
