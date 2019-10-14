@@ -7,15 +7,13 @@
 	<p><%= f.text_field :cd_name, :placeholder => "商品名" %></p>
 	<p><%= f.text_field :price, :placeholder => "価格（税抜き）" %></p>
 
-	<%= f.fields_for :arrivals do |arrival| %>
-	<p><%= arrival.text_field :arrival, :placeholder => "入荷数" %></p>
-	<% end %>
+	<%= f.hidden_field :stock, value: @cd.stock %>
 
-	<p><%= text_field_tag :search_artist, '', :placeholder =>  "アーティスト名" %>
+	<p><%= text_field_tag :search_artist, "#{@cd.artist.artist}" %>
 	</p>
-	<p><%= text_field_tag :search_genre, '', :placeholder => "ジャンル" %>
+	<p><%= text_field_tag :search_genre, "#{@cd.genre.genre}" %>
 	</p>
-	<p><%= text_field_tag :search_label,'', :placeholder => "レーベル" %>
+	<p><%= text_field_tag :search_label, "#{@cd.label.label}" %>
 	</p>
 	<p><%= select_tag 'search_sales', options_for_select([["販売中", "販売中"], ["販売停止中", "販売停止中"]]) %>
 	</p>

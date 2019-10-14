@@ -4,7 +4,7 @@ class Cd < ApplicationRecord
 	belongs_to :sales_status
 	belongs_to :artist
 
-	has_many :discs
+	has_many :discs, dependent: :destroy
 	accepts_nested_attributes_for :discs
 	has_many :arrivals
 
