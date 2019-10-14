@@ -1,2 +1,24 @@
-<h1>Arrivals#index</h1>
-<p>Find me in app/views/arrivals/index.html.erb</p>
+ <h2>入荷履歴一覧</h2>
+
+<table class="table">
+
+  <thead>
+    <tr>
+  	  <th>CD入荷日時</th>
+      <th>入荷CD画像</th>
+      <th>入荷CD名</th>
+  	  <th>入荷枚数</th>
+    </tr>
+  </thead>
+
+  <tbody>
+  	<% @arrivals.each do |ar| %>
+    <tr>
+    	<td><span><%= ar.cd.created_at.strftime('%Y/%m/%d') %></span></td>
+        <td><span><%= attachment_image_tag ar.cd, :jacket_image, :fill, 60, 60, format: 'ipeg', fallback:"no_image_cd.jpg", size: "100x100" %></span></td>
+        <td><span><%= ar.cd.cd_name %></span></td>
+        <td><span><%= ar.arrival %>枚</span></td>
+    </tr>
+    <% end %>
+   </tbody>
+</table>

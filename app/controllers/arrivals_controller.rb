@@ -9,6 +9,7 @@ class ArrivalsController < ApplicationController
   end
 
   def index
+    @arrivals = Arrival.all
   end
 
   private
