@@ -7,7 +7,6 @@ class CdsController < ApplicationController
   end
 
   def index
-    @cds = Cd.all
     # ransackの記載
     @search = Cd.ransack(params[:q])
     @search_cds = @search.result
@@ -23,7 +22,6 @@ class CdsController < ApplicationController
     # ransackの記載
     @search = Cd.ransack(params[:q])
     @search_cds = @search.result
-    @cds = @search_cds
     if @search_cds != Cd.all
       render 'index'
     end
@@ -31,8 +29,9 @@ class CdsController < ApplicationController
   end
 
   def admins_index
-    @cds = Cd.all
     @arrival = Arrival.new
+    @search = Cd.ransack(params[:q])
+    @search_cds = @search.result
   end
 
   def admins_show
@@ -88,6 +87,9 @@ class CdsController < ApplicationController
   end
 
   def admins_destroy
+    cd = Cd.find(params[:id])
+    cd.destroy
+    redirect_to cds_admins_path
   end
 
   def admins_create
