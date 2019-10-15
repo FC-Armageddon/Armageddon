@@ -13,15 +13,13 @@
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
-//= require_tree .
 //= require jquery
+//= require bootstrap-sprockets
+//= require_tree .
 //= require cocoon
 
-<script type="text/javascript">
 $(function(){
 	$("#submit_select").change(function(){
 		$("#submit_form").submit();
 	});
 });
-</script>
-

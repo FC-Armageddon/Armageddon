@@ -8,7 +8,6 @@ class CartsController < ApplicationController
     cart = Cart.new(cart_params)
     cart.user_id = current_user.id
     cart.save
-    redirect_to carts_path
   end
 
   def destroy
