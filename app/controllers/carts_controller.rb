@@ -1,6 +1,7 @@
 class CartsController < ApplicationController
+
   def index
-    @carts = Cart.all
+    @carts = current_user.carts
   end
 
   def create
@@ -13,6 +14,12 @@ class CartsController < ApplicationController
   end
 
   def update
+    @cart = Cart.find(params[:id])
+    if @cart.update(cart_params)
+       redirect_to buy_infomations_path
+    else
+       render("carts/index")
+    end
   end
 
   def deleted_flag
