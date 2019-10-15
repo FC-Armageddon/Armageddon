@@ -16,3 +16,12 @@
 //= require_tree .
 //= require jquery
 //= require cocoon
+
+<script type="text/javascript">
+$(function(){
+	$("#submit_select").change(function(){
+		$("#submit_form").submit();
+	});
+});
+</script>
+

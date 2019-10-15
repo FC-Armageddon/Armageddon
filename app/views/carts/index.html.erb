@@ -1,15 +1,16 @@
 <h2>カート一覧</h2>
+  <% @carts.each do |c| %>
+      <%= attachment_image_tag c.cd, :jacket_image, :fill, 60, 60, format: 'ipeg', fallback:"no_image_cd.jpg", size: "200x200" %>
+      <%= c.cd.cd_name %>
+      <%= c.cd.price %> 円
 
-<% @carts.each do |c| %>
-	<%= attachment_image_tag c.cd, :jacket_image, :fill, 60, 60, format: 'ipeg', fallback:"no_image_cd.jpg", size: "200x200" %>
-	<%= c.cd.cd_name %>
-	<%= c.cd.price %> 円
-	<%= form_for @cd do |f| %>
-	    <%= f.text_field :quantity %> 枚
-	    <%= f.submit %>
-　　 <% end %>
-　　 <%= button_to '削除', c, method: :delete, data: { confirm: 'カートから削除しますか？'} %>
-<% end %>
+      <form method="get" action="#">
+      	<select name="" onchange="submit(this.form)">
+      	</select>
+      </form>
+
+      <%= button_to '削除', c, method: :delete, data: { confirm: 'ートから削除しますか？'} %>
+  <% end %>
 
 <h3>小計</h3>
 <!-- 四則計算。1配送につき500円、商品は税込 -->

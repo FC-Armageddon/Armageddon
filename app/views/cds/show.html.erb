@@ -15,7 +15,7 @@
 
 
 <!-- カートに入れる情報 -->
-<%= form_for @cart, url: carts_path, method: :post do |c| %>
+<%= form_for @cart, url: carts_path, method: :get do |c| %>
    <%= c.text_field :quantity %>
    <%= c.hidden_field :cd_id, value:@cd.id %>
    <%= c.submit ("カートに入れる") %>
