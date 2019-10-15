@@ -17,11 +17,16 @@
 //= require jquery
 //= require cocoon
 
-<script type="text/javascript">
-$(function(){
-	$("#submit_select").change(function(){
-		$("#submit_form").submit();
+
+$(document).ready(function(){
+	$(".update_quantity").change(function(){
+		var index = $('.update_quantity').index(this);
+			$('.submit_form').eq(index).submit();
+		});
 	});
-});
-</script>
+
+
+
+
+
 

@@ -1,5 +1,6 @@
 class CartsController < ApplicationController
 
+protect_from_forgery :except => [:update]
   def index
     @carts = current_user.carts
   end
@@ -16,8 +17,9 @@ class CartsController < ApplicationController
 
   def update
     @cart = Cart.find(params[:id])
-    if @cart.update(cart_params)
-       redirect_to buy_infomations_path
+    @cart.quantity = params[:update_quantity]
+    if @cart.update(cart_update_params)
+       redirect_to carts_path
     else
        render("carts/index")
     end
@@ -29,4 +31,7 @@ class CartsController < ApplicationController
   def cart_params
      params.require(:cart).permit(:cd_id, :quantity, :user_id)
    end
+   def cart_update_params
+    params.permit(:quantity)
+  end
 end
