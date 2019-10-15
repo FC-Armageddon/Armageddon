@@ -18,8 +18,6 @@
 //= require_tree .
 //= require cocoon
 
-$(function(){
-	$("#submit_select").change(function(){
-		$("#submit_form").submit();
-	});
-});
+
+
+

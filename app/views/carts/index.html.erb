@@ -1,15 +1,23 @@
 <h2>カート一覧</h2>
+  <% @i = 0 %>
   <% @carts.each do |c| %>
       <%= attachment_image_tag c.cd, :jacket_image, :fill, 60, 60, format: 'ipeg', fallback:"no_image_cd.jpg", size: "200x200" %>
       <%= c.cd.cd_name %>
       <%= c.cd.price %> 円
-
-      <form method="get" action="#">
-      	<select name="" onchange="submit(this.form)">
-      	</select>
+      <form action="/carts/<%= c.id %>" method="post" class="submit_form">
+        <%= select_tag 'update_quantity',  options_for_select((1..c.cd.stock), {:selected => c.quantity}), class: "update_quantity" %>
       </form>
-
-      <%= button_to '削除', c, method: :delete, data: { confirm: 'カートから削除しますか？'} %>
+      <%= cart_subtotal = c.quantity.to_i * c.cd.price.to_i %> 円
+      <%= button_to '削除', c, method: :delete %>
+      <% @i = @i + cart_subtotal %>
   <% end %>
-<h3>小計</h3>
-<!-- 四則計算。1配送につき500円、商品は税込 -->
+<h3>小計: <%= @i %> 円</h3>
+
+<script>
+$(document).ready(function(){
+  $(".update_quantity").change(function(){
+    var index = $('.update_quantity').index(this);
+      $('.submit_form').eq(index).submit();
+    });
+  });
+</script>

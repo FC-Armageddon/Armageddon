@@ -46,7 +46,8 @@ resources :songs, only: [:create, :update]
 resources :arrivals, only: [:create, :index]
 
 post 'carts/deleted/:id' => 'carts#deleted_flag', as:'carts_deleted_flag'
-resources :carts, only: [:index, :create, :destroy, :update]
+post 'carts/:id'  => 'carts#update', as:'cart'
+resources :carts, only: [:index, :create, :destroy]
 
 resources :buy_informations, only: [:new, :create, :updates]
 

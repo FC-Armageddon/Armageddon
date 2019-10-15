@@ -7,6 +7,7 @@ class Cd < ApplicationRecord
 	has_many :discs, dependent: :destroy
 	accepts_nested_attributes_for :discs
 	has_many :arrivals
+	has_many :carts
 
 	attachment :jacket_image
 
