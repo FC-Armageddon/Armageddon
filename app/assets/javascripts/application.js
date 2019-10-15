@@ -13,19 +13,10 @@
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
-//= require_tree .
 //= require jquery
+//= require bootstrap-sprockets
+//= require_tree .
 //= require cocoon
-
-
-$(document).ready(function(){
-	$(".update_quantity").change(function(){
-		var index = $('.update_quantity').index(this);
-			$('.submit_form').eq(index).submit();
-		});
-	});
-
-
 
 
 

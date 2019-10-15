@@ -8,17 +8,21 @@ protect_from_forgery :except => [:update]
   def create
     cart = Cart.new(cart_params)
     cart.user_id = current_user.id
+    cart.quantity = params[:quantity]
     cart.save
-    redirect_to carts_path
+    redirect_to cd_path(cart.cd_id)
   end
 
   def destroy
+    cart = Cart.find(params[:id])
+    cart.destroy
+    redirect_to carts_path
   end
 
   def update
-    @cart = Cart.find(params[:id])
-    @cart.quantity = params[:update_quantity]
-    if @cart.update(cart_update_params)
+    cart = Cart.find(params[:id])
+    cart.quantity = params[:update_quantity]
+    if cart.update(cart_update_params)
        redirect_to carts_path
     else
        render("carts/index")
