@@ -14,7 +14,7 @@
   <tbody>
   	<% @arrivals.each do |ar| %>
     <tr>
-    	<td><span><%= ar.cd.created_at.strftime('%Y/%m/%d') %></span></td>
+    	<td><span><%= ar.cd.created_at.strftime('%Y/%m/%d %H:%M') %></span></td>
         <td><span><%= attachment_image_tag ar.cd, :jacket_image, :fill, 60, 60, format: 'ipeg', fallback:"no_image_cd.jpg", size: "100x100" %></span></td>
         <td><span><%= ar.cd.cd_name %></span></td>
         <td><span><%= ar.arrival %>枚</span></td>
