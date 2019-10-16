@@ -8,16 +8,19 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @destinations = @user.destinations
   end
 
   def edit
     @user = User.find(params[:id])
+    # cocoon
+    @user.destinations.build
   end
 
   def deleted_flag
     @user = User.find(params[:id])
     @user.deleted_flag = true
-    # updateでもできるらしいけど、ストロングパラメータから取ってくる記述してね
+    # updateでもできるらしいけど、ストロングパラメータから取ってくる記述よろ
     @user.save
     redirect_to root_path
   end
@@ -55,6 +58,6 @@ class UsersController < ApplicationController
 
 private
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :kana_first_name, :kana_last_name, :postal_code, :address, :email, :profile_image,)
+    params.require(:user).permit(:first_name, :last_name, :kana_first_name, :kana_last_name, :postal_code, :address, :email, :profile_image, destinations_attributes: [:delivery_postal_code, :delivery_address, :delivery_name, :_destroy])
   end
 end

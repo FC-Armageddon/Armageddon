@@ -8,7 +8,8 @@ class User < ApplicationRecord
 
   has_many :carts
   has_many :buy_informations
-  has_many :destinations
+  has_many :destinations, dependent: :destroy
+  accepts_nested_attributes_for :destinations, allow_destroy: true
 
   with_options presence: true do
   	validates :postal_code

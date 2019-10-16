@@ -3,7 +3,7 @@ def create
   	arrival = Arrival.new(arrival_params)
   	arrival.save!
   	cd = Cd.find(arrival.cd_id)
-  if cd.sales_status.sales_status == "販売中"
+    if cd.sales_status.sales_status == "販売中"
   	cd.stock = cd.stock + arrival.arrival
     if cd.stock <= 0
       sales = SalesStatus.find_by(sales_status: "販売停止中")
@@ -22,7 +22,7 @@ def create
   end
     cd.save!
     redirect_to cd_admins_path(cd.id)
-end
+  end
 
   def index
     @arrivals = Arrival.all

@@ -17,6 +17,18 @@
     <tr><td><%= user.address %></td></tr>
     <tr><td><%= user.email %></td></tr>
 
+    <!-- destinationのdestroyアクションを追加しないとダメ -->
+    <tr><td>登録配送先</td></tr>
+    <% @destinations.each do |d| %>
+    <tr><td><%= d.delivery_postal_code %></td></tr>
+    <tr><td><%= d.delivery_address %></td></tr>
+    <tr><td><%= d.delivery_name %></td></tr>
+    <tr><td><%= link_to "削除", user_path(user.id), method: :delete %></td></tr>
+    <% end %>
+
+
+
+
     <% if user_signed_in? %>
       <tr><td><%= link_to "編集", edit_user_path(user.id) %></td></tr>
     <% else %>
