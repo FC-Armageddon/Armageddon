@@ -5,7 +5,7 @@ class Cd < ApplicationRecord
 	belongs_to :artist
 
 	has_many :discs, dependent: :destroy
-	accepts_nested_attributes_for :discs
+	accepts_nested_attributes_for :discs, allow_destroy: true
 	has_many :arrivals
 	has_many :carts
 

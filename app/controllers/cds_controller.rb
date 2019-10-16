@@ -30,6 +30,7 @@ class CdsController < ApplicationController
 
   def admins_index
     @arrival = Arrival.new
+    # 検索の記載
     @search = Cd.ransack(params[:q])
     @search_cds = @search.result
   end
@@ -148,6 +149,6 @@ class CdsController < ApplicationController
 
   private
   def cd_params
-    params.require(:cd).permit(:cd_name, :jacket_image, :price, :stock, discs_attributes: [:cd_id, :disc, :sort, songs_attributes: [:disc_id, :song, :song_order]])
+    params.require(:cd).permit(:cd_name, :jacket_image, :price, :stock, discs_attributes: [:id, :cd_id, :disc, :sort, :_destroy, songs_attributes: [:id, :disc_id, :song, :song_order, :_destroy]])
   end
 end
