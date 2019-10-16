@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_13_084629) do
+ActiveRecord::Schema.define(version: 2019_10_16_074259) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -41,13 +41,13 @@ ActiveRecord::Schema.define(version: 2019_10_13_084629) do
   create_table "buy_infomations", force: :cascade do |t|
     t.integer "user_id"
     t.integer "payment_i18n"
-    t.integer "delivery_status_i18n"
     t.integer "subtotal"
     t.text "final_postal_code"
     t.text "final_address"
     t.text "final_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "delivery_status_i18n", default: 1
     t.index ["user_id"], name: "index_buy_infomations_on_user_id"
   end
 
