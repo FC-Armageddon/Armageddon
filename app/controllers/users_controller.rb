@@ -11,6 +11,12 @@ class UsersController < ApplicationController
     @destinations = @user.destinations
   end
 
+  def destroy
+    destination = Destination.find(params[:id])
+    destination.destroy
+    redirect_to user_path(current_user.id)
+  end
+
   def edit
     @user = User.find(params[:id])
     # cocoon
