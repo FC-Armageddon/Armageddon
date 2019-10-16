@@ -19,7 +19,7 @@ get 'users/admins/:id' => 'users#admins_show', as:'user_admins'
 get 'users/admins_edit/:id' => 'users#admins_edit', as:'user_admins_edit'
 post 'users/admins/:id' => 'users#admins_update', as:'user_admins_update'
 post 'users/admins/deleted/:id' => 'users#admins_deleted_flag', as:'admins_deleted_flag'
-resources :users, only: [:update, :show, :edit]
+resources :users, only: [:update, :show, :edit, :destroy]
 
 get 'cds/admins_index' => 'cds#admins_index', as:'cds_admins'
 get 'cds/search', as: 'search'
