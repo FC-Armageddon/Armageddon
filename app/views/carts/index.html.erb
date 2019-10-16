@@ -11,7 +11,9 @@
       <%= button_to '削除', c, method: :delete %>
       <% @i = @i + cart_subtotal %>
   <% end %>
-<h3>小計: <%= @i %> 円</h3>
+
+  <h3>小計: <%= @i %> 円</h3>
+  <%= link_to '購入画面へ', new_buy_information_path %>
 
 <script>
 $(document).ready(function(){
