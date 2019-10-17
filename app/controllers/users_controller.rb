@@ -2,6 +2,8 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     @user.update(user_params)
+    @user.destinations.build
+
     flash[:notice] = "You have updated user successfully."
     redirect_to user_path(@user.id)
   end
@@ -20,13 +22,12 @@ class UsersController < ApplicationController
   def edit
     @user = User.find(params[:id])
     # cocoon
-    @user.destinations.build
   end
 
   def deleted_flag
     @user = User.find(params[:id])
     @user.deleted_flag = true
-    # updateでもできるらしいけど、ストロングパラメータから取ってくる記述よろ
+    # updateでもできるらしいけど、updateの時はストロングパラメータから取ってくる記述いる
     @user.save
     redirect_to root_path
   end

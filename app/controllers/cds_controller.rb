@@ -30,7 +30,7 @@ class CdsController < ApplicationController
 
   def admins_index
     @arrival = Arrival.new
-    # 検索の記載
+    # ransackの記載
     @search = Cd.ransack(params[:q])
     @search_cds = @search.result
   end
