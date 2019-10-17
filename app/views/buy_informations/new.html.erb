@@ -1,0 +1,47 @@
+<h1>購入情報入力画面</h1>
+
+<%= form_for @buy_information do |f| %>
+
+	配送先:
+<table>
+	<tr><thead>
+		<th></th>
+		<th>郵便番号</th>
+		<th>住所</th>
+		<th>お届け名</th>
+	</thead>
+	</td>
+	<% @destinations.each_with_index do |d, i| %>
+	<% if i == 0 %>
+	<tr>
+		<td><%= radio_button_tag :destination_id, "a", :checked %></td>
+		<td><%= current_user.postal_code %></td>
+		<td><%= current_user.address %></td>
+		<td><%= current_user.first_name %><td>
+	</tr>
+	<% end %>
+	<tr>
+		<td><%= radio_button_tag :destination_id, d.id %></td>
+		<td><%= d.delivery_postal_code %></td>
+		<td><%= d.delivery_address %></td>
+		<td><%= d.delivery_name %></td>
+	</tr>
+	<% end %>
+</table>
+
+<%= f.select :payment, BuyInformation.payments.keys.map { |k| [I18n.t("enums.buy_information.payment.#{k}"), k]} %>
+
+<% @i = 0 %>
+<% @carts.each do |c| %>
+	<h4>商品名: <%= c.cd.cd_name %></h4>
+	<p>価格: <%= c.cd.price %> 円</p>
+	<p>購入数: <%= c.quantity %> 枚</p>
+	<% @subtotal = c.quantity.to_i * c.cd.price.to_i %>
+	<% @i = @i + @subtotal %>
+<% end %>
+<h2>小計: <%= @i %> 円</h2>
+<%= f.hidden_field :subtotal, value: @i %>
+
+<%= f.submit '購入する', data: { confirm: "買い忘れはございませんか？"} %>
+
+<% end %>

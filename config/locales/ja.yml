@@ -1,0 +1,12 @@
+ja:
+  enums:
+    buy_information:
+      payment:
+        cash: 現金
+        cod: 代引き
+      delivery_status:
+        reception: 受付
+        preparing: 商品準備中
+        delivered: 出荷済み
+
+
