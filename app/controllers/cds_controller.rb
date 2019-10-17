@@ -1,5 +1,6 @@
 class CdsController < ApplicationController
 
+
   def admins_new
     @cd = Cd.new
     @discs = @cd.discs.build
@@ -25,7 +26,6 @@ class CdsController < ApplicationController
     if @search_cds != Cd.all
       render 'index'
     end
-
   end
 
   def admins_index

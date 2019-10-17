@@ -6,11 +6,15 @@ protect_from_forgery :except => [:update]
   end
 
   def create
-    cart = Cart.new(cart_params)
-    cart.user_id = current_user.id
-    cart.quantity = params[:quantity]
-    cart.save
-    redirect_to cd_path(cart.cd_id)
+    if user_signed_in?
+       cart = Cart.new(cart_params)
+       cart.user_id = current_user.id
+       cart.quantity = params[:quantity]
+       cart.save
+       redirect_to cd_path(cart.cd_id)
+    else
+      redirect_to new_user_session_path
+    end
   end
 
   def destroy

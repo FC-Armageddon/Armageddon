@@ -32,7 +32,6 @@ get 'cds/admins_new' => 'cds#admins_new', as:'cds_new'
 get 'cds/admins_search', as:'admins_search'
 resources :cds, only: [:show]
 
-
 resources :genres, only: [:create, :update]
 
 resources :labels, only: [:create, :update]
