@@ -25,7 +25,6 @@ class CdsController < ApplicationController
     if @search_cds != Cd.all
       render 'index'
     end
-
   end
 
   def admins_index
@@ -152,3 +151,4 @@ class CdsController < ApplicationController
     params.require(:cd).permit(:cd_name, :jacket_image, :price, :stock, discs_attributes: [:id, :cd_id, :disc, :sort, :_destroy, songs_attributes: [:id, :disc_id, :song, :song_order, :_destroy]])
   end
 end
+

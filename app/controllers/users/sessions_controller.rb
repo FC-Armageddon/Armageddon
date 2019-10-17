@@ -25,7 +25,13 @@ class Users::SessionsController < Devise::SessionsController
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
     def after_sign_in_path_for(resource)
-          root_path
+     if session[:album_id] == nil
+        root_path
+    else
+        aa = session[:album_id]
+        cd_path(aa)
+    end
+
     end
     def after_sign_out_path_for(resource)
           root_path
