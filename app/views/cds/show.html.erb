@@ -10,7 +10,7 @@
 
 <h1>CD詳細</h1>
 
-<div><%= attachment_image_tag @cd, :jacket_image, :fill, 60, 60, format: 'jpeg', fallback: "no_image_cd.jpg" %>
+<div><%= attachment_image_tag @cd, :jacket_image, fallback: "no_image.jpg", size: "100x100" %>
 </div>
 
 

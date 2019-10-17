@@ -3,6 +3,8 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     @user.update(user_params)
+    @user.destinations.build
+
     flash[:notice] = "You have updated user successfully."
     redirect_to user_path(@user.id)
   end
@@ -21,13 +23,12 @@ class UsersController < ApplicationController
   def edit
     @user = User.find(params[:id])
     # cocoon
-    @user.destinations.build
   end
 
   def deleted_flag
     @user = User.find(params[:id])
     @user.deleted_flag = true
-    # updateでもできるらしいけど、ストロングパラメータから取ってくる記述よろ
+    # updateでもできるらしいけど、updateの時はストロングパラメータから取ってくる記述いる
     @user.save
     redirect_to root_path
   end
@@ -65,6 +66,6 @@ class UsersController < ApplicationController
 
 private
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :kana_first_name, :kana_last_name, :postal_code, :address, :email, :profile_image, destinations_attributes: [:delivery_postal_code, :delivery_address, :delivery_name, :_destroy])
+    params.require(:user).permit(:first_name, :last_name, :kana_first_name, :kana_last_name, :postal_code, :address, :email, :profile_image, destinations_attributes: [:id, :delivery_postal_code, :delivery_address, :delivery_name, :_destroy])
   end
 end

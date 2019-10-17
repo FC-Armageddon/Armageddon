@@ -11,7 +11,7 @@
 
 <% @search_cds.each do |cds| %>
   <tr>
-    <td><%= attachment_image_tag cds, :jacket_image, :fill, 60, 60, format: 'jpeg', fallback: "no_image_cd.jpg" %></td>
+    <td><%= attachment_image_tag cds, :jacket_image, fallback: "no_image.jpg", size: "40x40" %></td>
     <td><%= cds.cd_name %></td>
     <td><%= link_to "詳細ページへ", cd_path(cds.id) %></td>
   </tr>
