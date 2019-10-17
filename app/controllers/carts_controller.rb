@@ -13,6 +13,8 @@ protect_from_forgery :except => [:update]
        cart.save
        redirect_to cd_path(cart.cd_id)
     else
+      cart = Cart.new(cart_params)
+      session[:album_id] =  cart.cd_id
       redirect_to new_user_session_path
     end
   end
