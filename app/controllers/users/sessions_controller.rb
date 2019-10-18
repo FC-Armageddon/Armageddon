@@ -42,6 +42,7 @@ class Users::SessionsController < Devise::SessionsController
         @user = User.find_by(email: params[:user][:email] , deleted_flag: true)
         # binding.pry
         if @user
+        flash[:notice] = "あなたは退会済みユーザーです。"
         redirect_to new_user_registration_path
         end
     end
