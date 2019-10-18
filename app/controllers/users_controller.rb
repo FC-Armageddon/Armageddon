@@ -42,8 +42,11 @@ class UsersController < ApplicationController
   def admins_show
     @user = User.find(params[:id])
     @destinations = @user.destinations
+
     # @purchase_historises = Purchase_history.all
     @cd = Cd.find(params[:id])
+    @buy_information = @user.buy_informations
+
   end
 
   def admins_edit
@@ -53,6 +56,7 @@ class UsersController < ApplicationController
   def admins_update
     @user = User.find(params[:id])
     @user.destinations.build
+    purchase_history.buy_information.delivery_status.update
 
     if @user.update(user_params)
        flash[:notice] = "OK!!!"

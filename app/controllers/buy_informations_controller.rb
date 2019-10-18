@@ -36,7 +36,7 @@ class BuyInformationsController < ApplicationController
   	redirect_to user_path(current_user.id)
   end
 
-  def updates
+  def update
   end
 
   private
