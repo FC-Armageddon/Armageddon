@@ -14,11 +14,12 @@ class UsersController < ApplicationController
     @destinations = @user.destinations
   end
 
-  def destroy
-    destination = Destination.find(params[:id])
-    destination.destroy
-    redirect_to user_path(current_user.id)
-  end
+  # userのshowで削除機能つけなければいらない
+  # def destroy
+  #   destination = Destination.find(params[:id])
+  #   destination.destroy
+  #   redirect_to user_path(current_user.id)
+  # end
 
   def edit
     @user = User.find(params[:id])
@@ -39,6 +40,8 @@ class UsersController < ApplicationController
 
   def admins_show
     @user = User.find(params[:id])
+    @destinations = @user.destinations
+
     # @purchase_historises = Purchase_history.all
     @cd = Cd.find(params[:id])
   end
@@ -49,6 +52,8 @@ class UsersController < ApplicationController
 
   def admins_update
     @user = User.find(params[:id])
+    @user.destinations.build
+
     if @user.update(user_params)
        flash[:notice] = "OK!!!"
        redirect_to user_admins(@user_admins.id)
