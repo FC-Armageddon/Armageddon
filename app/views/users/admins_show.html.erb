@@ -14,10 +14,9 @@
                 <span><%= p.cd_name %></span>
                 <span><%=  p.price %> 円</span>
                 <span><%=  p.created_at.strftime('%Y/%m/%d %H:%M')  %></span>
-
-                <span><form action="/users/admins/" method="POST" class="submit_form">
-                  <%= b.select :payment, BuyInformation.payments.keys.map { |k| [I18n.t("enums.buy_information.payment.#{k}"), k]} %></form></span>
                   <% end %>
+                  <span><form action="/buy/<%= b.id %>" method="post" class="submit_form">
+                  <%= select_tag 'update_delivery_status',  options_for_select([["受付中", 1 ], ["商品準備中", 2], ["出荷済", 3]], {:selected => b.delivery_status_before_type_cast} ),  class: "update_delivery_status" %></form></span>
               <% end %>
     </div>
 </div>
