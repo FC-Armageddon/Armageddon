@@ -1,5 +1,5 @@
 class BuyInformationsController < ApplicationController
-  
+  protect_from_forgery :except => [:update]
   def new
   	@carts = current_user.carts
   	@buy_information = BuyInformation.new
@@ -53,6 +53,11 @@ class BuyInformationsController < ApplicationController
   end
 
   def update
+        buy = BuyInformation.find(params[:id])
+        delivery = params[:update_delivery_status]
+        buy.delivery_status = delivery.to_i
+        buy.save
+        redirect_to user_admins_path(buy.user_id)
   end
 
   private

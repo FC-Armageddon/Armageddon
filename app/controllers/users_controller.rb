@@ -55,8 +55,6 @@ class UsersController < ApplicationController
   def admins_update
     @user = User.find(params[:id])
     @user.destinations.build
-    purchase_history.buy_information.delivery_status.update
-
     if @user.update(user_params)
        flash[:notice] = "OK!!!"
        redirect_to user_admins(@user_admins.id)
