@@ -12,6 +12,11 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @destinations = @user.destinations
+    # これで退会済みユーザーはuser/[:id]を手打ちしても見れない
+    if @user.deleted_flag.to_s == "true"
+      flash[:notice] = "あなたは退会済みユーザーです。"
+      redirect_to new_user_registration_path
+    end
   end
 
   # userのshowで削除機能つけなければいらない
