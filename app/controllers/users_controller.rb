@@ -23,7 +23,7 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
-    # cocoon
+    # updateでもできるらしいけど、updateの時はストロングパラメータから取ってくる記述いる
   end
 
   def deleted_flag
@@ -31,6 +31,7 @@ class UsersController < ApplicationController
     @user.deleted_flag = true
     # updateでもできるらしいけど、updateの時はストロングパラメータから取ってくる記述いる
     @user.save
+    reset_session
     redirect_to root_path
   end
 
@@ -41,7 +42,11 @@ class UsersController < ApplicationController
   def admins_show
     @user = User.find(params[:id])
     @destinations = @user.destinations
+
+    # @purchase_historises = Purchase_history.all
+    @cd = Cd.find(params[:id])
     @buy_information = @user.buy_informations
+
   end
 
   def admins_edit

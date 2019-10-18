@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Users::SessionsController < Devise::SessionsController
+  before_action taikai:
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
@@ -36,5 +37,11 @@ class Users::SessionsController < Devise::SessionsController
     end
     def after_sign_out_path_for(resource)
           root_path
+    end
+    def taikai
+        @user = User.find(params[:email,:encrypted_password])
+        if @user.deleted_flag.to_s == "true"
+        redirect_to new_user_session_path
+        end
     end
 end
