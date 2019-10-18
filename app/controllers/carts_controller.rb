@@ -2,7 +2,11 @@ class CartsController < ApplicationController
 
 protect_from_forgery :except => [:update]
   def index
-    @carts = current_user.carts
+    carts_user = current_user.carts
+    @carts = carts_user.where(deleted_flag: "false")
+    if @carts == []
+      redirect_to root_path, notice: "カートの中身がありません"
+    end
   end
 
   def create
