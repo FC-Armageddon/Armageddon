@@ -11,5 +11,5 @@ class BuyInformation < ApplicationRecord
 	validates :final_name, presence: true
 
 	enum payment: {cash: 0, cod: 1}
-	enum delivery_status:  [reception: 1, preparing: 2, delivered: 3 ]
+	enum delivery_status: {reception: 1, preparing: 2, delivered: 3}
 end
