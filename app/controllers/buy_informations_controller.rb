@@ -1,13 +1,18 @@
 class BuyInformationsController < ApplicationController
   protect_from_forgery :except => [:update]
   def new
-  	@carts = current_user.carts
+  	carts = current_user.carts
+    @carts = carts.where(deleted_flag: "false")
   	@buy_information = BuyInformation.new
   	@destinations = current_user.destinations
+    if @carts == []
+      redirect_to root_path
+    end
   end
 
   def create
-    @carts = current_user.carts
+    carts = current_user.carts
+    @carts = carts.where(deleted_flag: "false")
     i = 0
     @stock_nil = []
     @carts.each do |cc|
@@ -37,6 +42,10 @@ class BuyInformationsController < ApplicationController
   			c.save
   			stock = c.cd.stock.to_i - c.quantity.to_i
   			c.cd.stock = stock
+          if c.cd.stock <= 0
+            sales = SalesStatus.find_by(sales_status: "販売停止中")
+            c.cd.sales_status_id = sales.id
+          end
   			c.cd.save
   			history = PurchaseHistory.new(purchase_history_params)
   			history.buy_information_id = buy.id
