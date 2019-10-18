@@ -40,7 +40,7 @@ class Users::SessionsController < Devise::SessionsController
     end
     def taikai
         @user = User.find(params[:email,:encrypted_password])
-        if @user.deleted_flag.to_s == "true"
+        if @user.deleted_flag
         redirect_to new_user_session_path
         end
     end

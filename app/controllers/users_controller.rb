@@ -23,7 +23,6 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
-    # updateでもできるらしいけど、updateの時はストロングパラメータから取ってくる記述いる
   end
 
   def deleted_flag
