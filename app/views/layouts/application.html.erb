@@ -9,9 +9,9 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
     <div id="slidemenu">
+            <h3><%= link_to "Armageddon", root_path %></h3>
+
       <ul class="nav navbar-nav navbar-right">
-
-
         <% if admin_signed_in? %>
 
           <li class="">
@@ -35,7 +35,6 @@
           </li>
 
         <% elsif user_signed_in? %>
-          <h3><%= link_to "Armageddon", root_path %></h3>
 
           <li class="">
             <%= link_to "#{current_user.first_name} 様", user_path(current_user.id) %>

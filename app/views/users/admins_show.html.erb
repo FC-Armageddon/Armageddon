@@ -4,26 +4,25 @@
 <div class="container">
 	<div class="row">
 		<div class="col-sm-3">
-           <%= render 'users/users_info',user: @user %>
+           <%= render 'users/users_info', user: @user, destinations: @destinations %>
         </div>
 
         <div class="col-sm-9">
             <h2>顧客詳細</h2>
-                <!-- 商品購入履歴画面めっちゃ途中。ParchaseHistoryできたらやるわ -->
-                <!-- @purchase_histories.each do |p| >
-                <span>< attachment_image_tag @cd, :jacket_image, :fill, 60, 60, fallback: "no_image_cd.jpg", size: "60x60" ></span>
-                <span>< link_to "#{p.cd_name}", cd_admins_path(@cd.id) ></span>
-                <span><  p.buy_infomation.subtotal > 円</span>
-                <span><  p.created_at.strftime('%Y/%m/%d %H:%M')  ></span>
-                <span><form action="/users/admins/" method="POST" class="submit_form"></span>
-                <span><  select_tag 'update_delivery_status', options_for_select, ((["受付中", 1],["商品準備中", 2],["出荷済"], 3), {:selected => p.buy_informations.delivery_status}), class: "update_delivery_status" ></span>
-                </form>
-            -->
+              <% @buy_information.each do |b| %>
+                <% b.purchase_histories.each do |p| %>
+                <span><%= p.cd_name %></span>
+                <span><%=  p.price %> 円</span>
+                <span><%=  p.created_at.strftime('%Y/%m/%d %H:%M')  %></span>
 
+                <span><form action="/users/admins/" method="POST" class="submit_form">
+                  <%= b.select :payment, BuyInformation.payments.keys.map { |k| [I18n.t("enums.buy_information.payment.#{k}"), k]} %></form></span>
+                  <% end %>
+              <% end %>
     </div>
 </div>
 
-<!--
+
 <script>
 $(document).ready(function(){
   $(".update_delivery_status").change(function(){
@@ -32,4 +31,3 @@ $(document).ready(function(){
   });
 });
 </script>
- -->
