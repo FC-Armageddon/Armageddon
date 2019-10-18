@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Users::SessionsController < Devise::SessionsController
-  before_action taikai:
+  before_action :taikai, only: [:create]
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
@@ -39,9 +39,10 @@ class Users::SessionsController < Devise::SessionsController
           root_path
     end
     def taikai
-        @user = User.find(params[:email,:encrypted_password])
-        if @user.deleted_flag
-        redirect_to new_user_session_path
+        @user = User.find_by(email: params[:user][:email] , deleted_flag: true)
+        # binding.pry
+        if @user
+        redirect_to new_user_registration_path
         end
     end
 end
