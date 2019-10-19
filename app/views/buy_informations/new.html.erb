@@ -11,15 +11,13 @@
 		<th>お届け名</th>
 	</thead>
 	</td>
-	<% @destinations.each_with_index do |d, i| %>
-	<% if i == 0 %>
 	<tr>
 		<td><%= radio_button_tag :destination_id, "a", :checked %></td>
 		<td><%= current_user.postal_code %></td>
 		<td><%= current_user.address %></td>
 		<td><%= current_user.first_name %><td>
 	</tr>
-	<% end %>
+	<% @destinations.each do |d| %>
 	<tr>
 		<td><%= radio_button_tag :destination_id, d.id %></td>
 		<td><%= d.delivery_postal_code %></td>

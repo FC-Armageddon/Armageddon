@@ -18,6 +18,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @destinations = @user.destinations
+    carts = current_user.carts
     if @user.id != current_user.id
       redirect_to root_path
     # これで退会済みユーザーはuser/[:id]を手打ちしても見れない
@@ -61,9 +62,11 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @destinations = @user.destinations
 
+
     # @purchase_historises = Purchase_history.all
     @cd = Cd.find(params[:id])
     @buy_information = @user.buy_informations
+    @carts = @user.carts.where(deleted_flag: "true")
 
   end
 
