@@ -8,17 +8,38 @@
         </div>
 
         <div class="col-sm-9">
-            <h2>顧客詳細</h2>
+        <table class='table table-striped'>
+          <thead>
+          <tr>
+            <th><span>顧客詳細</span></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td><span>商品名</span></td>
+            <td><span>価格</span></td>
+            <td><span>小計</span></td>
+            <td><span>購入日</span></td>
+            <td><span>発送ステータス</span></td>
+          </tr>
+
+          <tr>
               <% @buy_information.each do |b| %>
                 <% b.purchase_histories.each do |p| %>
-                <span><%= p.cd_name %></span>
-                <span><%=  p.price %> 円</span>
-                <span><%=  p.created_at.strftime('%Y/%m/%d %H:%M')  %></span>
+                <td><span><%= p.cd_name %></span></td>
+                <td><span><%=  p.price %> 円</span></td>
+                <td><span><%= b.subtotal %> 円</span></td>
+                <td colspan="2"><%=  p.created_at.strftime('%Y/%m/%d %H:%M')  %></td></td>
                   <% end %>
-                  <span><form action="/buy/<%= b.id %>" method="post" class="submit_form">
-                  <%= select_tag 'update_delivery_status',  options_for_select([["受付中", 1 ], ["商品準備中", 2], ["出荷済", 3]], {:selected => b.delivery_status_before_type_cast} ),  class: "update_delivery_status" %></form></span>
+                  <td><span><form action="/buy/<%= b.id %>" method="post" class="submit_form">
+                  <%= select_tag 'update_delivery_status',  options_for_select([["受付中", 1 ], ["商品準備中", 2], ["出荷済", 3]], {:selected => b.delivery_status_before_type_cast} ),  class: "update_delivery_status" %></form></span></td>
               <% end %>
+          </tr>
+        </tbody>
+      </table>
     </div>
+  </div>
 </div>
 
 
