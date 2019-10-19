@@ -11,6 +11,7 @@ protect_from_forgery :except => [:update]
        cart.user_id = current_user.id
        cart.quantity = params[:quantity]
        cart.save
+       flash[:notice] = "カートに追加しました。"
        redirect_to cd_path(cart.cd_id)
     else
       cart = Cart.new(cart_params)
@@ -29,6 +30,7 @@ protect_from_forgery :except => [:update]
     cart = Cart.find(params[:id])
     cart.quantity = params[:update_quantity]
     if cart.update(cart_update_params)
+       flash[:notice] = "数量変更しました。"
        redirect_to carts_path
     else
        render("carts/index")
