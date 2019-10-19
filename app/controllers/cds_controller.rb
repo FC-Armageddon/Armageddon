@@ -11,7 +11,7 @@ class CdsController < ApplicationController
   def index
     # ransackの記載
     @search = Cd.ransack(params[:q])
-    @search_cds = @search.result
+    @search_cds = @search.result.page(params[:page]).per(9)
   end
 
   def search
@@ -33,7 +33,7 @@ class CdsController < ApplicationController
     @arrival = Arrival.new
     # ransackの記載
     @search = Cd.ransack(params[:q])
-    @search_cds = @search.result
+    @search_cds = @search.result.page(params[:page]).per(9)
   end
 
   def admins_show
