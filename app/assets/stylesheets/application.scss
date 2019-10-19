@@ -15,3 +15,63 @@
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+/*======== 設定 ========*/
+ * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+a {
+  text-decoration: none;
+}
+
+.image1 {
+background-image: url(image1.jpg);
+}
+.image2 {
+background-image: url(image2.jpg);
+}
+.image3 {
+background-image: url(image3.jpg);
+}
+.image4 {
+background-image: url(image4.jpg);
+}
+.image5 {
+background-image: url(image5.jpg);
+}
+
+#container{
+	height: 500px;
+}
+
+.search_container {
+	float: right;
+	z-index: 10;
+}
+
+.cd_index {
+	margin-top: 100px;
+}
+
+#slidemenu {
+	display: none;
+}
+.user_show_th {
+	vertical-align: middle;
+	white-space: nowrap;
+}
+.user_show_td {
+	white-space: nowrap;
+	width: auto;
+}
+.user_show_table {
+	width: 1000;
+}
+
+.table > tbody > tr > td {
+	vertical-align: middle;
+	width: auto;
+	white-space: nowrap;
+}

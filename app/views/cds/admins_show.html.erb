@@ -1,28 +1,64 @@
 <h1>販売商品詳細</h1>
 
-<div><%= attachment_image_tag @cd, :jacket_image, :fill, 60, 60, format: 'jpeg', fallback: "no_image_cd.jpg" %>
-</div>
+<div class="container">
+	<div class="row">
 
-<div><p><%= @cd.cd_name %></p>
-	 <p><%= @cd.price %> 円</p>
-	 <P><%= @cd.sales_status.sales_status %></P>
-	 <p><%= @cd.stock %> 枚</p>
-	 <p><%= link_to '商品編集', cd_admins_edit_path(@cd.id) %></p>
-	 <p><%= link_to '商品削除', cd_admins_destroy_path(@cd.id), method: :delete %></p>
-</div>
+		<div class="col-xs-4">
+					<tr>
+						<td><%= attachment_image_tag @cd, :jacket_image, :fill, 60, 60, format: 'jpeg', fallback: "no_image_cd.jpg", size: "300x300" %></td>
+					</tr>
+		</div>
+		<div class="col-xs-8">
+			<table class="table">
+				    <tr>
+						<td><%= @cd.cd_name %></td>
+						<td><%= @cd.price %> 円</td>
+						<td><%= @cd.sales_status.sales_status %></td>
+						<td><%= @cd.stock %> 枚</td>
+					</tr>
+					<tr>
+						<td><%= link_to '商品編集', cd_admins_edit_path(@cd.id), class: 'btn btn-info' %></td>
+						<td><%= link_to '商品削除', cd_admins_destroy_path(@cd.id), metdod: :delete, class: 'btn btn-danger' %>
+						</td>
+					</tr>
+			</table>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-5">
+		<h2>商品情報</h2>
+		    <span></span><br>
+			<span class="glyphicon glyphicon-user" aria-hidden="true">アーティスト</span><br>
+			<span class="glyphicon glyphicon-film" aria-hidden="true">レーベル</span><br>
+			<span class="glyphicon glyphicon-folder-open" aria-hidden="true">ジャンル</span><br>
+			<span class="glyphicon glyphicon-headphones" aria-hidden="true">ディスク</span><br>
+		    <span class="glyphicon glyphicon-music" aria-hidden="true">曲</span>
 
-<div><h2>商品情報</h2>
-	<p><%= @cd.artist.artist %></p>
-	<p><%= @cd.label.label %></p>
-	<p><%= @cd.genre.genre %></p>
-	<% @discs.each do |disc| %>
-		<P><%= disc.disc %>
-	   	   <%= disc.sort %>
-		</P>
-		<% disc.songs.each do |song| %>
-		<p><%= song.song_order %>
-			<%= song.song %>
-		</p>
-		<% end %>
-	<% end %>
+			</div>
+			<div class="col-xs-5">
+				<span></span><br>
+				<span></span><br>
+				<span></span><br>
+				<span></span><br>
+				<span class="glyphicon glyphicon-user" aria-hidden="true">
+					<%= @cd.artist.artist %></span><br>
+				<span class="glyphicon glyphicon-film" aria-hidden="true">
+					<%= @cd.label.label %></span><br>
+				<span class="glyphicon glyphicon-folder-open" aria-hidden="true">
+					<%= @cd.genre.genre %></span><br>
+				<% @discs.each do |disc| %>
+				<span class="glyphicon glyphicon-headphones" aria-hidden="true">
+					<%= disc.disc %></span>
+				<span><%= disc.sort %></span><br>
+
+				<% disc.songs.each do |song| %>
+				<span class="glyphicon glyphicon-music" aria-hidden="true">
+					<%= song.song_order %></span>
+				<span><%= song.song %></span><br>
+
+				<% end %>
+			    <% end %>
+
+	</div>
+</div>
 </div>

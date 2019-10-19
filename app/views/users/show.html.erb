@@ -1,1 +1,63 @@
-<%= render 'users/users_info',user: @user, destinations: @destinations %>
+
+<div class="container">
+	<div class="row">
+		<div class="col-sm-3">
+           <%= render 'users/users_info', user: @user, destinations: @destinations %>
+        </div>
+
+        <div class="col-sm-9">
+          <div class="table-responsive">
+            <table class='table table-bordered'>
+          <thead>
+          <tr>
+            <th><span>顧客詳細</span></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td><span>商品名</span></td>
+            <td><span>価格</span></td>
+            <td><span>購入数</span></td>
+            <td><span>小計</span></td>
+            <td><span>購入日</span></td>
+            <td><span>郵便番号</span></td>
+            <td><span>配送先</span></td>
+            <td><span>配送先名</span></td>
+          </tr>
+              <% i = 0 %>
+              <% @buy_information.each do |b| %>
+                <% b.purchase_histories.each_with_index do |p, i| %>
+              <% if i == 0 %>
+               <tr>
+                <td><span><%= p.cd_name %></span></td>
+                <td><span><%=  p.price %> 円</span></td>
+                <td><span><%= p.quantity %> 枚</span></td>
+                  <td rowspan = "<%= b.purchase_histories.count %>"><span><%= b.subtotal %> 円</span></td>
+                <td rowspan = "<%= b.purchase_histories.count %>" ><%=  b.created_at.strftime('%Y/%m/%d %H:%M')  %></td>
+                <td rowspan = "<%= b.purchase_histories.count %>">
+                  <%= b.final_postal_code %>
+                </td>
+                <td rowspan = "<%= b.purchase_histories.count %>">
+                  <%= b.final_address %>
+                </td>
+                <td rowspan = "<%= b.purchase_histories.count %>">
+                  <%= b.final_name %>
+                </td>
+              </tr>
+                <% else %>
+              <tr>
+                <td><span><%= p.cd_name %></span></td>
+                <td><span><%=  p.price %> 円</span></td>
+                <td><span><%= p.quantity %> 枚</span></td>
+              </tr>
+              <% end %>
+              <% end %>
+              <tr class="info"><td colspan= "5"></td></tr>
+            <% end %>
+        </tbody>
+      </table>
+    </div>
+    </div>
+  </div>
+</div>

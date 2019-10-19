@@ -1,5 +1,6 @@
-
-<%= flash[:notice] %>
+<% if flash[:notice] %>
+  <%= flash[:notice] %>
+<% end %>
 
 <div class="container">
 	<div class="row">
@@ -8,34 +9,31 @@
         </div>
 
         <div class="col-sm-9">
+          <h1><span>顧客詳細</span></h1>
           <div class="table-responsive">
-            <table class='table table-bordered'>
+            <table class='table table-bordered user_show_table'>
           <thead>
-          <tr>
-            <th><span>顧客詳細</span></th>
-          </tr>
         </thead>
-
         <tbody>
           <tr>
-            <td><span>商品名</span></td>
-            <td><span>価格</span></td>
-            <td><span>購入数</span></td>
-            <td><span>小計</span></td>
-            <td><span>購入日</span></td>
-            <td><span>郵便番号</span></td>
-            <td><span>配送先</span></td>
-            <td><span>配送先名</span></td>
-            <td><span>発送ステータス</span></td>
+            <th class= "user_show_th"><span>商品名</span></td>
+            <th class= "user_show_th"><span>価格</span></td>
+            <th class= "user_show_th"><span>購入数</span></td>
+            <th class= "user_show_th"><span>小計</span></td>
+            <th class= "user_show_th"><span>購入日</span></td>
+            <th class= "user_show_th"><span>郵便番号</span></td>
+            <th class= "user_show_th"><span>配送先</span></td>
+            <th class= "user_show_th"><span>配送先名</span></td>
+            <th class= "user_show_th"><span>発送ステータス</span></td>
           </tr>
               <% i = 0 %>
               <% @buy_information.each do |b| %>
                 <% b.purchase_histories.each_with_index do |p, i| %>
               <% if i == 0 %>
                <tr>
-                <td><span><%= p.cd_name %></span></td>
-                <td><span><%=  p.price %> 円</span></td>
-                <td><span><%= p.quantity %> 枚</span></td>
+                <td class= "user_show_td"><span><%= p.cd_name %></span></td>
+                <td class= "user_show_td"><span><%=  p.price %> 円</span></td>
+                <td class= "user_show_td"><span><%= p.quantity %> 枚</span></td>
                   <td rowspan = "<%= b.purchase_histories.count %>"><span><%= b.subtotal %> 円</span></td>
                 <td rowspan = "<%= b.purchase_histories.count %>" ><%=  b.created_at.strftime('%Y/%m/%d %H:%M')  %></td>
                 <td rowspan = "<%= b.purchase_histories.count %>">
@@ -53,13 +51,13 @@
               </tr>
                 <% else %>
               <tr>
-                <td><span><%= p.cd_name %></span></td>
-                <td><span><%=  p.price %> 円</span></td>
-                <td><span><%= p.quantity %> 枚</span></td>
+                <td class= "user_show_td"><span><%= p.cd_name %></span></td>
+                <td class= "user_show_td"><span><%=  p.price %> 円</span></td>
+                <td class= "user_show_td"><span><%= p.quantity %> 枚</span></td>
               </tr>
               <% end %>
               <% end %>
-              <tr class="info"><td colspan= "6"></td></tr>
+              <tr class="info"><td colspan= "9"></td></tr>
             <% end %>
         </tbody>
       </table>
