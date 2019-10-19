@@ -57,7 +57,7 @@ class UsersController < ApplicationController
   end
 
   def admins_index
-    @users = User.all
+    @users = User.all.page(params[:page]).per(9)
   end
 
   def admins_show
@@ -68,6 +68,7 @@ class UsersController < ApplicationController
     # @purchase_historises = Purchase_history.all
     @cd = Cd.find(params[:id])
     @buy_information = @user.buy_informations
+    @buy_information = BuyInformation.page(params[:page]).per(9)
     @carts = @user.carts.where(deleted_flag: "true")
 
   end

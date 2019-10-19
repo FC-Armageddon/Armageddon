@@ -2,26 +2,16 @@
 
 <div class="container">
 	<div class="row">
-
 		<div class="col-xs-4">
-					<tr>
-						<td><%= attachment_image_tag @cd, :jacket_image, :fill, 60, 60, format: 'jpeg', fallback: "no_image_cd.jpg", size: "300x300" %></td>
-					</tr>
+			<%= attachment_image_tag @cd, :jacket_image, :fill, 60, 60, format: 'jpeg', fallback: "no_image_cd.jpg", size: "300x300" %>
 		</div>
 		<div class="col-xs-8">
-			<table class="table">
-				    <tr>
-						<td><%= @cd.cd_name %></td>
-						<td><%= @cd.price %> 円</td>
-						<td><%= @cd.sales_status.sales_status %></td>
-						<td><%= @cd.stock %> 枚</td>
-					</tr>
-					<tr>
-						<td><%= link_to '商品編集', cd_admins_edit_path(@cd.id), class: 'btn btn-info' %></td>
-						<td><%= link_to '商品削除', cd_admins_destroy_path(@cd.id), metdod: :delete, class: 'btn btn-danger' %>
-						</td>
-					</tr>
-			</table>
+			<%= @cd.cd_name %>
+			<%= @cd.price %> 円
+			<%= @cd.sales_status.sales_status %>
+			<%= @cd.stock %> 枚
+			<%= link_to '商品編集', cd_admins_edit_path(@cd.id), class: 'btn btn-info' %>
+			<%= link_to '商品削除', cd_admins_destroy_path(@cd.id), metdod: :delete, class: 'btn btn-danger' %>
 		</div>
 	</div>
 	<div class="row">
