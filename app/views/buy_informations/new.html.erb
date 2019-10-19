@@ -39,7 +39,7 @@
 <% end %>
 
 <h4>送料: 500 円</h4>
-<h2>小計: <%= @i + 500 %> 円</h2>
+<h2>小計: <%= @i.floor + 500 %> 円</h2>
 <%= f.hidden_field :subtotal, value: @i %>
 
 <%= f.submit '購入する', data: { confirm: "買い忘れはございませんか？"} %>

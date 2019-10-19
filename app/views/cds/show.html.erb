@@ -30,7 +30,7 @@
 
 
 <div><p><%= @cd.cd_name %></p>
-	 <p><%= @cd.price %> 円</p>
+	 <p><%= (@cd.price * 1.1).floor %> 円</p>
 	 <P><%= @cd.sales_status.sales_status %></P>
 	 <p><%= @cd.stock %> 個</p>
 	<p><%= @cd.artist.artist %></p>
