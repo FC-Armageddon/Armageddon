@@ -1,7 +1,13 @@
 class UsersController < ApplicationController
 
+  before_action :authenticate_user!, only: [:update, :show, :edit, :deleted_flag]
+  before_action :authenticate_admin!, only: [:admins_indexm, :admins_show, :admins_edit, :admins_update, :admins_deleted_flag]
+
   def update
     @user = User.find(params[:id])
+    if @user != current_user
+      redirect_to root_path
+    end
     @user.update(user_params)
     @user.destinations.build
 
@@ -12,10 +18,14 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @destinations = @user.destinations
+
+    if @user.id != current_user.id
+      redirect_to root_path
     # これで退会済みユーザーはuser/[:id]を手打ちしても見れない
-    if @user.deleted_flag.to_s == "true"
-      flash[:notice] = "あなたは退会済みユーザーです。"
-      redirect_to new_user_registration_path
+    elsif @user.deleted_flag.to_s == "true"
+        flash[:notice] = "あなたは退会済みユーザーです。"
+        redirect_to new_user_registration_path
+
     end
   end
 
@@ -28,10 +38,16 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+    if @user != current_user
+       redirect_to root_path
+    end
   end
 
   def deleted_flag
     @user = User.find(params[:id])
+    if @user != current_user
+       redirect_to root_path
+    end
     @user.deleted_flag = true
     # updateでもできるらしいけど、updateの時はストロングパラメータから取ってくる記述いる
     @user.save
@@ -60,8 +76,6 @@ class UsersController < ApplicationController
   def admins_update
     @user = User.find(params[:id])
     @user.destinations.build
-    purchase_history.buy_information.delivery_status.update
-
     if @user.update(user_params)
        flash[:notice] = "OK!!!"
        redirect_to user_admins(@user_admins.id)

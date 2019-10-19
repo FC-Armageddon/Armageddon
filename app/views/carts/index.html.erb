@@ -3,6 +3,13 @@
 <% end %>
 
 <h2>カート一覧</h2>
+<% if flash.now[:danger] %>
+  <%= flash[:danger].html_safe %>
+  <% @stock_nil.each do |s| %>
+    <p><%= s.cd_name %><p>
+  <% end %>
+<% end %>
+
   <% @i = 0 %>
   <% @carts.each do |c| %>
       <%= attachment_image_tag c.cd, :jacket_image, :fill, 60, 60, format: 'ipeg', fallback:"no_image_cd.jpg", size: "200x200" %>

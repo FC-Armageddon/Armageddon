@@ -1,4 +1,9 @@
 <div class="search_container">
+<h1>Cds#index</h1>
+<% if flash[:notice] %>
+	<p><%= flash[:notice] %></p>
+<% end %>
+
 <!-- 検索窓 -->
 <%= search_form_for @search, url: root_path do |f| %>
   <%= f.text_field :cd_name_cont, placeholder: 'CD名を入力...' %>

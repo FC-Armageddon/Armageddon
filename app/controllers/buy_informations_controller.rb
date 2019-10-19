@@ -1,12 +1,32 @@
 class BuyInformationsController < ApplicationController
-  
+
+  before_action :authenticate_user!, only: [:new, :create]
+  before_action :authenticate_admin!, only: [:update]
+
   def new
-  	@carts = current_user.carts
+  	carts = current_user.carts
+    @carts = carts.where(deleted_flag: "false")
   	@buy_information = BuyInformation.new
   	@destinations = current_user.destinations
+    if @carts == []
+      redirect_to root_path
+    end
   end
 
   def create
+    carts = current_user.carts
+    @carts = carts.where(deleted_flag: "false")
+    i = 0
+    @stock_nil = []
+    @carts.each do |cc|
+      s = cc.cd.stock.to_i - cc.quantity.to_i
+      if s < 0
+        i += 1
+        @stock_nil << cc.cd
+      end
+    end
+
+    if i == 0
   	buy = BuyInformation.new(buy_information_params)
   	buy.user_id = current_user.id
   	if params[:destination_id] == "a"
@@ -20,12 +40,15 @@ class BuyInformationsController < ApplicationController
   		buy.final_name = destination.delivery_name
   	end
   	buy.save
-  	carts = current_user.carts
-  		carts.each do |c|
+  		@carts.each do |c|
   			c.deleted_flag = true
   			c.save
   			stock = c.cd.stock.to_i - c.quantity.to_i
   			c.cd.stock = stock
+          if c.cd.stock <= 0
+            sales = SalesStatus.find_by(sales_status: "販売停止中")
+            c.cd.sales_status_id = sales.id
+          end
   			c.cd.save
   			history = PurchaseHistory.new(purchase_history_params)
   			history.buy_information_id = buy.id
@@ -33,10 +56,20 @@ class BuyInformationsController < ApplicationController
   			history.price = c.cd.price
   			history.save
   		end
-  	redirect_to user_path(current_user.id)
+  	 redirect_to user_path(current_user.id)
+    else
+      flash.now[:danger] = '以下の商品の在庫が足りないため購入が出来ません。<br>購入数を減らすか、カートから削除して下さい。'
+      render 'carts/index'
+    end
+
   end
 
   def update
+        buy = BuyInformation.find(params[:id])
+        delivery = params[:update_delivery_status]
+        buy.delivery_status = delivery.to_i
+        buy.save
+        redirect_to user_admins_path(buy.user_id)
   end
 
   private
