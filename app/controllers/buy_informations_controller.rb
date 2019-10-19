@@ -1,5 +1,7 @@
 class BuyInformationsController < ApplicationController
 
+  protect_from_forgery :except => [:update]
+
   before_action :authenticate_user!, only: [:new, :create]
   before_action :authenticate_admin!, only: [:update]
 
@@ -54,6 +56,7 @@ class BuyInformationsController < ApplicationController
   			history.buy_information_id = buy.id
   			history.cd_name = c.cd.cd_name
   			history.price = c.cd.price
+        history.quantity = c.quantity
   			history.save
   		end
   	 redirect_to user_path(current_user.id)

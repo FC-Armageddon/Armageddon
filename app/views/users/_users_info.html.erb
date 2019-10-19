@@ -1,9 +1,11 @@
+
+    <div><%= attachment_image_tag user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
+    </div>
 <table class='table'>
-    <tr>
-        <%= attachment_image_tag user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
-    </tr>
+
     <tr>
         <th>User info</th>
+        <th></th>
     </tr>
     <tr>
         <td><%= user.first_name %></td>
@@ -13,21 +15,6 @@
         <td><%= user.kana_first_name %></td>
         <td><%= user.kana_last_name %></td>
     </tr>
-    <tr><td><%= user.postal_code %></td></tr>
-    <tr><td><%= user.address %></td></tr>
-    <tr><td><%= user.email %></td></tr>
-
-
-
-    <tr><td>登録配送先</td></tr>
-    <% destinations.each do |d| %>
-    <tr><td><%= d.delivery_postal_code %></td></tr>
-    <tr><td><%= d.delivery_address %></td></tr>
-    <tr><td><%= d.delivery_name %></td></tr>
-<!--     <tr><td><%= link_to "配送先削除", user_path(d.id), method: :delete %></td></tr> -->
-    <% end %>
-
-
 
     <% if user_signed_in? %>
       <tr><td><%= link_to "編集", edit_user_path(user.id) %></td></tr>
