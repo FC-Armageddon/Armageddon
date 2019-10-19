@@ -56,5 +56,22 @@ background-image: url(image5.jpg);
 }
 
 #slidemenu {
+	display: none;
+}
+.user_show_th {
+	vertical-align: middle;
+	white-space: nowrap;
+}
+.user_show_td {
+	white-space: nowrap;
+	width: auto;
+}
+.user_show_table {
+	width: 1000;
+}
 
+.table > tbody > tr > td {
+	vertical-align: middle;
+	width: auto;
+	white-space: nowrap;
 }
