@@ -13,12 +13,14 @@ devise_for :users, controllers: {
   registrations: 'users/registrations'
 }
 
-post 'users/deleted/:id' => 'users#deleted_flag', as:'deleted_flag'
+post 'buy/:id' => 'buy_informations#update'
+
+patch 'users/deleted/:id' => 'users#deleted_flag', as:'deleted_flag'
 get 'users/admins_index' => "users#admins_index", as:'users_admins'
 get 'users/admins/:id' => 'users#admins_show', as:'user_admins'
 get 'users/admins_edit/:id' => 'users#admins_edit', as:'user_admins_edit'
 post 'users/admins/:id' => 'users#admins_update', as:'user_admins_update'
-post 'users/admins/deleted/:id' => 'users#admins_deleted_flag', as:'admins_deleted_flag'
+patch 'users/admins/deleted/:id' => 'users#admins_deleted_flag', as:'admins_deleted_flag'
 resources :users, only: [:update, :show, :edit, :destroy]
 
 get 'cds/admins_index' => 'cds#admins_index', as:'cds_admins'
@@ -44,13 +46,14 @@ resources :songs, only: [:create, :update]
 
 resources :arrivals, only: [:create, :index]
 
-post 'carts/deleted/:id' => 'carts#deleted_flag', as:'carts_deleted_flag'
+patch 'carts/deleted/:id' => 'carts#deleted_flag', as:'carts_deleted_flag'
 post 'carts/:id'  => 'carts#update', as:'cart'
 resources :carts, only: [:index, :create, :destroy]
 
-resources :buy_informations, only: [:new, :create, :updates]
 
-resources :sales_statuses, only: [:create, :updates]
+resources :buy_informations, only: [:new, :create]
+
+resources :sales_statuses, only: [:create, :update]
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

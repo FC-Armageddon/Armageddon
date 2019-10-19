@@ -1,5 +1,7 @@
 class BuyInformationsController < ApplicationController
-  
+
+  before_action :authenticate_user!, only: [:new, :create]
+  before_action :authenticate_admin!, only: [:update]
 
   def new
   	carts = current_user.carts
@@ -62,7 +64,12 @@ class BuyInformationsController < ApplicationController
 
   end
 
-  def updates
+  def update
+        buy = BuyInformation.find(params[:id])
+        delivery = params[:update_delivery_status]
+        buy.delivery_status = delivery.to_i
+        buy.save
+        redirect_to user_admins_path(buy.user_id)
   end
 
   private

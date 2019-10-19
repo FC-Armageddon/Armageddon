@@ -1,5 +1,7 @@
 class CdsController < ApplicationController
 
+  before_action :authenticate_admin!, only: [:admins_new, :admins_index, :admins_show, :admins_edit, :admins_update, :admins_destroy, :admins_create]
+  
   def admins_new
     @cd = Cd.new
     @discs = @cd.discs.build
@@ -150,5 +152,7 @@ class CdsController < ApplicationController
   def cd_params
     params.require(:cd).permit(:cd_name, :jacket_image, :price, :stock, discs_attributes: [:id, :cd_id, :disc, :sort, :_destroy, songs_attributes: [:id, :disc_id, :song, :song_order, :_destroy]])
   end
+
+
 end
 

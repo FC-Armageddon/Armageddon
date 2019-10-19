@@ -38,6 +38,17 @@
       <%= f.text_field :email, autofocus: true %>
       </br>
 
+  <label>配送先</label>
+  <div class="tags">
+    <%= f.fields_for :destinations do |f| %>
+    <%= f.label "Destination" %>
+  　　<%= render "destination_fields", f: f %>
+    <% end %>
+    <div class="links">
+      <%= link_to_add_association "配送先を追加", f, :destinations %>
+    </div>
+  </div>
+
   <% if admin_signed_in? %>
      <%= f.submit "更新" %>
      <%= link_to "退会", admins_deleted_flag_path, method: :patch %>
