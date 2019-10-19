@@ -1,5 +1,6 @@
 class BuyInformationsController < ApplicationController
   
+
   def new
   	carts = current_user.carts
     @carts = carts.where(deleted_flag: "false")

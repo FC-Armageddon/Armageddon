@@ -1,4 +1,7 @@
 class ArrivalsController < ApplicationController
+
+  before_action :authenticate_admin!
+
 def create
   	arrival = Arrival.new(arrival_params)
   	arrival.save!
