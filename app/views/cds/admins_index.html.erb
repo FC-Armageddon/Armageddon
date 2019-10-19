@@ -1,22 +1,37 @@
 <h1>販売商品一覧</h1>
 
-<%= search_form_for @search, url: root_path do |f| %>
-  <%= f.text_field :cd_name_cont, placeholder: 'CD名を入力...' %>
-  <%= f.submit ("検索する") %>
-<% end %>
+<table class="table">
 
-<% @search_cds.each do |cd| %>
-	<p><%= attachment_image_tag cd, :jacket_image, :fill, 60, 60, format: 'jpeg', fallback: "no_image_cd.jpg" %>
-	</p>
-	<p><%= cd.cd_name %></p>
-	<p><%= cd.price %>円</p>
-	<%= form_for @arrival, url: arrivals_path, method: :post do |f| %>
+	<thead>
+	</thead>
+	<tbody>
+	    <tr>
+	    <%= search_form_for @search, url: root_path do |f| %>
+		<%= f.text_field :cd_name_cont, placeholder: 'CD名を入力...' %>
+		<%= f.submit ("検索する") %>
+		<% end %>
+	    </tr>
+
+	    <tr>
+		<% @search_cds.each do |cd| %>
+		<p><th><%= attachment_image_tag cd, :jacket_image, :fill, 60, 60, format: 'jpeg', fallback: "no_image_cd.jpg", size: "200x200" %></th>
+		</p>
+		<p><th><%= cd.cd_name %></th></p>
+		<p><th><%= cd.price %> 円</th></p>
+	    </tr>
+
+	    <tr>
+	    <th>
+	    <%= form_for @arrival, url: arrivals_path, method: :post do |f| %>
 		<%= f.text_field :arrival %>
 		<%= f.hidden_field :cd_id, value: cd.id %>
 		<%= f.submit '入荷数登録' %>
-	<% end %>
+		</th>
+		<% end %>
+		<th><%= link_to '商品詳細へ', cd_admins_path(cd.id) %></th>
+	    </tr>
+		<% end %>
+	</tbody>
+</table>
 
-	<%= link_to '商品詳細へ', cd_admins_path(cd.id) %>
-
-<% end %>
-
+<%= paginate @search_cds %>
