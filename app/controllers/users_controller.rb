@@ -19,12 +19,14 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @destinations = @user.destinations
     carts = current_user.carts
+
     if @user.id != current_user.id
       redirect_to root_path
     # これで退会済みユーザーはuser/[:id]を手打ちしても見れない
     elsif @user.deleted_flag.to_s == "true"
         flash[:notice] = "あなたは退会済みユーザーです。"
         redirect_to new_user_registration_path
+
     end
   end
 
