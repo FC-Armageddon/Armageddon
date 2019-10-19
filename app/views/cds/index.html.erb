@@ -1,23 +1,39 @@
+<div class="search_container">
 <h1>Cds#index</h1>
 <% if flash[:notice] %>
 	<p><%= flash[:notice] %></p>
 <% end %>
-
-
 
 <!-- 検索窓 -->
 <%= search_form_for @search, url: root_path do |f| %>
   <%= f.text_field :cd_name_cont, placeholder: 'CD名を入力...' %>
   <%= f.submit ("検索する") %>
 <% end %>
+</div>
 
+<div id="container">
+    <div id="theTarget">
+      <div class="image1"></div>
+      <div class="image2"></div>
+      <div class="image3"></div>
+      <div class="image4"></div>
+      <div class="image5"></div>
+    </div>
+</div>
+
+
+<div class="cd_index">
 <% @search_cds.each do |cds| %>
   <tr>
-    <td><%= attachment_image_tag cds, :jacket_image, fallback: "no_image.jpg", size: "40x40" %></td>
+    <td><%= attachment_image_tag cds, :jacket_image, fallback: "no_image.jpg", size: "100x100" %></td>
     <td><%= cds.cd_name %></td>
     <td><%= link_to "詳細ページへ", cd_path(cds.id) %></td>
   </tr>
 <% end %>
 
+
 <%= paginate @search_cds %>
+
+
+</div>
 

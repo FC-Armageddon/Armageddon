@@ -1,4 +1,10 @@
 
+<% if flash[:notice] %>
+  <%= flash[:notice] %>
+<% end %>
+
+
+
 <%= search_form_for @search, url: root_path do |f| %>
   <%= f.text_field :cd_name_cont, placeholder: 'CD名を入力...' %>
   <%= f.submit ("検索する") %>

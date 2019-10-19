@@ -6,3 +6,5 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 Admin.create(email: 'fc@armageddon', password: '201909')
+SalesStatus.create(sales_status: '販売中')
+SalesStatus.create(sales_status: '販売停止中')
