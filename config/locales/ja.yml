@@ -1,4 +1,17 @@
 ja:
+  activerecord:
+    attributes:
+      user:
+        password: パスワード
+        password_confirmation: パスワード確認
+        email: メールアドレス
+        first_name: 姓
+        last_name: 名
+        kana_first_name: カナ姓
+        kana_last_name: カナ名
+        address: 住所
+        postal_code: 郵便番号
+        phone_number: 電話番号
   enums:
     buy_information:
       payment:
@@ -8,5 +21,3 @@ ja:
         reception: 受付
         preparing: 商品準備中
         delivered: 出荷済み
-
-

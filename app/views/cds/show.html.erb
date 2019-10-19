@@ -1,5 +1,6 @@
-<h1>Cds#show</h1>
-<p>Find me in app/views/cds/show.html.erb</p>
+<% if flash[:notice] %>
+  <%= flash[:notice] %>
+<% end %>
 
 
 <%= search_form_for @search, url: root_path do |f| %>
