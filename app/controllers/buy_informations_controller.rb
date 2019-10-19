@@ -1,5 +1,8 @@
 class BuyInformationsController < ApplicationController
-  protect_from_forgery :except => [:update]
+
+  before_action :authenticate_user!, only: [:new, :create]
+  before_action :authenticate_admin!, only: [:update]
+
   def new
   	carts = current_user.carts
     @carts = carts.where(deleted_flag: "false")
