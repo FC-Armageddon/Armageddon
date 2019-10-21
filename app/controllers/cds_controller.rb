@@ -43,8 +43,6 @@ class CdsController < ApplicationController
 
   def admins_edit
     @cd = Cd.find(params[:id])
-    @discs = @cd.discs.build
-    @discs.songs.build
   end
 
   def admins_update
@@ -85,7 +83,8 @@ class CdsController < ApplicationController
           else
             cd.label_id = label.id
           end
-    cd.update(cd_params)
+    cd.update!(cd_params)
+
     redirect_to cd_admins_path(cd.id)
   end
 
