@@ -13,21 +13,31 @@
 <% end %>
 </div>
 
-<h1>CD詳細</h1>
+<div class="row">
+</div>
 
 <div class="row">
-	<div class="col-xs-8">
+	<div class="col-xs-6">
 		<p class=""><%= attachment_image_tag @cd, :jacket_image, :fill, 300, 300, format: 'jpeg', fallback: "no_image_cd.jpg", size: 400 %>
 		</p>
 	</div>
-<!-- カートに入れる情報 -->
 
-<div class="col-xs-4">
+<div class="col-xs-3">
+	<h2>商品情報</h2>
+	<h4 class="glyphicon glyphicon-user" aria-hidden="true"> アーティスト: <%= @cd.artist.artist %>
+	</h4>
+	<h4 class="glyphicon glyphicon-film" aria-hidden="true"> レーベル: <%= @cd.label.label %>
+	</h4>
+	<h4 class="glyphicon glyphicon-folder-open" aria-hidden="true"> ジャンル: <%= @cd.genre.genre %>
+	</h4>
+</div>
+
+<!-- カートに入れる情報 -->
+<div class="col-xs-3">
 	<h1 class="">商品名: <%= @cd.cd_name %></h1>
 	<h2 class="">価格(税込): <%= (@cd.price * 1.1).floor %> 円</h2>
 	<h3 class="">販売ステータス: <%= @cd.sales_status.sales_status %></h3>
 	<h3 class="">在庫数: <%= @cd.stock %> 枚</h3>
-</div>
 
 <% if @cd.sales_status.sales_status == "販売中" %>
 	<%= form_for @cart, url: carts_path, method: :post do |c| %>
@@ -40,14 +50,8 @@
 <% end %>
 </div>
 
-<div class="row">
-	<h2>商品情報</h2>
-	<h4 class="glyphicon glyphicon-user" aria-hidden="true"> アーティスト: <%= @cd.artist.artist %>
-	</h4><br>
-	<h4 class="glyphicon glyphicon-film" aria-hidden="true"> レーベル: <%= @cd.label.label %>
-	</h4><br>
-	<h4 class="glyphicon glyphicon-folder-open" aria-hidden="true"> ジャンル: <%= @cd.genre.genre %>
-	</h4><br>
+
+<div class="col-xs-12">
 	<% @discs.each do |disc| %>
 	<h4 class="glyphicon glyphicon-headphones" aria-hidden="true"> ディスク: <%= disc.disc %>. <%= disc.sort %>
 	</h4><br>

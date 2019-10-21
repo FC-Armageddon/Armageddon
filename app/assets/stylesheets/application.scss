@@ -26,6 +26,11 @@ a {
   text-decoration: none;
 }
 
+.container {
+	background-color: #EEEEEE;
+	padding: 0;
+}
+
 .image1 {
 background-image: url(image1.jpg);
 }
@@ -64,7 +69,6 @@ background-image: url(image5.jpg);
 }
 
 .index_container {
-	background-color: #EEEEEE;
 }
 
 .search_container {
@@ -73,7 +77,6 @@ background-image: url(image5.jpg);
 	top: 20px;
 	right: 20px;
 }
-
 
 #slidemenu {
 	// display: none;
@@ -125,7 +128,7 @@ background-image: url(image5.jpg);
 .menu {
 	height: 100px;
 	line-height: 100px;
-	// background-color: #0E0E0E;
+	// background-color: #F3BAAA;
 	// overflow: auto;
 }
 
