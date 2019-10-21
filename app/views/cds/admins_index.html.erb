@@ -1,37 +1,37 @@
-<h1>販売商品一覧</h1>
+<div class="container">
+	<h1 class="text-center">販売商品一覧</h1>
 
-<table class="table">
-
-	<thead>
-	</thead>
-	<tbody>
-	    <tr>
-	    <%= search_form_for @search, url: root_path do |f| %>
-		<%= f.text_field :cd_name_cont, placeholder: 'CD名を入力...' %>
-		<%= f.submit ("検索する") %>
+	<div class="row center-block search-field">
+		<%= search_form_for @search, url: root_path do |f| %>
+		<%= f.text_field :cd_name_cont, placeholder: 'CD名を入力...', class: "col-xs-10" %>
+		<%= f.submit ("検索する"), class: "col-xs-2" %>
 		<% end %>
-	    </tr>
-
-	    <tr>
+	</div>
+	<div class="row">
 		<% @search_cds.each do |cd| %>
-		<p><th><%= attachment_image_tag cd, :jacket_image, :fill, 60, 60, format: 'jpeg', fallback: "no_image_cd.jpg", size: "200x200" %></th>
-		</p>
-		<p><th><%= cd.cd_name %></th></p>
-		<p><th><%= cd.price %> 円</th></p>
-	    </tr>
+		<div class="col-xs-4">
+			<p class="text-center"><%= attachment_image_tag cd, :jacket_image, :fill, 60, 60, format: 'jpeg', fallback: "no_image_cd.jpg", size: "200x200" %>
+			</p>
+			<p class="text-center"><strong>商品名: <%= cd.cd_name %></strong></p>
+			<p class="text-center"><strong>価格: <%= cd.price %> 円</strong></p>
 
-	    <tr>
-	    <th>
-	    <%= form_for @arrival, url: arrivals_path, method: :post do |f| %>
-		<%= f.text_field :arrival %>
-		<%= f.hidden_field :cd_id, value: cd.id %>
-		<%= f.submit '入荷数登録' %>
-		</th>
+			<%= form_for @arrival, url: arrivals_path, method: :post do |f| %>
+			<p class="text-center">
+				<%= f.text_field :arrival, placeholder: '入荷数入力', class: "text-center" %>
+			</p>
+			<p class="text-center">
+				<%= f.hidden_field :cd_id, value: cd.id %>
+			</p>
+			<p class="text-center">
+				<%= f.submit '入荷数登録', class: "btn btn-info" %>
+			</p>
+			<% end %>
+			<p class="text-center">
+				<%= link_to '商品詳細へ', cd_admins_path(cd.id), class: "btn btn-default" %>
+			</p>
+		</div>
 		<% end %>
-		<th><%= link_to '商品詳細へ', cd_admins_path(cd.id) %></th>
-	    </tr>
-		<% end %>
-	</tbody>
-</table>
+	</div>
 
-<%= paginate @search_cds %>
+	<%= paginate @search_cds %>
+</div>
