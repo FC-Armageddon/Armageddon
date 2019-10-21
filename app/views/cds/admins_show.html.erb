@@ -1,17 +1,17 @@
 <div class="container">
-	<h1 class="text-center">販売商品詳細</h1>
+	<h1 class="">販売商品詳細</h1>
 
 
 	<div class="row">
 		<div class="col-xs-8">
-			<p class="text-center"><%= attachment_image_tag @cd, :jacket_image, :fill, 300, 300, format: 'jpeg', fallback: "no_image_cd.jpg", size: 400 %>
+			<p class=""><%= attachment_image_tag @cd, :jacket_image, :fill, 300, 300, format: 'jpeg', fallback: "no_image_cd.jpg", size: 400 %>
 			</p>
 		</div>
 		<div class="col-xs-4">
-			<h1 class="text-center">商品名: <%= @cd.cd_name %></h1>
-			<h2 class="text-center">価格(税込): <%= (@cd.price * 1.1).floor %> 円</h2>
-			<h3 class="text-center">販売ステータス: <%= @cd.sales_status.sales_status %></h3>
-			<h3 class="text-center">在庫数: <%= @cd.stock %> 枚</h3>
+			<h1 class="">商品名: <%= @cd.cd_name %></h1>
+			<h2 class="">価格(税込): <%= (@cd.price * 1.1).floor %> 円</h2>
+			<h3 class="">販売ステータス: <%= @cd.sales_status.sales_status %></h3>
+			<h3 class="">在庫数: <%= @cd.stock %> 枚</h3>
 			<%= link_to '商品編集', cd_admins_edit_path(@cd.id), class: 'btn btn-info col-xs-6' %>
 			<%= link_to '商品削除', cd_admins_destroy_path(@cd.id), method: :delete, class: 'btn btn-danger col-xs-6' %>
 		</div>

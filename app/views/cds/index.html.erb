@@ -13,6 +13,7 @@
       <div class="image5"></div>
     </div>
 	<h3 class="title"><%= link_to "Armageddon", root_path %></h3>
+
 	<div class="search_container">
 	<!-- 検索窓 -->
 	<%= search_form_for @search, url: root_path do |f| %>
@@ -75,8 +76,9 @@
     </div>
 </div>
 
-<div class="">
-<h3 class="index-title">Products</h3>
+<div class="index_menu">
+<p class="index_title">Products</p>
+<p class="index_subtitle">商品一覧</p>
 </div>
 
 <div class="row">
@@ -85,15 +87,16 @@
     <div class="cd_index">
     <span><%= attachment_image_tag cds, :jacket_image, fallback: "no_image.jpg", size: "300x300" %></span>
     <p><%= cds.cd_name %></p>
-    <p><%= link_to "詳細ページへ", cd_path(cds.id) %></p>
+    <p><%= link_to "詳細ページへ", cd_path(cds.id),class:"btn btn-default" %></p>
     </div>
   </div>
   <% end %>
 </div>
 
 
-
+<div class="text-align-center">
 <%= paginate @search_cds %>
+</div>
 
 
 </div>
