@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <div class="container">
     <title>Armageddon</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -9,7 +10,6 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
     <div id="slidemenu">
-            <h3><%= link_to "Armageddon", root_path %></h3>
 
       <ul class="nav navbar-nav navbar-right">
         <% if admin_signed_in? %>
@@ -58,6 +58,7 @@
           </li>
         <% end %>
       </ul>
+    </div>
     </div>
   </head>
 
