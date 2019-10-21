@@ -140,10 +140,17 @@ background-image: url(image5.jpg);
 
 li > a {
 	color: #0E0E0E;
-}
 
 .search-field {
 	padding: 15px;
+}
+
+.jumbotron {
+	background-image: url(image6);
+	background-size: contain;
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	background-position: top center;
 }
 
 .cd_new_form {

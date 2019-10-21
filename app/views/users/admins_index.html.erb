@@ -1,27 +1,16 @@
-<h2>顧客一覧</h2>
+<div class="container">
+  <h2 class="text-center">顧客一覧</h2>
+  <div class="row">
 
-<table>
-	<tr>
-		<th></th>
-	</tr>
-
-  <% @users.each do |user| %>
-    <tr>
-       <td><span><%= attachment_image_tag user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %></span></td>
-    </tr>
-    <tr>
-       <td><span><%= user.first_name %></span></td>
-       <td><span><%= user.last_name %></span></td>
-    </tr>
-    <tr>
-       <td><span><%= user.kana_first_name %></span></td>
-       <td><span><%= user.kana_last_name %></span></td>
-    </tr>
-    <tr>
-       <td><span><%= link_to "購入履歴", user_admins_path(user.id), class: 'btn btn-info btn-block' %></span></td>
-       <td><span><%= link_to "編集", user_admins_edit_path(user.id), class: 'btn btn-success btn-block' %></span></td>
-    </tr>
-  <% end %>
-</table>
-
-<%= paginate @users %>
+    <% @users.each do |user| %>
+    <div class="col-xs-4">
+      <p class="text-center"><%= attachment_image_tag user, :profile_image, :fill, 300, 300, format: 'jpeg', fallback: "no_image.jpg", size:'200x200' %></p>
+      <p class="text-center"><%= user.first_name %>  <%= user.last_name %></p>
+      <p class="text-center"><%= user.kana_first_name %>  <%= user.kana_last_name %></p>
+      <p class="text-center"><%= link_to "購入履歴", user_admins_path(user.id), class: 'btn btn-info btn-block' %></p>
+      <p class="text-center"><%= link_to "編集", user_admins_edit_path(user.id), class: 'btn btn-success btn-block' %></p>
+    </div>
+    <% end %>
+    <%= paginate @users %>
+  </div>
+</div>

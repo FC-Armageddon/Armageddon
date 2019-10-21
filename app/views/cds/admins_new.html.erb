@@ -6,34 +6,33 @@
 	<div class="text-center">
 	<h3><%= f.label :jacket_image, "商品写真" %></h3>
 	<%= f.attachment_field :jacket_image, class: "center-block" %>
-	</span>
 	</div>
 
 		<div class="text-center padding-top-15">
 			<%= f.text_field :cd_name, :placeholder => "商品名", class: "text-center cd_new_form"%><br>
 			<%= f.text_field :price, :placeholder => "価格（税抜き）", class: "text-center cd_new_form" %><br>
 
-	<%= f.fields_for :arrivals do |arrival| %>
-		<%= arrival.text_field :arrival, :placeholder => "入荷数", class: "text-center cd_new_form" %><br>
-	<% end %>
-
-		<%= text_field_tag :search_artist, '', :placeholder =>  "アーティスト名", class: "text-center cd_new_form" %><br>
-		<%= text_field_tag :search_genre, '', :placeholder => "ジャンル", class: "text-center cd_new_form" %><br>
-		<%= text_field_tag :search_label,'', :placeholder => "レーベル", class: "text-center cd_new_form" %><br>
-		<%= select_tag 'search_sales', options_for_select([["販売中", "販売中"], ["販売停止中", "販売停止中"]]), class: "cd_new_form" %><br>
-
-	 	<div class="tags">
-			<%= f.fields_for :discs do |d| %>
-			<%= d.label "ディスク" %>
-			<%= render'disc_fields',f: d %>
+			<%= f.fields_for :arrivals do |arrival| %>
+				<%= arrival.text_field :arrival, :placeholder => "入荷数", class: "text-center cd_new_form" %><br>
 			<% end %>
-			<div class="links">
-			<%= link_to_add_association "Dを追加", f, :discs, class: "btn btn-info add-btn" %>
-			</div>
-		</div>
 
-		<P class="actions"><%= f.submit class: "add-btn btn btn-default" %></P>
-	</div>
+				<%= text_field_tag :search_artist, '', :placeholder =>  "アーティスト名", class: "text-center cd_new_form" %><br>
+				<%= text_field_tag :search_genre, '', :placeholder => "ジャンル", class: "text-center cd_new_form" %><br>
+				<%= text_field_tag :search_label,'', :placeholder => "レーベル", class: "text-center cd_new_form" %><br>
+				<%= select_tag 'search_sales', options_for_select([["販売中", "販売中"], ["販売停止中", "販売停止中"]]), class: "cd_new_form" %><br>
+
+			 	<div class="tags">
+					<%= f.fields_for :discs do |d| %>
+					<%= d.label "ディスク" %>
+					<%= render'disc_fields',f: d %>
+					<% end %>
+					<div class="links">
+					<%= link_to_add_association "Dを追加", f, :discs, class: "btn btn-info add-btn" %>
+					</div>
+				</div>
+
+				<P class="actions"><%= f.submit class: "add-btn btn btn-default" %></P>
+		</div>
 <% end %>
 </div>
 
