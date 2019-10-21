@@ -1,50 +1,67 @@
-<h1>商品編集</h1>
-<%= form_for @cd, url: cd_admins_update_path do |f| %>
+<div class="container">
+	<h1 class="text-center">商品編集</h1>
 
-<p><%= f.label :jacket_image, "商品写真" %></p>
-<p><%= f.attachment_field :jacket_image %>
-</p>
-<table>
-	<tr>
-		<th></th>
-		<th></th>
-	</tr>
-	<tr>
-		<td><%= f.label :cd_name, "商品名" %></td>
-		<td><%= f.text_field :cd_name %></td>
-	</tr>
+	<%= form_for @cd, url: cd_admins_update_path do |f| %>
+		<div class="text-center">
+			<h3><%= f.label :jacket_image, "商品写真" %></h3>
+			<%= f.attachment_field :jacket_image, class: "center-block" %>
+		</div>
 
-	<tr>
-		<td><%= f.label :price, "価格（税抜き）" %></td>
-		<td><%= f.text_field :price %></td>
-	</tr>
+		
+		<div class= "text-center padding-top-15">
+		  <div class="row">
+		  	<div class="col-xs-12">
+		  		<div align="center">
+		  		<table>
+		  			<tr>
 
-	<tr>
-		<td><%= f.label :search_artist, "アーティスト" %></td>
-		<td><%= text_field_tag :search_artist, "#{@cd.artist.artist}" %></td>
-	</tr>
-	<tr>
-		<td><%= f.label :search_artist, "ジャンル" %></td>
-		<td><%= text_field_tag :search_genre, "#{@cd.genre.genre}" %></td>
-	</tr>
-		<tr><td><%= f.label :search_artist, "レーベル" %></td>
-			<td><%= text_field_tag :search_label, "#{@cd.label.label}" %></td>
-		</tr>
-</table>
-	<p><%= select_tag 'search_sales', options_for_select([["販売中", "販売中"], ["販売停止中", "販売停止中"]]) %>
-	</p>
-	<%= f.hidden_field :stock, value: @cd.stock %>
+						<td><%= f.label :cd_name, "商品名 " %></td>
+						<td><%= f.text_field :cd_name, class: "text-center cd_new_form" %></td>
+					</tr>
+					<tr>
+						<td><%= f.label :price, "価格（税抜き）" %>
+						</td>
+						<td><%= f.text_field :price, class: "text-center cd_new_form" %>
+						</td>
+					</tr>
+					<tr>
+						<td><%= f.label :search_artist, "アーティスト" %>
+						</td>
+						<td><%= text_field_tag :search_artist, "#{@cd.artist.artist}", class: "text-center cd_new_form" %>
+						</td>
+					</tr>
+					<tr>
+						<td><%= f.label :search_artist, "ジャンル" %>
+						</td>
+						<td><%= text_field_tag :search_genre, "#{@cd.genre.genre}", class: "text-center cd_new_form" %>
+						</td>
+					</tr>
+					<tr>
+						<td><%= f.label :search_artist, "レーベル" %>
+						</td>
+						<td><%= text_field_tag :search_label, "#{@cd.label.label}", class: "text-center cd_new_form" %>
+						</td>
+					</tr>
+				</table>
+				</div>
 
-	<div class="tags">
-		<%= f.fields_for :discs do |d| %>
-		<%= d.label "Disc" %>
-		<%= render'disc_fields',f: d %>
-		<% end %>
-		<div class="links">
-			<%= link_to_add_association "ディスクを追加", f, :discs %>
+			<%= select_tag 'search_sales', options_for_select([["販売中", "販売中"], ["販売停止中", "販売停止中"]]), class: "cd_new_form" %><br>
+			<%= f.hidden_field :stock, value: @cd.stock %>
+
+			<div class="tags">
+				<%= f.fields_for :discs do |d| %>
+				<%= d.label "ディスク" %>
+				<%= render'disc_fields',f: d %>
+				<% end %>
+				<div class="links">
+					<%= link_to_add_association "Dを追加", f, :discs, class: "btn btn-info add-btn" %>
+				</div>
+			</div>
+
+			<P class="actions"><%= f.submit class: "add-btn btn btn-default" %></P>
+			</div>
 		</div>
 	</div>
-
-	<P class="actions"><%= f.submit %></P>
 	<% end %>
+</div>
 
