@@ -34,10 +34,12 @@
 	<h4>商品名: <%= c.cd.cd_name %></h4>
 	<p>価格: <%= c.cd.price %> 円</p>
 	<p>購入数: <%= c.quantity %> 枚</p>
-	<% @subtotal = c.quantity.to_i * c.cd.price.to_i %>
+	<% @subtotal = c.quantity.to_i * c.cd.price.to_i * 1.1 %>
 	<% @i = @i + @subtotal %>
 <% end %>
-<h2>小計: <%= @i %> 円</h2>
+
+<h4>送料: 500 円</h4>
+<h2>小計: <%= @i.floor + 500 %> 円</h2>
 <%= f.hidden_field :subtotal, value: @i %>
 
 <%= f.submit '購入する', data: { confirm: "買い忘れはございませんか？"} %>

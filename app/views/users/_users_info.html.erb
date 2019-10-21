@@ -1,25 +1,23 @@
 
     <div><%= attachment_image_tag user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
     </div>
+    <h3>User Info</h3>
 <table class='table'>
 
-    <tr>
-        <th>User info</th>
-        <th></th>
     </tr>
     <tr>
-        <td><%= user.first_name %></td>
-        <td><%= user.last_name %></td>
+        <th><%= user.first_name %></th>
+        <th><%= user.last_name %></th>
     </tr>
     <tr>
-        <td><%= user.kana_first_name %></td>
-        <td><%= user.kana_last_name %></td>
+        <th><%= user.kana_first_name %></th>
+        <th><%= user.kana_last_name %></th>
     </tr>
+</table>
 
     <% if user_signed_in? %>
-      <tr><td><%= link_to "編集", edit_user_path(user.id) %></td></tr>
+      <div><%= link_to "編集", edit_user_path(user.id), class: "col-xs-12 glyphicon glyphicon-wrench btn btn-default" %></div>
     <% else %>
-      <tr><td><%= link_to "編集", user_admins_edit_path(user.id) %></td></tr>
+      <div><%= link_to "編集", user_admins_edit_path(user.id), class: "col-xs-12 glyphicon glyphicon-wrench btn btn-default" %></div>
     <% end %>
 
-</table>

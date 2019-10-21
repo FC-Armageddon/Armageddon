@@ -1,9 +1,9 @@
-<% if flash[:notice] %>
+<div class="container">
+
+  <% if flash[:notice] %>
 	<p><%= flash[:notice] %></p>
 <% end %>
 <div class="index_container">
-
-
 <div id="container">
     <div id="theTarget">
       <div class="image1"></div>
@@ -12,7 +12,7 @@
       <div class="image4"></div>
       <div class="image5"></div>
     </div>
-	<h3 class="slide"><%= link_to "Armageddon", root_path %></h3>
+	<h3 class="title"><%= link_to "Armageddon", root_path %></h3>
 	<div class="search_container">
 	<!-- 検索窓 -->
 	<%= search_form_for @search, url: root_path do |f| %>
@@ -23,13 +23,74 @@
 </div>
 
 
-<div class="cd_index">
-<% @search_cds.each do |cds| %>
-    <p><%= attachment_image_tag cds, :jacket_image, fallback: "no_image.jpg", size: "300x300" %></p>
+<div class="menu">
+    <div id="index_menu">
+      <ul class="index_nav">
+        <% if admin_signed_in? %>
+
+          <li class="col-xs-2 col-md-offset-1">
+            <%= link_to "販売一覧", cds_admins_path %>
+          </li>
+
+          <li class="col-xs-2">
+            <%= link_to "ユーザ一覧", users_admins_path %>
+          </li>
+
+          <li class="col-xs-2">
+            <%= link_to "商品登録", cds_new_path %>
+          </li>
+
+           <li class="col-xs-2">
+            <%= link_to "入荷数一覧", arrivals_path %>
+          </li>
+
+          <li class="col-xs-2">
+            <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
+          </li>
+
+        <% elsif user_signed_in? %>
+
+          <li class="col-xs-4">
+            <%= link_to "#{current_user.first_name} 様", user_path(current_user.id) %>
+          </li>
+
+           <li class="col-xs-4">
+            <%= link_to "カート", carts_path %>
+          </li>
+
+          <li class="col-xs-4">
+            <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+          </li>
+
+        <% else %>
+          <li class="col-xs-6">
+            <%= link_to "会員登録",  new_user_registration_path %>
+          </li>
+
+          <li class="col-xs-6">
+            <%= link_to "ログイン", new_user_session_path %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+</div>
+
+<div class="">
+<h3 class="index-title">Products</h3>
+</div>
+
+<div class="row">
+  <% @search_cds.each do |cds| %>
+  <div class="col-xs-4">
+    <div class="cd_index">
+    <span><%= attachment_image_tag cds, :jacket_image, fallback: "no_image.jpg", size: "300x300" %></span>
     <p><%= cds.cd_name %></p>
     <p><%= link_to "詳細ページへ", cd_path(cds.id) %></p>
-<% end %>
+    </div>
+  </div>
+  <% end %>
 </div>
+
 
 
 <%= paginate @search_cds %>
@@ -37,3 +98,4 @@
 
 </div>
 
+</div>

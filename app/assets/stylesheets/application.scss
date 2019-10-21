@@ -47,10 +47,16 @@ background-image: url(image5.jpg);
 	position: relative;
 }
 
-.slide {
+.title {
 	position: absolute;
-	top: 50px;
+	top: 0px;
 	left: 20px;
+	font-family: "futura";
+}
+
+.title > a{
+	text-decoration: none;
+	color: white;
 }
 
 .index_container {
@@ -60,15 +66,65 @@ background-image: url(image5.jpg);
 .search_container {
 	float: right;
 	position: absolute;
-	top: 70px;
+	top: 20px;
 	right: 20px;
 }
 
-.cd_index {
-	margin-top: 100px;
+
+#slidemenu {
+	// display: none;
+}
+.user_show_th {
+	vertical-align: middle;
+	white-space: nowrap;
+}
+.user_show_td {
+	white-space: nowrap;
+	width: auto;
+}
+.user_show_table {
+	width: 1000px;
 }
 
-.slide > a{
+.table > tbody > tr > td {
+	vertical-align: middle;
+	width: auto;
+	white-space: nowrap;
+}
+
+.cd_index {
+	text-align: center;
+}
+
+.cd_info {
+	width: 300px;
+	background-color: #fff;
+	text-align: center;
+}
+
+.index-title {
+	font-family: "TTCommons-Light";
+	margin: 0 0 0 30px;
+	font-size: 32px;
+}
+
+.index_nav {
+	list-style: none;
+}
+
+.menu {
+	height: 100px;
+	line-height: 100px;
+	// background-color: #0E0E0E;
+	// overflow: auto;
+}
+
+.index_nav > li {
+	font-size: 18px;
+	text-align: center;
 	text-decoration: none;
-	color: white;
+}
+
+li ul {
+	color: #0E0E0E;
 }
