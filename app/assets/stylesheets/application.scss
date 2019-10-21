@@ -47,6 +47,10 @@ background-image: url(image5.jpg);
 	position: relative;
 }
 
+.show_container {
+	position: relative;
+}
+
 .title {
 	position: absolute;
 	top: 0px;
@@ -102,10 +106,16 @@ background-image: url(image5.jpg);
 	text-align: center;
 }
 
-.index-title {
+.index_title {
 	font-family: "TTCommons-Light";
-	margin: 0 0 0 30px;
 	font-size: 32px;
+	text-align: center;
+}
+
+.index_subtitle {
+	font-family: "Noto Sans JP", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "游ゴシック体", "Yu Gothic", "YuGothic", "Meiryo", "メイリオ", "ＭＳ Ｐゴシック", "MS PGothic", Verdana, Roboto, "Droid Sans", sans-serif;
+	font-size: 12px;
+	text-align: center;
 }
 
 .index_nav {
@@ -125,7 +135,7 @@ background-image: url(image5.jpg);
 	text-decoration: none;
 }
 
-li ul {
+li > a {
 	color: #0E0E0E;
 }
 
@@ -163,4 +173,8 @@ li ul {
 
 .padding-top-15 {
 	padding-top: 15px;
+}
+
+.text-align-center {
+	text-align: center;
 }
