@@ -1,13 +1,13 @@
 <div  class="nested-fields">
-	<p><%= f.text_field :disc, :placeholder => "ディスク名" %>
-		<%= f.text_field :sort, :placeholder => "ディスク番号" %>
-		<%= link_to_remove_association "ディスク削除", f %>
+	<p><%= f.text_field :disc, :placeholder => "ディスク名", class: "text-center disc_new_form" %>
+		<%= f.text_field :sort, :placeholder => "No.", class: "text-center disc_nom_form" %>
+		<%= link_to_remove_association "D削除", f, class: "btn btn-danger" %>
 	</p>
 
 	<%= f.fields_for :songs do |songs| %>
 		<%= render 'song_fields',f: songs %>
 	<% end %>
 	<div class="links">
-	<%= link_to_add_association "曲を追加", f, :songs %>
+	<%= link_to_add_association "曲を追加", f, :songs, class: "btn btn-success add-btn" %>
 	</div>
 </div>
