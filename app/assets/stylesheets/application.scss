@@ -44,19 +44,35 @@ background-image: url(image5.jpg);
 
 #container{
 	height: 500px;
+	position: relative;
+}
+
+.title {
+	position: absolute;
+	top: 0px;
+	left: 20px;
+	font-family: "futura";
+}
+
+.title > a{
+	text-decoration: none;
+	color: white;
+}
+
+.index_container {
+	background-color: #EEEEEE;
 }
 
 .search_container {
 	float: right;
-	z-index: 10;
+	position: absolute;
+	top: 20px;
+	right: 20px;
 }
 
-.cd_index {
-	margin-top: 100px;
-}
 
 #slidemenu {
-	display: none;
+	// display: none;
 }
 .user_show_th {
 	vertical-align: middle;
@@ -67,7 +83,7 @@ background-image: url(image5.jpg);
 	width: auto;
 }
 .user_show_table {
-	width: 1000;
+	width: 1000px;
 }
 
 .table > tbody > tr > td {
@@ -76,8 +92,52 @@ background-image: url(image5.jpg);
 	white-space: nowrap;
 }
 
+.cd_index {
+	text-align: center;
+}
+
+.cd_info {
+	width: 300px;
+	background-color: #fff;
+	text-align: center;
+}
+
+.index-title {
+	font-family: "TTCommons-Light";
+	margin: 0 0 0 30px;
+	font-size: 32px;
+}
+
+.index_nav {
+	list-style: none;
+}
+
+.menu {
+	height: 100px;
+	line-height: 100px;
+	// background-color: #0E0E0E;
+	// overflow: auto;
+}
+
+.index_nav > li {
+	font-size: 18px;
+	text-align: center;
+	text-decoration: none;
+}
+
+li ul {
+	color: #0E0E0E;
+
 .search-field {
 	padding: 15px;
+}
+
+.jumbotron {
+	background-image: url(image6);
+	background-size: contain;
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	background-position: top center;
 }
 
 .cd_new_form {
