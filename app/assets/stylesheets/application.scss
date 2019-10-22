@@ -148,11 +148,13 @@ li > a {
 }
 
 .jumbotron {
+	width: 100%;
+	height: 600px;
+	background-attachment: fixed;
 	background-image: url(image6);
 	background-size: contain;
-	background-attachment: fixed;
-	background-repeat: no-repeat;
 	background-position: top center;
+	background-repeat:  no-repeat;
 }
 
 .cd_new_form {

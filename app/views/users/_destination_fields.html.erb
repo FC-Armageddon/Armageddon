@@ -1,6 +1,7 @@
-    <div class="nested-fields">
-	<p><%= f.text_field :delivery_postal_code, :placeholder => "配送先郵便番号" %><br>
-	<%= f.text_field :delivery_address, :placeholder => "配送先住所" %><br>
-	<%= f.text_field :delivery_name, :placeholder => "配送先名前" %><br>
-	<%= link_to_remove_association "配送先削除", f, class: 'btn btn-danger btn-block btn-sm'   %></p>
-    </div>
+<div class="nested-fields">
+	<p><%= f.text_field :delivery_postal_code, :placeholder => "郵便番号", class: "form-control input-sm" %>
+	<%= f.text_field :delivery_address, :placeholder => "住所", class: "form-control input-sm" %>
+	<%= f.text_field :delivery_name, :placeholder => "名前", class: "form-control input-sm" %>
+	<p></p>
+	<%= link_to_remove_association "削除", f, class: 'btn btn-default btn-sm'  %></p>
+</div>
