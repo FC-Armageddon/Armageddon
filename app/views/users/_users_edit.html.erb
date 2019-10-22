@@ -56,11 +56,11 @@
         <p></p>
 
         <% if admin_signed_in? %>
-        <%= f.submit "更新", class: 'btn btn-default btn-sm' %>
+        <%= f.submit "更新" %>
         <%= link_to "退会", admins_deleted_flag_path, method: :patch, class: 'btn btn-default btn-sm btn-right' %>
 
         <% else %>
-        <%= f.submit "更新", class: 'btn btn-default btn-sm' %>
+        <%= f.submit "更新" %>
         <%= link_to "退会", deleted_flag_path, method: :patch, class: 'btn btn-default btn-sm btn-right' %>
         <% end %>
         <% end %>
