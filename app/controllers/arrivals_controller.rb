@@ -28,7 +28,7 @@ def create
   end
 
   def index
-    @arrivals = Arrival.all.page(params[:page]).per(10)
+    @arrivals = Arrival.all
   end
 
   private

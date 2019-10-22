@@ -10,6 +10,8 @@
 </head>
 
 <body>
+  <% if @i == 1 %>
+  <% else %>
   <header>
     <div class="container">
       <div id="slidemenu">
@@ -64,6 +66,7 @@
       </div>
     </div>
   </header>
+  <% end %>
   <!-- /header -->
   <%= yield %>
 </body>

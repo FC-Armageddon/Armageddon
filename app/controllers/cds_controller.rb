@@ -10,7 +10,9 @@ class CdsController < ApplicationController
 
   def index
     # ransackの記載
-    @search = Cd.ransack(params[:q])
+    @i = 1
+    @aaa = Cd.where(deleted_flag: "false")
+    @search = @aaa.ransack(params[:q])
     @search_cds = @search.result.page(params[:page]).per(9)
   end
 
@@ -32,7 +34,8 @@ class CdsController < ApplicationController
   def admins_index
     @arrival = Arrival.new
     # ransackの記載
-    @search = Cd.ransack(params[:q])
+    @aaa = Cd.where(deleted_flag: "false")
+    @search = @aaa.ransack(params[:q])
     @search_cds = @search.result.page(params[:page]).per(9)
   end
 
@@ -90,7 +93,8 @@ class CdsController < ApplicationController
 
   def admins_destroy
     cd = Cd.find(params[:id])
-    cd.destroy
+    cd.deleted_flag = "true"
+    cd.save
     redirect_to cds_admins_path
   end
 
@@ -150,7 +154,7 @@ class CdsController < ApplicationController
 
   private
   def cd_params
-    params.require(:cd).permit(:cd_name, :jacket_image, :price, :stock, discs_attributes: [:id, :cd_id, :disc, :sort, :_destroy, songs_attributes: [:id, :disc_id, :song, :song_order, :_destroy]])
+    params.require(:cd).permit(:cd_name, :jacket_image, :price, :stock, :deleted_flag, discs_attributes: [:id, :cd_id, :disc, :sort, :_destroy, songs_attributes: [:id, :disc_id, :song, :song_order, :_destroy]])
   end
 
 
