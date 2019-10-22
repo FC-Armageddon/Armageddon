@@ -48,20 +48,20 @@
           </li>
 
           <li class="">
-            <%= link_to "カート", carts_path %>
+            <%= link_to "Cart", carts_path %>
           </li>
 
           <li class="">
-            <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+            <%= link_to "Log out", destroy_user_session_path, method: :delete %>
           </li>
 
           <% else %>
           <li class="">
-            <%= link_to "会員登録",  new_user_registration_path %>
+            <%= link_to "New user",  new_user_registration_path %>
           </li>
 
           <li class="">
-            <%= link_to "ログイン", new_user_session_path %>
+            <%= link_to "Log in", new_user_session_path %>
           </li>
           <% end %>
         </ul>
