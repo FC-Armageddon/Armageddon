@@ -29,6 +29,15 @@ a {
 .container {
 	background-color: #EEEEEE;
 	padding: 0;
+	width: 80%;
+}
+
+.header {
+	width: 100%;
+}
+
+.navbar-right {
+	margin-right: 0;
 }
 
 .image1 {
@@ -79,7 +88,7 @@ background-image: url(image5.jpg);
 }
 
 #slidemenu {
-	// display: none;
+	width: 100%;
 }
 .user_show_th {
 	vertical-align: middle;
@@ -101,6 +110,7 @@ background-image: url(image5.jpg);
 
 .cd_index {
 	text-align: center;
+	margin-bottom: 50px;
 }
 
 .cd_info {
@@ -113,12 +123,14 @@ background-image: url(image5.jpg);
 	font-family: "TTCommons-Light";
 	font-size: 32px;
 	text-align: center;
+	margin-top: 40px;
 }
 
 .index_subtitle {
 	font-family: "Noto Sans JP", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "游ゴシック体", "Yu Gothic", "YuGothic", "Meiryo", "メイリオ", "ＭＳ Ｐゴシック", "MS PGothic", Verdana, Roboto, "Droid Sans", sans-serif;
-	font-size: 12px;
+	font-size: 14px;
 	text-align: center;
+	margin-bottom: 40px;
 }
 
 .index_nav {
@@ -127,20 +139,21 @@ background-image: url(image5.jpg);
 }
 
 .menu {
-	height: 100px;
-	line-height: 100px;
-	// background-color: #F3BAAA;
+	height: 75px;
+	line-height: 75px;
+	background-color: #454545;
 	// overflow: auto;
 }
 
 .index_nav > li {
-	font-size: 18px;
+	font-family: "Noto Sans JP", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "游ゴシック体", "Yu Gothic", "YuGothic", "Meiryo", "メイリオ", "ＭＳ Ｐゴシック", "MS PGothic", Verdana, Roboto, "Droid Sans", sans-serif;
+	font-size: 14px;
 	text-align: center;
 	text-decoration: none;
 }
 
 li > a {
-	color: #0E0E0E;
+	color: #fff;
 }
 
 .search-field {
@@ -183,4 +196,28 @@ li > a {
 
 .text-align-center {
 	text-align: center;
+}
+
+.col-xs-1, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-7, .col-xs-8, .col-xs-9, .col-xs-10, .col-xs-11, .col-xs-12 {
+	padding: 0;
+}
+
+.col-xs-6 {
+	padding: 6px 0;
+}
+
+hr {
+	width: 90%;
+	border-top: 1px solid #000;
+	margin: 20px auto;
+}
+
+.total {
+	position: relative;
+}
+
+.buy {
+	position: abusolute;
+	top: 20px;
+	right: 20px;
 }

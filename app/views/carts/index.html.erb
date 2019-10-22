@@ -1,3 +1,5 @@
+<div class="container">
+
 <% if flash[:notice] %>
   <%= flash[:notice] %>
 <% end %>
@@ -23,7 +25,7 @@
       <% @i = @i + cart_subtotal %>
   <% end %>
 
-  <h4>送料: 500 円</h4>
+  <p>送料: 500 円</p>
   <h3>小計: <%= @i.floor + 500 %> 円</h3>
   <%= link_to '購入画面へ', new_buy_information_path %>
 
@@ -35,3 +37,5 @@ $(document).ready(function(){
     });
   });
 </script>
+
+</div>

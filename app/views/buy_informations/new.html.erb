@@ -1,8 +1,13 @@
-<h1>購入情報入力画面</h1>
+<div class="container">
 
+
+<h2 class="col-xs-offset-1">購入情報入力画面</h2>
+
+
+<div class="col-xs-offset-1">
 <%= form_for @buy_information do |f| %>
 
-	配送先:
+<p>配送先:</p>
 <table>
 	<tr><thead>
 		<th></th>
@@ -15,33 +20,46 @@
 		<td><%= radio_button_tag :destination_id, "a", :checked %></td>
 		<td><%= current_user.postal_code %></td>
 		<td><%= current_user.address %></td>
-		<td><%= current_user.first_name %><td>
+		<td><%= current_user.first_name %>様<td>
 	</tr>
 	<% @destinations.each do |d| %>
 	<tr>
 		<td><%= radio_button_tag :destination_id, d.id %></td>
 		<td><%= d.delivery_postal_code %></td>
 		<td><%= d.delivery_address %></td>
-		<td><%= d.delivery_name %></td>
+		<td><%= d.delivery_name %>様</td>
 	</tr>
 	<% end %>
 </table>
 
 <%= f.select :payment, BuyInformation.payments.keys.map { |k| [I18n.t("enums.buy_information.payment.#{k}"), k]} %>
-
+</div>
+<hr size="5">
 <% @i = 0 %>
 <% @carts.each do |c| %>
+	<div class="row">
+	<div class="col-xs-2 col-xs-offset-1">
+	<%= attachment_image_tag c.cd, :jacket_image, format: 'ipeg', fallback:"no_image_cd.jpg", size: "150x150" %>
+	</div>
+	<div class="col-xs-4">
 	<h4>商品名: <%= c.cd.cd_name %></h4>
 	<p>価格: <%= c.cd.price %> 円</p>
 	<p>購入数: <%= c.quantity %> 枚</p>
 	<% @subtotal = c.quantity.to_i * c.cd.price.to_i * 1.1 %>
 	<% @i = @i + @subtotal %>
+	</div>
+	</div>
+	<hr size="5">
 <% end %>
-
+<div class="row">
+<div class="total col-xs-offset-1">
 <h4>送料: 500 円</h4>
 <h2>小計: <%= @i.floor + 500 %> 円</h2>
 <%= f.hidden_field :subtotal, value: @i %>
-
+<div class="buy">
 <%= f.submit '購入する', data: { confirm: "買い忘れはございませんか？"} %>
-
 <% end %>
+</div>
+</div>
+</div>
+</div>

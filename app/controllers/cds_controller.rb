@@ -1,7 +1,7 @@
 class CdsController < ApplicationController
 
   before_action :authenticate_admin!, only: [:admins_new, :admins_index, :admins_show, :admins_edit, :admins_update, :admins_destroy, :admins_create]
-  
+
   def admins_new
     @cd = Cd.new
     @discs = @cd.discs.build
