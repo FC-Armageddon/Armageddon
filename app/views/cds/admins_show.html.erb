@@ -13,7 +13,7 @@
 			<h3 class="">販売ステータス: <%= @cd.sales_status.sales_status %></h3>
 			<h3 class="">在庫数: <%= @cd.stock %> 枚</h3>
 			<%= link_to '商品編集', cd_admins_edit_path(@cd.id), class: 'btn btn-info col-xs-6' %>
-			<%= link_to '商品削除', cd_admins_destroy_path(@cd.id), method: :delete, class: 'btn btn-danger col-xs-6' %>
+			<%= link_to '商品削除', cd_admins_destroy_path(@cd.id), method: :patch, class: 'btn btn-danger col-xs-6' %>
 		</div>
 	</div>
 	<div class="row">

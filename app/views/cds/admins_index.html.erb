@@ -2,11 +2,14 @@
 	<h1 class="text-center">販売商品一覧</h1>
 
 	<div class="row center-block search-field">
-		<%= search_form_for @search, url: root_path do |f| %>
+		<%= search_form_for @search, url: cds_admins_path do |f| %>
 		<%= f.text_field :cd_name_cont, placeholder: 'CD名を入力...', class: "col-xs-10" %>
 		<%= f.submit ("検索する"), class: "col-xs-2" %>
 		<% end %>
 	</div>
+	<% if @search_cds == [] %>
+		<h3 class="text-center">検索結果はありません</h3>
+	<% else %>
 	<div class="row">
 		<% @search_cds.each do |cd| %>
 		<div class="col-xs-4">
@@ -32,6 +35,7 @@
 		</div>
 		<% end %>
 	</div>
+	<% end %>
 
 	<%= paginate @search_cds %>
 </div>
