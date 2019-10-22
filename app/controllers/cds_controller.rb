@@ -10,6 +10,7 @@ class CdsController < ApplicationController
 
   def index
     # ransackの記載
+    @i = 1
     @aaa = Cd.where(deleted_flag: "false")
     @search = @aaa.ransack(params[:q])
     @search_cds = @search.result.page(params[:page]).per(9)
