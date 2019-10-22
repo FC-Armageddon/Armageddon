@@ -88,8 +88,10 @@ background-image: url(image5.jpg);
 }
 
 #slidemenu {
-	width: 100%;
+	height: 50px;
+	background-color: #464C56;
 }
+
 .user_show_th {
 	vertical-align: middle;
 	white-space: nowrap;
@@ -220,6 +222,9 @@ hr {
 	border-top: 1px solid #000;
 	margin: 20px auto;
 }
+.hr {
+	width: 95%;
+}
 
 .total {
 	position: relative;
@@ -229,4 +234,17 @@ hr {
 	position: abusolute;
 	top: 20px;
 	right: 20px;
+}
+
+.row {
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+.show_container {
+	margin: 20px 0 0 20px;
+}
+
+.songs > * {
+	margin: 5px;
 }
