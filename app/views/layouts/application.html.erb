@@ -1,18 +1,22 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
+  <title>Armageddon</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+
+<body>
+  <header>
     <div class="container">
-    <title>Armageddon</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+      <div id="slidemenu">
 
-    <div id="slidemenu">
-
-      <ul class="nav navbar-nav navbar-right">
-        <% if admin_signed_in? %>
+        <ul class="nav navbar-nav navbar-right">
+          <% if admin_signed_in? %>
 
           <li class="">
             <%= link_to "販売一覧", cds_admins_path %>
@@ -26,7 +30,7 @@
             <%= link_to "商品登録", cds_new_path %>
           </li>
 
-           <li class="">
+          <li class="">
             <%= link_to "入荷数一覧", arrivals_path %>
           </li>
 
@@ -34,13 +38,13 @@
             <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
           </li>
 
-        <% elsif user_signed_in? %>
+          <% elsif user_signed_in? %>
 
           <li class="">
             <%= link_to "#{current_user.first_name} 様", user_path(current_user.id) %>
           </li>
 
-           <li class="">
+          <li class="">
             <%= link_to "カート", carts_path %>
           </li>
 
@@ -48,7 +52,7 @@
             <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
           </li>
 
-        <% else %>
+          <% else %>
           <li class="">
             <%= link_to "会員登録",  new_user_registration_path %>
           </li>
@@ -56,13 +60,12 @@
           <li class="">
             <%= link_to "ログイン", new_user_session_path %>
           </li>
-        <% end %>
-      </ul>
+          <% end %>
+        </ul>
+      </div>
     </div>
-    </div>
-  </head>
-
-  <body>
-    <%= yield %>
-  </body>
+  </header>
+  <!-- /header -->
+  <%= yield %>
+</body>
 </html>
