@@ -15,64 +15,59 @@
 
 <div class="container">
   <div class="jumbotron">
-  <div class="row">
-    <div class="col-xs-6">
+    <div class="row">
+      <div class="col-xs-6">
+      </div>
+      <div class="col-xs-2 aaa">
+        <%= form_for(user) do |f| %>
+        <!-- f.text_field :name, autofocus: true, placeholder:"名前" -->
+        <br>
+        <br>
+        <p class="text-center"><%= attachment_image_tag user, :profile_image, :fill, 100, 100, fallback: "no_image.jpg" %>
+          <%= f.attachment_field :profile_image, placeholder: "プロフィール画像" %>
+
+        </p>
+      </div>
+      <div class="col-xs-3 bbb">
+        <br>
+        <br>
+        <%= f.text_field :first_name, autofocus: true, placeholder: "姓", class: "form-control input-sm"  %>
+        <%= f.text_field :last_name, autofocus: true, placeholder: "名", class: "form-control input-sm" %>
+        <%= f.text_field :kana_first_name, autofocus: true, placeholder: "カナ", class: "form-control input-sm" %>
+        <%= f.text_field :kana_last_name, autofocus: true, placeholder: "カナ名", class: "form-control input-sm" %>
+        <%= f.text_field :postal_code, autofocus: true, placeholder: "郵便番号", class: "form-control input-sm" %>
+        <%= f.text_field :address, autofocus: true, placeholder: "住所", class: "form-control input-sm" %>
+        <%= f.text_field :email, autofocus: true, placeholder: "メールアドレス", class: "form-control input-sm" %>
+
+
+        <div class="tags">
+          <%= f.fields_for :destinations do |f| %>
+          <%= f.label "Destination" %>
+          　　<%= render "destination_fields", f: f %>
+          <% end %>
+
+        <p></p>
+
+          <div class="links">
+            <%= link_to_add_association "追加", f, :destinations, class: 'btn btn-default btn-sm' %>
+          </div>
+        </div>
+
+        <p></p>
+
+        <% if admin_signed_in? %>
+        <%= f.submit "更新", class: 'btn btn-default btn-sm' %>
+        <%= link_to "退会", admins_deleted_flag_path, method: :patch, class: 'btn btn-default btn-sm btn-right' %>
+
+        <% else %>
+        <%= f.submit "更新", class: 'btn btn-default btn-sm' %>
+        <%= link_to "退会", deleted_flag_path, method: :patch, class: 'btn btn-default btn-sm btn-right' %>
+        <% end %>
+        <% end %>
+        <br>
+        <p></p>
+      </div>
+      <div class="col-xs-1">
+      </div>
     </div>
-    <div class="col-xs-2 aaa">
-      <%= form_for(user) do |f| %>
-      <!-- f.text_field :name, autofocus: true, placeholder:"名前" -->
-    </br>
-    <p class="text-center"><%= attachment_image_tag user, :profile_image, :fill, 100, 100, fallback: "no_image.jpg" %>
-      <%= f.attachment_field :profile_image, placeholder: "プロフィール画像" %>
-    </br>
-
-  </p>
-</div>
-<div class="col-xs-3 bbb">
-  <br>
-  <%= f.text_field :first_name, autofocus: true, placeholder: "姓"  %>
-</br>
-
-<%= f.text_field :last_name, autofocus: true, placeholder: "名" %>
-</br>
-
-<%= f.text_field :kana_first_name, autofocus: true, placeholder: "カナ" %>
-</br>
-
-<%= f.text_field :kana_last_name, autofocus: true, placeholder: "カナ名" %>
-</br>
-
-<%= f.text_field :postal_code, autofocus: true, placeholder: "郵便番号" %>
-</br>
-
-<%= f.text_field :address, autofocus: true, placeholder: "住所" %>
-</br>
-
-<%= f.text_field :email, autofocus: true, placeholder: "メールアドレス" %>
-</br>
-
-<div class="tags">
-  <%= f.fields_for :destinations do |f| %>
-  <%= f.label "Destination" %>
-  　　<%= render "destination_fields", f: f %>
-  <% end %>
-  <div class="links">
-    <%= link_to_add_association "配送先を追加", f, :destinations, class: 'btn btn-default btn-block btn-sm' %>
   </div>
-</div>
-
-<% if admin_signed_in? %>
-<%= f.submit "更新", class: 'btn btn-info btn-sm' %>
-<%= link_to "退会", admins_deleted_flag_path, method: :patch, class: 'btn btn-danger btn-sm' %>
-
-<% else %>
-<%= f.submit "更新", class: 'btn btn-info btn-sm' %>
-<%= link_to "退会", deleted_flag_path, method: :patch, class: 'btn btn-danger btn-sm' %>
-<% end %>
-
-<% end %>
-</div>
- <div class="col-xs-1">
-</div>
-</div>
-</div>
