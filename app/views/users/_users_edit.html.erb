@@ -56,15 +56,30 @@
 
         <% if admin_signed_in? %>
 
-        <%= f.submit "更新", class: 'btn btn-default btn-sm', type: "submit" %>
-        <%= link_to "退会", admins_deleted_flag_path, method: :patch, class: 'btn btn-default btn-sm btn-right' %>
+        <%= f.submit "更新", class: 'btn btn-default btn-sm',  type: "submit" %>
+        <%= link_to "退会", admins_deleted_flag_path, method: :patch, class: 'btn btn-default btn-sm btn-right', id:"delete" %>
+
         <% else %>
-ubmit "更新" %>
 
         <%= f.submit "更新", class: 'btn btn-default btn-sm', type: "submit" %>
-        <%= link_to "退会", deleted_flag_path, method: :patch, class: 'btn btn-default btn-sm btn-right' %>
+        <%= link_to "退会", deleted_flag_path, method: :patch, class: 'btn btn-default btn-sm btn-right', id:"delete" %>
         <% end %>
         <% end %>
+
+      <!-- 退会ボタンのアラート -->
+      <script>
+      $('#delete').click(function(){
+          if(!confirm('本当に退会しますか？')){
+              /* キャンセルの時の処理 */
+              return false;
+          }else{
+              /*　OKの時の処理 */
+              location.href = 'index.html';
+          }
+      });
+      </script>
+      <!-- 退会ボタンのアラート -->
+
       </div>
       <div class="col-xs-1">
       </div>

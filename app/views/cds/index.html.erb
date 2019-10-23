@@ -15,13 +15,14 @@
     </div>
 	<h3 class="title"><%= link_to "Armageddon", root_path %></h3>
 
-	<div class="search_container">
-	<!-- 検索窓 -->
-	<%= search_form_for @search, url: root_path do |f| %>
-	  <%= f.text_field :cd_name_cont, placeholder: 'CD名を入力...' %>
-	  <%= f.submit ("検索する") %>
-	<% end %>
-	</div>
+  <!-- 検索窓 -->
+  <div class="search_container">
+  <%= search_form_for @search, url: root_path do |f| %>
+    <%= f.text_field :cd_name_cont, placeholder: 'CD名を入力...' %>
+    <%= f.submit ("検索する") %>
+  <% end %>
+  </div>
+
 </div>
 
 
