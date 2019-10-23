@@ -51,3 +51,9 @@ $(function() {
             return false;
       });
 });
+
+$(function() {
+      $('#cart-button').click(function(){
+            $('#new-cart').submit();
+      });
+});
