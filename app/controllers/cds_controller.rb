@@ -1,7 +1,7 @@
 class CdsController < ApplicationController
 
   before_action :authenticate_admin!, only: [:admins_new, :admins_index, :admins_show, :admins_edit, :admins_update, :admins_destroy, :admins_create]
-
+  before_action :authenticate_user!, only: [:cart_create]
   def admins_new
     @cd = Cd.new
     @discs = @cd.discs.build
@@ -17,6 +17,15 @@ class CdsController < ApplicationController
   end
 
   def search
+  end
+
+  def cart_create
+       cart = Cart.new(cart_params)
+       cart.user_id = current_user.id
+       cart.quantity = params[:quantity]
+       cart.save
+       flash[:notice] = "カートに追加しました。"
+       redirect_to cd_path(cart.cd_id)
   end
 
   def show
@@ -155,6 +164,9 @@ class CdsController < ApplicationController
   private
   def cd_params
     params.require(:cd).permit(:cd_name, :jacket_image, :price, :stock, :deleted_flag, discs_attributes: [:id, :cd_id, :disc, :sort, :_destroy, songs_attributes: [:id, :disc_id, :song, :song_order, :_destroy]])
+  end
+  def cart_params
+     params.require(:cart).permit(:cd_id, :quantity, :user_id)
   end
 
 
