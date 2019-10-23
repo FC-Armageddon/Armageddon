@@ -88,8 +88,8 @@ background-image: url(image5.jpg);
 .search_container2 {
 	float: right;
 	position: absolute;
-	top: 0;
-	right: 0;
+	top: 0px;
+	right: -70px;
 }
 
 #slidemenu {
@@ -283,7 +283,7 @@ height: 40px;
 border-radius: 20px;
 border: none;
 cursor: pointer;
-background: #ebebeb;
+background: #717171;
 }
 /* line 14, searchbox.scss */
 .search-box + label .search-icon {
