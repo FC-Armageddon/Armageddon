@@ -1,9 +1,15 @@
+
+
+
 <div class="container">
-<h1 class="text-center">商品登録</h1>
-
-
-<%= form_for @cd, url: cds_new_create_path do |f| %>
+	<%= form_for @cd, url: cds_new_create_path do |f| %>
 	<div class="text-center">
+		<% @cd.errors.full_messages.each do |message| %>
+ 			<div class="form-error">
+  			<%= message %>
+ 			</div>
+		<% end %>
+<h1 class="text-center">商品登録</h1>
 	<h3><%= f.label :jacket_image, "商品写真" %></h3>
 	<%= f.attachment_field :jacket_image, class: "center-block" %>
 	</div>
