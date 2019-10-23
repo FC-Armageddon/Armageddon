@@ -1,1 +1,7 @@
+<% @user.errors.full_messages.each do |message| %>
+ <div class="form-error">
+  <%= message %>
+ </div>
+<% end %>
+
 <%= render 'users/users_edit', user: @user, admin: current_admin %>

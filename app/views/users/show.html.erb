@@ -1,5 +1,7 @@
-
 <div class="container">
+<% if flash[:notice] %>
+<%= flash[:notice] %>
+<% end %>
 	<div class="row">
 		<div class="col-sm-3">
            <%= render 'users/users_info', user: @user, destinations: @destinations %>
@@ -61,3 +63,8 @@
     </div>
   </div>
 </div>
+    <span id="back">
+      <a href="#">
+      <img src="../assets/arrow.png" alt="">
+      </a>
+    </span>

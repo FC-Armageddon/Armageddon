@@ -44,7 +44,7 @@ $(document).ready(function () {
   });
 });
 });
-
+document.addEventListener('turbolinks:load', function(){
 $(function() {
       $('#back a').on('click',function(){
             $('body, html').animate({
@@ -52,6 +52,7 @@ $(function() {
             }, 800);
             return false;
       });
+});
 });
 
 $(function() {

@@ -1,8 +1,7 @@
-<% if flash[:notice] %>
-  <%= flash[:notice] %>
-<% end %>
-
 <div class="container">
+<% if flash[:notice] %>
+<%= flash[:notice] %>
+<% end %>
 	<div class="row">
 		<div class="col-sm-3">
            <%= render 'users/users_info', user: @user, destinations: @destinations %>
@@ -64,9 +63,10 @@
     </div>
     </div>
   </div>
-</div>
 
+<div class="text-center">
 <%= paginate @buy_information %>
+</div>
 
 <script>
 $(document).ready(function(){
@@ -76,3 +76,4 @@ $(document).ready(function(){
   });
 });
 </script>
+</div>
