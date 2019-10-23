@@ -20,12 +20,29 @@ class CdsController < ApplicationController
   end
 
   def cart_create
-       cart = Cart.new(cart_params)
-       cart.user_id = current_user.id
-       cart.quantity = params[:quantity]
-       cart.save
+    carts = Cart.search_all(params[:id])
+    user_carts = carts.where(user_id: current_user.id)
+    cart = user_carts.find_by(deleted_flag: "false")
+
+    if cart == nil
+       @cart = Cart.new(cart_params)
+       @cart.user_id = current_user.id
+       @cart.quantity = params[:quantity]
+       @cart.save
        flash[:notice] = "カートに追加しました。"
-       redirect_to cd_path(cart.cd_id)
+       redirect_to cd_path(@cart.cd_id)
+    else
+        cart.quantity = cart.quantity.to_i + params[:quantity].to_i
+        cd = Cd.find(params[:id])
+        if cart.quantity > cd.stock
+          flash[:notice] = "カート内の商品が在庫数を超えたため入りません 。"
+          redirect_to cd_path(cd.id)
+        else
+          cart.save
+          flash[:notice] = "カートに追加しました。"
+          redirect_to cd_path(cart.cd_id)
+        end
+    end
   end
 
   def show
