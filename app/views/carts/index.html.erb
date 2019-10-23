@@ -1,10 +1,8 @@
 <div class="container">
-
   <div class="col-xs-offset-1 col-xs-10">
   <% if flash[:notice] %>
   <%= flash[:notice] %>
   <% end %>
-
     <h2>Carts</h2>
     <% if flash.now[:danger] %>
     <%= flash[:danger].html_safe %>
