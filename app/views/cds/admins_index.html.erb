@@ -13,7 +13,7 @@
 	<div class="row">
 		<% @search_cds.each do |cd| %>
 		<div class="col-xs-4">
-			<p class="text-center"><%= attachment_image_tag cd, :jacket_image, :fill, 60, 60, format: 'jpeg', fallback: "no_image_cd.jpg", size: '200x200' %>
+			<p class="text-center"><%= attachment_image_tag cd, :jacket_image, fallback: "no_image_cd.jpg", size: '200x200' %>
 			</p>
 			<p class="text-center"><strong>商品名: <%= cd.cd_name %></strong></p>
 			<p class="text-center"><strong>価格: <%= cd.price %> 円</strong></p>
