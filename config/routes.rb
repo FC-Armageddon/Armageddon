@@ -30,6 +30,7 @@ get 'cds/admins_edit/:id' => 'cds#admins_edit', as:'cd_admins_edit'
 patch 'cds/admins/:id' => 'cds#admins_update', as:'cd_admins_update'
 patch 'cds/admins_delete/:id' => 'cds#admins_destroy', as:'cd_admins_destroy'
 post 'cds/admins' => 'cds#admins_create', as:'cds_new_create'
+post 'cd/cart/:id' => 'cds#cart_create', as: 'cd_cart'
 get 'cds/admins_new' => 'cds#admins_new', as:'cds_new'
 get 'cds/admins_search', as:'admins_search'
 resources :cds, only: [:show]
@@ -48,7 +49,7 @@ resources :arrivals, only: [:create, :index]
 
 patch 'carts/deleted/:id' => 'carts#deleted_flag', as:'carts_deleted_flag'
 post 'carts/:id'  => 'carts#update', as:'cart'
-resources :carts, only: [:index, :create, :destroy]
+resources :carts, only: [:index, :destroy]
 
 
 resources :buy_informations, only: [:new, :create]
