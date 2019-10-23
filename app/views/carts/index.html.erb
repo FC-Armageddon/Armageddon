@@ -5,7 +5,7 @@
   <%= flash[:notice] %>
   <% end %>
 
-    <h2>カート一覧</h2>
+    <h2>Carts</h2>
     <% if flash.now[:danger] %>
     <%= flash[:danger].html_safe %>
     <% @stock_nil.each do |s| %>
@@ -23,16 +23,18 @@
       <%= attachment_image_tag c.cd, :jacket_image, fallback:"no_image_cd.jpg", size: "150x150" %>
     </div>
   <div class="col-xs-4">
-      <h4>商品名: <%= c.cd.cd_name %></h4>
+      <h4>商品名:<br>
+         <%= c.cd.cd_name %></h4>
       <p>価格: <%= c.cd.price %> 円</p>
       <form action="/carts/<%= c.id %>" method="post" class="submit_form">
         <%= select_tag 'update_quantity',  options_for_select((1..c.cd.stock), {:selected => c.quantity}), class: "update_quantity" %>
-      </form>
+      </form><br>
+      <p>消費税: 10%</p>
       <p>小計: <%= cart_subtotal = (c.quantity.to_i * c.cd.price.to_i * 1.1).floor %> 円</p>
   </div>
 
     <div class="col-xs-1 col-xs-offset-3">
-      <p><%= button_to 'CD削除', c, method: :delete, class:"btn btn-danger" %></p>
+      <p><%= button_to 'Cancel', c, method: :delete, class:"btn btn-default" %></p>
       <p><% @i = @i + cart_subtotal %></p>
     </div>
   </div>
@@ -49,7 +51,7 @@
     </div>
 
     <div class="total col-xs-offset-10">
-      <%= link_to '購入画面', new_buy_information_path,class:"btn btn-success" %>
+      <%= link_to '購入手続き', new_buy_information_path,class:"btn btn-default" %>
     </div>
 
     <script>
