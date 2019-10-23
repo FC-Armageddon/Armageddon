@@ -1,63 +1,61 @@
 <div class="container">
-<div class="col-xs-offset-1">
-<h2>購入情報入力画面</h2>
-<%= form_for @buy_information do |f| %>
+	<div class="col-xs-offset-1 col-xs-10">
+		<h2>購入情報入力画面</h2>
+		<%= form_for @buy_information do |f| %>
 
-<p>配送先:</p>
-<table>
-	<tr><thead>
-		<th></th>
-		<th>郵便番号</th>
-		<th>住所</th>
-		<th>お届け名</th>
-	</thead>
-	</td>
-	<tr>
-		<td><%= radio_button_tag :destination_id, "a", :checked %></td>
-		<td><%= current_user.postal_code %></td>
-		<td><%= current_user.address %></td>
-		<td><%= current_user.first_name %>様<td>
-	</tr>
-	<% @destinations.each do |d| %>
-	<tr>
-		<td><%= radio_button_tag :destination_id, d.id %></td>
-		<td><%= d.delivery_postal_code %></td>
-		<td><%= d.delivery_address %></td>
-		<td><%= d.delivery_name %>様</td>
-	</tr>
-	<% end %>
-</table>
+		<p>配送先:</p>
+		<table>
+			<tr>
+				<thead>
+					<th></th>
+					<th>郵便番号</th>
+					<th>住所</th>
+					<th>お届け名</th>
+				</thead>
+			</tr>
+			<tr>
+				<td><%= radio_button_tag :destination_id, "a", :checked %></td>
+				<td><%= current_user.postal_code %></td>
+				<td><%= current_user.address %></td>
+				<td><%= current_user.first_name %>様<td>
+			</tr>
+				<% @destinations.each do |d| %>
+			<tr>
+				<td><%= radio_button_tag :destination_id, d.id %></td>
+				<td><%= d.delivery_postal_code %></td>
+				<td><%= d.delivery_address %></td>
+				<td><%= d.delivery_name %>様</td>
+				<% end %>
+			</tr>
+		</table>
 
-<%= f.select :payment, BuyInformation.payments.keys.map { |k| [I18n.t("enums.buy_information.payment.#{k}"), k]} %>
-</div>
-<hr size="5">
-<% @i = 0 %>
-<% @carts.each do |c| %>
-	<div class="row">
-	<div class="col-xs-2 col-xs-offset-1">
-	<%= attachment_image_tag c.cd, :jacket_image, format: 'ipeg', fallback:"no_image_cd.jpg", size: "150x150" %>
+		<%= f.select :payment, BuyInformation.payments.keys.map { |k| [I18n.t("enums.buy_information.payment.#{k}"), k]} %>
+
+	    <hr size="5">
+
+		<% @i = 0 %>
+		<% @carts.each do |c| %>
+			<div class="row">
+				<div class="col-xs-2">
+				<%= attachment_image_tag c.cd, :jacket_image, format: 'ipeg', fallback:"no_image_cd.jpg", size: "150x150" %>
+				</div>
+
+		    <div class="col-xs-4">
+				<h4>商品名: <%= c.cd.cd_name %></h4>
+				<p>価格: <%= c.cd.price %> 円</p>
+				<p>購入数: <%= c.quantity %> 枚</p>
+				<p><% @subtotal = c.quantity.to_i * c.cd.price.to_i * 1.1 %></p>
+				<p><% @i = @i + @subtotal %></p>
+				</div>
+			</div>
+	    <hr size="5">
+		<% end %>
+
+		<h4>送料: 500 円</h4>
+		<h2>合計: <%= @i.floor + 500 %> 円</h2>
+
+		<%= f.hidden_field :subtotal, value: @i %>
+		<%= f.submit '購入する', data: { confirm: "買い忘れはございませんか？"},class:"btn btn-info", type:"submit" %>
+		<% end %>
 	</div>
-	<div class="col-xs-4">
-	<h4>商品名: <%= c.cd.cd_name %></h4>
-	<p>価格: <%= c.cd.price %> 円</p>
-	<p>購入数: <%= c.quantity %> 枚</p>
-	<p><% @subtotal = c.quantity.to_i * c.cd.price.to_i * 1.1 %></p>
-	<p><% @i = @i + @subtotal %></p>
-	</div>
-	</div>
-	<hr size="5">
-<% end %>
-
-<div class="row">
-<div class="total col-xs-2 col-xs-offset-1">
-<h4>送料: 500 円</h4>
-<h2>合計: <%= @i.floor + 500 %> 円</h2>
-</div>
-<%= f.hidden_field :subtotal, value: @i %>
-
-<div class="buy total col-xs-offset-10">
-<%= f.submit '購入する', data: { confirm: "買い忘れはございませんか？"},class:"btn btn-info", type:"submit" %>
-<% end %>
-</div>
-</div>
 </div>

@@ -44,15 +44,6 @@
    		<p></p>
 <% end %>
 
-	<% if @cd.sales_status.sales_status == "販売中" %>
-		<%= form_for @cart, url: carts_path, method: :post do |c| %>
-	   		<%= select_tag 'quantity', options_for_select((1..@cd.stock)) %>
-	   		<%= c.hidden_field :cd_id, value:@cd.id %>
-	   		<%= c.submit "カートに入れる", class: "btn btn-default glyphicon glyphicon-shopping-cart" %>
-	   	<% end %>
-	<% else %>
-	   		<p>販売中止のため購入できません</p>
-	<% end %>
 	</div>
 
 </div>
