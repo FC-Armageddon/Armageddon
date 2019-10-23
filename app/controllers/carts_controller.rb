@@ -7,9 +7,6 @@ class CartsController < ApplicationController
   def index
     carts_user = current_user.carts
     @carts = carts_user.where(deleted_flag: "false")
-    if @carts == []
-      redirect_to root_path, notice: "カートの中身がありません"
-    end
   end
 
   def destroy
