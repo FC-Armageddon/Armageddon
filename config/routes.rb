@@ -21,7 +21,11 @@ get 'users/admins/:id' => 'users#admins_show', as:'user_admins'
 get 'users/admins_edit/:id' => 'users#admins_edit', as:'user_admins_edit'
 post 'users/admins/:id' => 'users#admins_update', as:'user_admins_update'
 patch 'users/admins/deleted/:id' => 'users#admins_deleted_flag', as:'admins_deleted_flag'
-resources :users, only: [:update, :show, :edit, :destroy]
+resources :users, only: [:update, :show, :edit, :destroy] do
+	resource :fovorites, only: [:create, :destroy]
+	resource :reviews, only: [:create, :destroy]
+end
+
 
 get 'cds/admins_index' => 'cds#admins_index', as:'cds_admins'
 get 'cds/search', as: 'search'
