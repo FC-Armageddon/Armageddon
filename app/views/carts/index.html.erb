@@ -39,7 +39,6 @@
       </p>
       <% end %>
 
-
     <div class="col-xs-offset-11">
       <p><%= button_to 'CD削除', c, method: :delete, class:"btn btn-danger" %></p>
 
@@ -54,10 +53,12 @@
       <h4>送料: 500 円</h4>
       <h2>合計: <%= @i.floor + 500 %> 円</h2>
     </div>
+
     <% if @s == 1 %>
     <% else %>
       <div class="total col-xs-offset-11"><%= link_to '購入画面', new_buy_information_path,class:"btn btn-success" %>
     <% end %>
+
 
     <script>
       $(document).ready(function(){

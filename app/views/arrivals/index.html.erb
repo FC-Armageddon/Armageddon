@@ -1,30 +1,31 @@
- <h2>入荷履歴一覧</h2>
+<div class="container">
+<h2>入荷履歴一覧</h2>
 
-<table class="table">
+ <table class="table">
 
   <thead>
     <tr>
-  	  <th>CD入荷日時</th>
-      <th>入荷CD画像</th>
-      <th>入荷CD名</th>
-  	  <th>入荷枚数</th>
-    </tr>
-  </thead>
+     <th>CD入荷日時</th>
+     <th>入荷CD画像</th>
+     <th>入荷CD名</th>
+     <th>入荷枚数</th>
+   </tr>
+ </thead>
 
-  <tbody>
-  	<% @arrivals.each do |ar| %>
-    <tr>
-    	<td><span><%= ar.created_at.strftime('%Y/%m/%d %H:%M') %></span></td>
-        <td><span><%= attachment_image_tag ar.cd, :jacket_image, :fill, 60, 60, format: 'ipeg', fallback:"no_image_cd.jpg", size: "100x100" %></span></td>
-        <td><span><%= ar.cd.cd_name %></span></td>
-        <td><span><%= ar.arrival %>枚</span></td>
-    </tr>
-    <% end %>
-   </tbody>
+ <tbody>
+   <% @arrivals.each do |ar| %>
+   <tr>
+     <td><span><%= ar.created_at.strftime('%Y/%m/%d %H:%M') %></span></td>
+     <td><span><%= attachment_image_tag ar.cd, :jacket_image, fallback:"no_image_cd.jpg", size: "100x100" %></span></td>
+     <td><span><%= ar.cd.cd_name %></span></td>
+     <td><span><%= ar.arrival %>枚</span></td>
+   </tr>
+   <% end %>
+ </tbody>
 
-<span id="back">
+ <span id="back">
    <a href="#">
     <img src="assets/arrow.png" alt="">
   </a>
 </span>
-
+</div>
