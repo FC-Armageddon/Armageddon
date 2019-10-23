@@ -18,7 +18,6 @@ class UsersController < ApplicationController
     @destinations = @user.destinations
     carts = current_user.carts
     @buy_information = @user.buy_informations
-    @buy_information = BuyInformation.page(params[:page]).per(9)
 
     if @user.id != current_user.id
       redirect_to root_path
