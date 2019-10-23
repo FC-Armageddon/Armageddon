@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if admin_signed_in?
       if @user.update(user_params)
-        flash[:notice] = "You have updated user successfully."
+        flash[:notice] = "ユーザー情報を更新しました。"
         redirect_to user_admins_path(@user.id)
       else
         render("users/admins_edit")
@@ -17,7 +17,7 @@ class UsersController < ApplicationController
         redirect_to root_path
       else
         if @user.update(user_params)
-          flash[:notice] = "You have updated user successfully."
+          flash[:notice] = "ユーザー情報を更新しました。"
           redirect_to user_path(@user.id)
         else
           render("users/edit")
