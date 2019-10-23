@@ -1,16 +1,31 @@
 class UsersController < ApplicationController
 
-  before_action :authenticate_user!, only: [:show, :edit, :update, :deleted_flag]
-  before_action :authenticate_admin!, only: [:admins_index, :admins_show, :admins_edit, :admins_update, :admins_deleted_flag]
+  before_action :authenticate_user!, only: [:show, :edit, :deleted_flag]
+  before_action :authenticate_admin!, only: [:admins_index, :admins_show, :admins_edit, :admins_deleted_flag]
 
   def update
     @user = User.find(params[:id])
-    if @user != current_user
-      redirect_to root_path
+    if admin_signed_in?
+      if @user.update(user_params)
+        flash[:notice] = "You have updated user successfully."
+        redirect_to user_admins_path(@user.id)
+      else
+        render("users/admins_edit")
+      end
+    elsif user_signed_in?
+      if @user != current_user
+        redirect_to root_path
+      else
+        if @user.update(user_params)
+          flash[:notice] = "You have updated user successfully."
+          redirect_to user_path(@user.id)
+        else
+          render("users/edit")
+        end
+      end
+    else
+      redirect_to new_user_session
     end
-    @user.update(user_params)
-    flash[:notice] = "You have updated user successfully."
-    redirect_to user_path(@user.id)
   end
 
   def show
@@ -38,7 +53,6 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
-    @user.destinations.new
     if @user != current_user
        redirect_to root_path
     end
@@ -57,7 +71,7 @@ class UsersController < ApplicationController
   end
 
   def admins_index
-    @users = User.all.page(params[:page]).per(9)
+    @users = User.where(deleted_flag: "false").page(params[:page]).per(9)
   end
 
   def admins_show
@@ -79,8 +93,7 @@ class UsersController < ApplicationController
 
   def admins_update
     @user = User.find(params[:id])
-    @user.destinations.build
-    if @user.update
+    if @user.update(user_params)
        flash[:notice] = "OK!!!"
        redirect_to user_admins(@user_admins.id)
     else
