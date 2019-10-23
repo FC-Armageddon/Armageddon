@@ -82,7 +82,6 @@ class UsersController < ApplicationController
     # @purchase_historises = Purchase_history.all
     @cd = Cd.find(params[:id])
     @buy_information = @user.buy_informations
-    @buy_information = BuyInformation.page(params[:page]).per(9)
     @carts = @user.carts.where(deleted_flag: "true")
 
   end

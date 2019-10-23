@@ -108,50 +108,53 @@ class CdsController < ApplicationController
   end
 
   def admins_create
-    cd = Cd.new(cd_params)
+    @cd = Cd.new(cd_params)
     artist = Artist.search_all(params[:search_artist])
     if  artist ==  nil
       @artist = Artist.new
       @artist.artist = params[:search_artist]
       @artist.save
-      cd.artist_id = @artist.id
+      @cd.artist_id = @artist.id
     else
-      cd.artist_id = artist.id
+      @cd.artist_id = artist.id
     end
     genre = Genre.search_all(params[:search_genre])
     if genre == nil
       @genre = Genre.new
       @genre.genre = params[:search_genre]
       @genre.save
-      cd.genre_id = @genre.id
+      @cd.genre_id = @genre.id
     else
-      cd.genre_id = genre.id
+      @cd.genre_id = genre.id
     end
     sales = SalesStatus.search_all(params[:search_sales])
     if sales == nil
       @sales = SalesStatus.new
       @sales.sales_status = params[:search_sales]
       @sales.save
-      cd.sales_status_id = @sales.id
+      @cd.sales_status_id = @sales.id
     else
-      cd.sales_status_id = sales.id
+      @cd.sales_status_id = sales.id
     end
     label = Label.search_all(params[:search_label])
     if label == nil
       @label = Label.new
       @label.label = params[:search_label]
       @label.save
-      cd.label_id = @label.id
+      @cd.label_id = @label.id
     else
-      cd.label_id = label.id
+      @cd.label_id = label.id
     end
     @arrival = Arrival.new
     @arrival.arrival = params[:cd][:arrivals][:arrival]
-    cd.stock = @arrival.arrival
-    cd.save
-    @arrival.cd_id = cd.id
-    @arrival.save
-    redirect_to cds_admins_path
+    @cd.stock = @arrival.arrival
+    if @cd.save
+      @arrival.cd_id = cd.id
+      @arrival.save
+      redirect_to cds_admins_path
+    else
+      render 'cds/admins_new'
+    end
   end
 
   def admins_arrival_create
