@@ -82,7 +82,7 @@ background-image: url(image5.jpg);
 	float: right;
 	position: absolute;
 	top: 20px;
-	right: 20px;
+	right: -50px;
 }
 
 .search_container2 {
@@ -267,7 +267,8 @@ hr {
 	margin: 5px;
 }
 
-// 検索窓
+
+// 以下検索窓
 
 /* line 4, searchbox.scss */
 body {
