@@ -1,41 +1,65 @@
 <div class="container">
 
-<% if flash[:notice] %>
+  <div class="col-xs-offset-1">
+  <% if flash[:notice] %>
   <%= flash[:notice] %>
-<% end %>
-
-<h2>カート一覧</h2>
-<% if flash.now[:danger] %>
-  <%= flash[:danger].html_safe %>
-  <% @stock_nil.each do |s| %>
-    <p><%= s.cd_name %><p>
   <% end %>
-<% end %>
 
-  <% @i = 0 %>
-  <% @carts.each do |c| %>
-      <%= attachment_image_tag c.cd, :jacket_image, :fill, 60, 60, format: 'ipeg', fallback:"no_image_cd.jpg", size: "200x200" %>
-      <%= c.cd.cd_name %>
-      <%= c.cd.price %> 円
+    <h2>カート一覧</h2>
+    <% if flash.now[:danger] %>
+    <%= flash[:danger].html_safe %>
+    <% @stock_nil.each do |s| %>
+    <p><%= s.cd_name %><p>
+      <% end %>
+      <% end %>
+  </div>
+
+    <hr size="5">
+
+    <% @i = 0 %>
+    <% @carts.each do |c| %>
+  <div class="row">
+    <div class="col-xs-2 col-xs-offset-1">
+      <%= attachment_image_tag c.cd, :jacket_image, fallback:"no_image_cd.jpg", size: "150x150" %>
+    </div>
+  <div class="col-xs-4">
+      <h4>商品名: <%= c.cd.cd_name %></h4>
+      <p>価格: <%= c.cd.price %> 円</p>
       <form action="/carts/<%= c.id %>" method="post" class="submit_form">
         <%= select_tag 'update_quantity',  options_for_select((1..c.cd.stock), {:selected => c.quantity}), class: "update_quantity" %>
       </form>
-      <%= cart_subtotal = (c.quantity.to_i * c.cd.price.to_i * 1.1).floor %> 円
-      <%= button_to '削除', c, method: :delete %>
-      <% @i = @i + cart_subtotal %>
-  <% end %>
+      <p>小計: <%= cart_subtotal = (c.quantity.to_i * c.cd.price.to_i * 1.1).floor %> 円</p>
+  </div>
 
-  <p>送料: 500 円</p>
-  <h3>小計: <%= @i.floor + 500 %> 円</h3>
-  <%= link_to '購入画面へ', new_buy_information_path %>
+    <div class="col-xs-1 col-xs-offset-3">
+      <p><%= button_to 'CD削除', c, method: :delete, class:"btn btn-danger" %></p>
+      <p><% @i = @i + cart_subtotal %></p>
+    </div>
+  </div>
 
-<script>
-$(document).ready(function(){
-  $(".update_quantity").change(function(){
-    var index = $('.update_quantity').index(this);
-      $('.submit_form').eq(index).submit();
-    });
-  });
-</script>
+  <hr size="5">
+
+<% end %>
+
+
+  <div class="row">
+    <div class="total col-xs-2 col-xs-offset-1">
+      <p>送料: 500 円</p>
+      <h3>合計: <%= @i.floor + 500 %> 円</h3>
+    </div>
+
+    <div class="total col-xs-offset-10">
+      <%= link_to '購入画面', new_buy_information_path,class:"btn btn-success" %>
+    </div>
+
+    <script>
+      $(document).ready(function(){
+        $(".update_quantity").change(function(){
+          var index = $('.update_quantity').index(this);
+          $('.submit_form').eq(index).submit();
+        });
+      });
+    </script>
+  </div>
 
 </div>

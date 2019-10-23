@@ -18,6 +18,7 @@
 //= require_tree .
 //= require cocoon
 
+document.addEventListener('turbolinks:load', function(){
 $(document).ready(function () {
   $("#theTarget").skippr({
       // スライドショーの変化 ("fade" or "slide")
@@ -41,6 +42,7 @@ $(document).ready(function () {
       // 一枚目のスライド表示時に戻る矢印を表示するかどうか(falseで非表示)
       hidePrevious : false
   });
+});
 });
 
 $(function() {
