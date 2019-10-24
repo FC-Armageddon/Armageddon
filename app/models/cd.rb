@@ -8,6 +8,11 @@ class Cd < ApplicationRecord
 	accepts_nested_attributes_for :discs, allow_destroy: true
 	has_many :arrivals
 	has_many :carts
+	has_many :reviews, dependent: :destroy
+	has_many :favorites, dependent: :destroy
+	def favorited_by?(user)
+		favorites.where(user_id: user.id).exists?
+	end
 
 	attachment :jacket_image
 

@@ -18,6 +18,33 @@
 		<p class=""><%= attachment_image_tag @cd, :jacket_image, :fill, 300, 300, format: 'jpeg', fallback: "no_image_cd.jpg", size: 400 %>
 		</p>
 
+<!-- いいね機能 -->
+	<% if @cd.favorited_by?(current_user) %>
+	<li>
+		<%= link_to cd_favorites_path(@cd.id), method: :delete, class: "fav", remote: true do %>
+			<i class="fa fa-heart" aria-hidden="true" id="<%= @cd.id %>">
+			</i>
+			<span class="favorites_count">
+			<%= @cd.favorites.count %>
+			</span> 
+			<span class="favorite_font">いいね
+			</span>
+		<% end %>
+	</li>
+	<% else %>
+	<li>
+		<%= link_to cd_favorites_path(@cd.id), method: :post, class: "fav", remote: true do %>
+			<i class="fa fa-heart-o" aria-hidden="true" id="<%= @cd.id %>">
+			</i>
+			 <span class="favorites_count"><%= @cd.favorites.count %>
+			 </span> 
+			 <span class="favorite_font">いいね
+			</span>
+		<% end %>
+	</li>
+	<% end %>
+<!-- ここまで、いいね機能 -->
+
 	<h3>商品情報</h3>
 	<p class="glyphicon glyphicon-user" aria-hidden="true"> アーティスト: <%= @cd.artist.artist %>
 	</p>
