@@ -1,0 +1,24 @@
+<% if cd.favorited_by?(current_user) %>
+	<li id="fav-<%= @cd.id %>">
+		<%= link_to cd_favorites_path(cd.id), method: :delete, class: "fav", remote: true do %>
+			<i class="fa fa-heart" aria-hidden="true">
+			</i>
+			<span class="favorites_count">
+			<%= cd.favorites.count %>
+			</span> 
+			<span class="favorite_font"> いいね
+			</span>
+		<% end %>
+	</li>
+	<% else %>
+	<li id="fav-<%= @cd.id %>">
+		<%= link_to cd_favorites_path(cd.id), method: :post, class: "fav", remote: true do %>
+			<i class="fa fa-heart-o" aria-hidden="true">
+			</i>
+			 <span class="favorites_count"><%= cd.favorites.count %>
+			 </span> 
+			 <span class="favorite_font"> いいね
+			</span>
+		<% end %>
+	</li>
+	<% end %>
