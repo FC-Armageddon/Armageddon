@@ -8,7 +8,7 @@ class CartsController < ApplicationController
     carts_user = current_user.carts
     @carts = carts_user.where(deleted_flag: "false")
     if @carts == []
-      flash[:notice] = "カートの中身はありません"
+      flash[:noticean] = "カートの中身はありません"
       redirect_to root_path
     end
   end
