@@ -18,6 +18,12 @@
 		<p class=""><%= attachment_image_tag @cd, :jacket_image, :fill, 300, 300, format: 'jpeg', fallback: "no_image_cd.jpg", size: 400 %>
 		</p>
 
+<!-- いいね機能 -->
+  <div id="fav-<%= @cd.id %>">
+	<%= render 'fav', cd: @cd %>
+  </div>
+<!-- ここまで、いいね機能 -->
+
 	<h3>商品情報</h3>
 	<p class="glyphicon glyphicon-user" aria-hidden="true"> アーティスト: <%= @cd.artist.artist %>
 	</p>

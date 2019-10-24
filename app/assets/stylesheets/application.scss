@@ -26,6 +26,10 @@ a {
   text-decoration: none;
 }
 
+li {
+	list-style: none;
+}
+
 .container {
 	background-color: #EEEEEE;
 	padding: 0;
@@ -333,4 +337,16 @@ position: relative;
 left: -30px;
 color: white;
 cursor: pointer;
+}
+
+.favorite_font {
+	color: maroon;
+}
+
+.favorites_count {
+	color: black;
+}
+
+.fa-heart {
+	color: red;
 }
