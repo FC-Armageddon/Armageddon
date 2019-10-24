@@ -78,3 +78,8 @@ gem 'rails-i18n'
 gem 'devise-i18n'
 gem 'ransack'
 gem 'kaminari','~> 1.1.1'
+
+# 以下MySQLで必要なgemgem
+group :production do
+  gem 'mysql2'
+end
