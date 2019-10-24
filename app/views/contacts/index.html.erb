@@ -1,0 +1,7 @@
+<h2>問い合わせ</h2>
+
+<%= form_for (@contact, @cd) do |f| %>
+    <%= f.text_field :title %>
+    <%= f.text_area :body %>
+    <%= f.submit '送信', class: 'btn btn-info' %>
+<% end %>
