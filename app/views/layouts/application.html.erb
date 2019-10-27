@@ -52,8 +52,12 @@
             <%= link_to "#{current_user.first_name} 様", user_path(current_user.id) %>
           </li>
 
-          <li class="">
-            <%= link_to "Cart", carts_path %>
+          <li class="header_cart">
+            <%= link_to carts_path do %>
+            <div>Cart</div>
+            <div id="header_cart_count"><%= render 'carts/cart_if', carts_count: @carts_count %>
+            </div>
+            <% end %>
           </li>
 
           <li class="">

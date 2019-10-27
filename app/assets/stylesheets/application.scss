@@ -350,3 +350,53 @@ cursor: pointer;
 .fa-heart {
 	color: red;
 }
+
+.btn {
+	transition: color .3s, background.3s, box-shadow .3s, transform .3s;
+}
+
+.btm :active {
+	transition-duration: .1s;
+}
+
+.header_cart {
+	position: relative;
+}
+
+.carts-count {
+	background-color: red;
+	position: absolute;
+	right: 0%;
+	top: 0%;
+	border-radius: 50%;
+	width: 20px;
+	height: 20px;
+}
+
+.index-cart {
+	background-color: red;
+	position: absolute;
+	right: 25%;
+	top: 10%;
+	border-radius: 50%;
+	width: 20px;
+	height: 20px;
+	line-height: 20px;
+}
+
+.index_cart > a {
+	color: white;
+}
+
+.fav_list {
+	display: none;
+	margin-top: 10px;
+}
+
+.fav_cd_name {
+	color: blue !important;
+}
+
+#fav_button {
+	margin-top: 10px;
+}

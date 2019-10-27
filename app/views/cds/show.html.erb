@@ -1,9 +1,7 @@
 <div class="container">
 <div class="show_container">
 
-<% if flash[:notice] %>
-  <%= flash[:notice] %>
-<% end %>
+  <h3 id="cart_on"></h3>
 
 	  <!-- 検索窓 -->
   <div class="search_container2">
@@ -41,7 +39,7 @@
 	<p class="">在庫数: <%= @cd.stock %> 枚</p>
 
 <% if @cd.sales_status.sales_status == "販売中" %>
-	<%= form_for @cart, url: cd_cart_path, method: :post do |c| %>
+	<%= form_for @cart, url: cd_cart_path, method: :post, remote: true do |c| %>
    		<%= select_tag 'quantity', options_for_select((1..@cd.stock)) %>
    		<%= c.hidden_field :cd_id, value:@cd.id %>
    		<button id="cart-button" class="btn btn-default glyphicon glyphicon-shopping-cart"></button>

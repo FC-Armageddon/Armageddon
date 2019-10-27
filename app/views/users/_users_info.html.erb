@@ -25,6 +25,14 @@
 
         <% if user_signed_in? %>
         <div><%= link_to " Edit ", edit_user_path(user.id), class: "col-xs-12 glyphicon glyphicon-wrench btn btn-default" %></div>
+
+        <div id="fav_button" class="btn btn-default">いいねした商品を表示</div>
+        <ul class="text-center">
+        <% @fav_cd.each do |fav| %>
+            <li class="fav_list"><%= link_to cd_path(fav.cd_id), class: "fav_cd_name" do  %><%= fav.cd.cd_name %><% end %></li>
+        <% end %>
+        </ul>
+
         <% else %>
         <div><%= link_to " Edit ", user_admins_edit_path(user.id), class: "col-xs-12 glyphicon glyphicon-wrench btn btn-default" %></div>
         <% end %>
