@@ -1,7 +1,7 @@
 class CdsController < ApplicationController
 
   before_action :authenticate_admin!, only: [:admins_new, :admins_index, :admins_show, :admins_edit, :admins_update, :admins_destroy, :admins_create]
-  before_action :authenticate_user!, only: [:cart_create]
+  before_action :cart, only: [:cart_create]
   def admins_new
     @cd = Cd.new
     @discs = @cd.discs.build
@@ -20,29 +20,36 @@ class CdsController < ApplicationController
   end
 
   def cart_create
-    carts = Cart.search_all(params[:id])
-    user_carts = carts.where(user_id: current_user.id)
-    cart = user_carts.find_by(deleted_flag: "false")
+      carts = Cart.search_all(params[:id])
+      user_carts = carts.where(user_id: current_user.id)
+      cart = user_carts.find_by(deleted_flag: "false")
 
-    if cart == nil
-       @cart = Cart.new(cart_params)
-       @cart.user_id = current_user.id
-       @cart.quantity = params[:quantity]
-       @cart.save
-       flash[:notice] = "カートに追加しました。"
-       redirect_to cd_path(@cart.cd_id)
-    else
-        cart.quantity = cart.quantity.to_i + params[:quantity].to_i
-        cd = Cd.find(params[:id])
-        if cart.quantity > cd.stock
-          flash[:notice] = "カート内の商品が在庫数を超えたため入りません 。"
-          redirect_to cd_path(cd.id)
-        else
-          cart.save
-          flash[:notice] = "カートに追加しました。"
-          redirect_to cd_path(cart.cd_id)
-        end
-    end
+      if cart == nil
+         @cart = Cart.new(cart_params)
+         @cart.user_id = current_user.id
+         @cart.quantity = params[:quantity]
+         @cart.save
+
+         respond_to do |format|
+          format.js { flash[:notice] = "カートに追加しました。" }
+         end
+      else
+          cart.quantity = cart.quantity.to_i + params[:quantity].to_i
+          cd = Cd.find(params[:id])
+          if cart.quantity > cd.stock
+            respond_to do |format|
+              format.js { flash[:notice] = "カート内の商品が在庫数を超えたため入りません 。" }
+            end
+          else
+            cart.save
+            respond_to do |format|
+              format.js { flash[:notice] = "カートに追加しました。" }
+            end
+          end
+      end
+      user_carts = current_user.carts
+      carts = user_carts.where(deleted_flag: "false")
+      @carts_count = carts.count
   end
 
   def show
@@ -59,6 +66,7 @@ class CdsController < ApplicationController
 
   def admins_index
     @arrival = Arrival.new
+    @arrivla_num = nil
     # ransackの記載
     @aaa = Cd.where(deleted_flag: "false")
     @search = @aaa.ransack(params[:q])
@@ -166,7 +174,7 @@ class CdsController < ApplicationController
     @arrival.arrival = params[:cd][:arrivals][:arrival]
     @cd.stock = @arrival.arrival
     if @cd.save
-      @arrival.cd_id = cd.id
+      @arrival.cd_id = @cd.id
       @arrival.save
       redirect_to cds_admins_path
     else
@@ -189,6 +197,12 @@ class CdsController < ApplicationController
      params.require(:cart).permit(:cd_id, :quantity, :user_id)
   end
 
+  def cart
+    if user_signed_in?
+    else
+     redirect_to new_user_session_path
+    end
+  end
 
 end
 
