@@ -5,8 +5,45 @@
 # #
 # #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 # #   Character.create(name: 'Luke', movie: movies.first)
-Admin.create(email: 'fc@armageddon', password: '201909')
+Admin.create!(email: 'fc@armageddon', password: '201909')
 
+User.create!(
+  [
+    {
+    email: 'a@a',
+    password: 'aaaaaa',
+    postal_code: 'aaaaaa',
+    address: '123456789',
+    phone_number: '123456789',
+    first_name: 'あるまげ',
+    last_name: '太郎',
+    kana_first_name: 'アルマゲ',
+    kana_last_name: 'タロウ',
+    },
+    {
+    email: 'b@b',
+    password: 'bbbbbb',
+    postal_code: 'bbbbbb',
+    address: '234567891',
+    phone_number: '234567891',
+    first_name: '田中',
+    last_name: '吹雪',
+    kana_first_name: 'タナカ',
+    kana_last_name: 'フブキ',
+    },
+    {
+    email: 'c@c',
+    password: 'cccccc',
+    postal_code: 'cccccc',
+    address: '345678912',
+    phone_number: '345678912',
+    first_name: 'アパッチ',
+    last_name: 'りさ',
+    kana_first_name: 'アパッチ',
+    kana_last_name: 'リサ',
+    }
+  ]
+)
 
 # CD周りの初期データの記述
 Genre.create!([
