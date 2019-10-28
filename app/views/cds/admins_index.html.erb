@@ -10,7 +10,13 @@
 	<% if @search_cds == [] %>
 		<h3 class="text-center">検索結果はありません</h3>
 	<% else %>
+
 	<div class="row">
+
+<!-- 非同期でフラッシュメッセージ -->
+		<h4 class="text-center" id="arrival"></h4>
+<!-- ここまで -->
+
 		<% @search_cds.each do |cd| %>
 		<div class="col-xs-4">
 			<p class="text-center"><%= attachment_image_tag cd, :jacket_image, fallback: "no_image_cd.jpg", size: '200x200' %>
@@ -18,9 +24,9 @@
 			<p class="text-center"><strong>商品名: <%= cd.cd_name %></strong></p>
 			<p class="text-center"><strong>価格: <%= cd.price %> 円</strong></p>
 
-			<%= form_for @arrival, url: arrivals_path, method: :post do |f| %>
+			<%= form_for @arrival, url: arrivals_path, method: :post, remote: true do |f| %>
 			<p class="text-center">
-				<%= f.text_field :arrival, placeholder: '入荷数入力', class: "text-center" %>
+				<%= f.text_field :arrival, placeholder: '入荷数入力', class: "text-center arrival_num" %>
 			</p>
 			<p class="text-center">
 				<%= f.hidden_field :cd_id, value: cd.id %>

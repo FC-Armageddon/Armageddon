@@ -1,0 +1,4 @@
+$("#header_cart_count").html("<%= j(render 'carts/cart_if', carts_count: @carts_count)%> ");
+
+$("#cart_on").html("<%= flash[:notice] %>");
+

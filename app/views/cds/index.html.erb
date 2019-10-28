@@ -57,8 +57,14 @@
             <%= link_to "#{current_user.first_name} 様", user_path(current_user.id) %>
           </li>
 
-          <li class="col-xs-2">
-            <%= link_to "Cart", carts_path %>
+          <li class="col-xs-2 header-cart">
+            <%= link_to carts_path do %>
+            <div>Cart</div>
+              <% if @carts_count != nil %>
+                <div class="index-cart"><%= render 'carts/count', carts: @carts_count %>
+                </div>
+                <% end %>
+            <% end %>
           </li>
 
           <li class="col-xs-2">
@@ -89,7 +95,7 @@
     <div class="cd_index">
     <span><%= attachment_image_tag cds, :jacket_image, fallback: "no_image.jpg", size: "300x300" %></span>
     <p><%= cds.cd_name %></p>
-    <p><%= link_to "詳細ページへ", cd_path(cds.id),class:"btn btn-info" %></p>
+    <p><%= link_to "詳細ページへ", cd_path(cds.id),class:"btn btn-info cd_btn" %></p>
     </div>
   </div>
   <% end %>

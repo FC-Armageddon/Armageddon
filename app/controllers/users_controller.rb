@@ -33,6 +33,7 @@ class UsersController < ApplicationController
     @destinations = @user.destinations
     carts = current_user.carts
     @buy_information = @user.buy_informations
+    @fav_cd = @user.favorites
 
     if @user.id != current_user.id
       redirect_to root_path
