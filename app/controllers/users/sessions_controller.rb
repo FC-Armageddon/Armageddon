@@ -26,6 +26,7 @@ class Users::SessionsController < Devise::SessionsController
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
 
+  private
     def after_sign_out_path_for(resource)
           root_path
     end
@@ -33,7 +34,8 @@ class Users::SessionsController < Devise::SessionsController
         @user = User.find_by(email: params[:user][:email] , deleted_flag: true)
         # binding.pry
         if @user
-        flash[:notice] = "あなたは退会済みユーザーです。"
+        reset_session
+        flash[:notice] = "あなたは退会済みユーザーです。サインアップしてください。"
         redirect_to new_user_registration_path
         end
     end
