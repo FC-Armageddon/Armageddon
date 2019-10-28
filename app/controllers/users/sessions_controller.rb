@@ -31,7 +31,7 @@ class Users::SessionsController < Devise::SessionsController
           root_path
     end
     def taikai
-        @user = User.find_by(email: params[:user][:email] , deleted_flag: true)
+        @user = User.find_by(email: params[:user],[:email], deleted_flag: true)
         # binding.pry
         if @user
         reset_session
