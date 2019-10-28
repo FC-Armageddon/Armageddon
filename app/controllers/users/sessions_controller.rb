@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Users::SessionsController < Devise::SessionsController
-  before_action :taikai, only: [:create]
+   before_action :taikai, only: [:create]
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
@@ -31,8 +31,8 @@ class Users::SessionsController < Devise::SessionsController
           root_path
     end
     def taikai
-        @user = User.find_by(email: params[:user],[:email], deleted_flag: true)
-        # binding.pry
+        @user = User.find_by(email: params[:user][:email], deleted_flag: true)
+        binding.pry
         if @user
         reset_session
         flash[:notice] = "あなたは退会済みユーザーです。サインアップしてください。"

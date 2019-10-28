@@ -401,3 +401,36 @@ cursor: pointer;
 	margin-top: 10px;
 	width: 100%;
 }
+
+.table_title {
+	margin: 10px 0;
+	padding: 0;
+}
+.scroll {
+		overflow-y: scroll;
+	height: 300px;
+}
+.table_head {
+	background-color: #dcdcdc;
+	height: 40px;
+
+}
+
+.table_body {
+	word-wrap: break-word;
+}
+.review_table {
+	width: 100%;
+	table-layout: fixed;
+}
+.review_td {
+	padding-bottom: 6px;
+}
+
+.margin-tb {
+	margin: 10px 0;
+}
+
+.review_btn {
+	height: 40px
+}
