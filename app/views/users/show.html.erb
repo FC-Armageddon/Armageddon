@@ -26,6 +26,7 @@
             <td><span>郵便番号</span></td>
             <td><span>配送先</span></td>
             <td><span>配送先名</span></td>
+            <td><span>発送ステータス</span></td>
           </tr>
               <% i = 0 %>
               <% @buy_information.each do |b| %>
@@ -45,6 +46,9 @@
                 </td>
                 <td rowspan = "<%= b.purchase_histories.count %>">
                   <%= b.final_name %>
+                </td>
+                <td rowspan = "<%= b.purchase_histories.count %>">
+                  <%= b.delivery_status_i18n %>
                 </td>
               </tr>
                 <% else %>

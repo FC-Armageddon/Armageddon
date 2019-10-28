@@ -84,7 +84,6 @@ class UsersController < ApplicationController
     @cd = Cd.find(params[:id])
     @buy_information = @user.buy_informations
     @carts = @user.carts.where(deleted_flag: "true")
-
   end
 
   def admins_edit
