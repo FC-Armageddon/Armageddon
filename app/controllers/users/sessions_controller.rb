@@ -32,7 +32,7 @@ class Users::SessionsController < Devise::SessionsController
     end
     def taikai
         @user = User.find_by(email: params[:user][:email], deleted_flag: true)
-        binding.pry
+        # binding.pry
         if @user
         reset_session
         flash[:notice] = "あなたは退会済みユーザーです。サインアップしてください。"
