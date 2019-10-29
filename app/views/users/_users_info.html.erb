@@ -21,8 +21,6 @@
             <%= user.kana_last_name %>
         </div>
 
-        <p></p>
-
         <% if user_signed_in? %>
         <div><%= link_to " Edit ", edit_user_path(user.id), class: "col-xs-12 glyphicon glyphicon-wrench btn btn-default" %></div>
 
