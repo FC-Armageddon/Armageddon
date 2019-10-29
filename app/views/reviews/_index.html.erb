@@ -1,0 +1,28 @@
+<table class="review_table">
+					<thead class="table_head">
+						<tr>
+							<th class="col-xs-3"></th>
+							<th class="col-xs-3"></th>
+							<th class="col-xs-6"></th>
+						</tr>
+					</thead>
+					<tbody class="table_scroll">
+						<% reviews.each do |rr| %>
+						<% if rr.user == current_user %>
+						<tr>
+							<td class="col-xs-12">
+								<%= link_to '削除する',cd_reviews_path(rr.id), method: :delete, class: "btn btn-danger col-xs-12", remote: true %>
+							</td>
+						</tr>
+						<% end %>
+						<tr>
+							<td class="review_td"><%= attachment_image_tag rr.user, :profile_image, :fill, 300, 300, format: 'jpeg', fallback: "no_image.jpg", size:'60x60' %>
+								<%= rr.user.kana_first_name %>
+							</td>
+							<td class="review_td"><%= rr.created_at.strftime('%Y/%m/%d') %>
+							</td>
+							<td class="review_td table_body"><%= rr.body %></td>
+						</tr>
+						<% end %>
+					</tbody>
+</table>

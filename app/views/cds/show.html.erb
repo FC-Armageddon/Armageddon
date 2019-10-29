@@ -41,7 +41,6 @@
 			<h3 class="">商品名: <%= @cd.cd_name %></h3>
 			<h3 class="">価格(税込): <%= (@cd.price * 1.1).floor %> 円</h3>
 			<p class="">販売ステータス: <%= @cd.sales_status.sales_status %></p>
-			<p class="">在庫数: <%= @cd.stock %> 枚</p>
 
 		<% if @cd.sales_status.sales_status == "販売中" %>
 			<%= form_for @cart, url: cd_cart_path, method: :post, remote: true do |c| %>
@@ -76,42 +75,15 @@
 
 			<!-- レビューここから -->
 			<h3>レビュー</h3>
-				<%= form_for [@cd, @review] do |r| %>
-					<%= r.text_area :body, class: "col-xs-10 margin-tb" %>
+				<%= form_for [@cd, @review], remote: true do |r| %>
+					<%= r.text_area :body, class: "col-xs-10 margin-tb", id: "review_body" %>
 					<%= r.submit '投稿する', class: "col-xs-2 margin-tb btn btn-info review_btn" %>
 				<% end %>
 				<div class="col-xs-3 table_title"><strong>ユーザー</strong></div>
 				<div class="col-xs-3 table_title"><strong>投稿日時</strong></div>
 				<div class="col-xs-6 table_title"><strong>本文</strong></div>
-				<div class="scroll col-xs-12">
-					<table class="review_table">
-					<thead class="table_head">
-						<tr>
-							<th class="col-xs-3"></th>
-							<th class="col-xs-3"></th>
-							<th class="col-xs-6"></th>
-						</tr>
-					</thead>
-					<tbody class="table_scroll">
-						<% @reviews.each do |rr| %>
-						<% if rr.user == current_user %>
-						<tr>
-							<td class="col-xs-12">
-								<%= link_to '削除する　↓',cd_reviews_path(rr.id), method: :delete, class: "btn btn-danger col-xs-12" %>
-							</td>
-						</tr>
-						<% end %>
-						<tr>
-							<td class="review_td"><%= attachment_image_tag rr.user, :profile_image, :fill, 300, 300, format: 'jpeg', fallback: "no_image.jpg", size:'60x60' %>
-								<%= rr.user.kana_first_name %>
-							</td>
-							<td class="review_td"><%= rr.created_at.strftime('%Y/%m/%d') %>
-							</td>
-							<td class="review_td table_body"><%= rr.body %></td>
-						</tr>
-						<% end %>
-					</tbody>
-					</table>
+				<div id="review_index" class="scroll col-xs-12">
+					<%= render 'reviews/index', reviews: @reviews %>
 				</div>
 		</div>
 	</div>
