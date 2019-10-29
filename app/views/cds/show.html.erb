@@ -1,71 +1,120 @@
 <div class="container">
-<div class="show_container">
+	<div class= "row">
+		<div class="show_container">
 
-  <h3 id="cart_on"></h3>
+			<% if flash[:notice] %>
+				<h3><%=flash[:notice]%></h3>
+			<% end %>
 
-	  <!-- 検索窓 -->
-  <div class="search_container2">
-  <%= search_form_for @search, url: root_path do |f| %>
-    <%= f.text_field :cd_name_cont, placeholder: 'CD名を入力...', class: "search-box" %>
-    <i class="fa fa-search glyphicon glyphicon-search search-icon"><%= f.submit ("検索する"), id: "search-submit" %></i>
-  <% end %>
-  </div>
+		  <h3 id="cart_on"></h3>
+
+			  <!-- 検索窓 -->
+		  <div class="search_container2">
+		  <%= search_form_for @search, url: root_path do |f| %>
+		    <%= f.text_field :cd_name_cont, placeholder: 'CD名を入力...', class: "search-box" %>
+		    <i class="fa fa-search glyphicon glyphicon-search search-icon"><%= f.submit ("検索する"), id: "search-submit" %></i>
+		  <% end %>
+		  </div>
 
 
-	<div class="">
-		<p class=""><%= attachment_image_tag @cd, :jacket_image, :fill, 300, 300, format: 'jpeg', fallback: "no_image_cd.jpg", size: 400 %>
-		</p>
+			<div class="">
+				<p class=""><%= attachment_image_tag @cd, :jacket_image, :fill, 300, 300, format: 'jpeg', fallback: "no_image_cd.jpg", size: 400 %>
+				</p>
 
-<!-- いいね機能 -->
-  <div id="fav-<%= @cd.id %>">
-	<%= render 'fav', cd: @cd %>
-  </div>
-<!-- ここまで、いいね機能 -->
+		<!-- いいね機能 -->
+		  <div id="fav-<%= @cd.id %>">
+			<%= render 'fav', cd: @cd %>
+		  </div>
+		<!-- ここまで、いいね機能 -->
 
-	<h3>商品情報</h3>
-	<p class="glyphicon glyphicon-user" aria-hidden="true"> アーティスト: <%= @cd.artist.artist %>
-	</p>
-	<br>
-	<p class="glyphicon glyphicon-film" aria-hidden="true"> レーベル: <%= @cd.label.label %>
-	</p>
-	<br>
-	<p class="glyphicon glyphicon-folder-open" aria-hidden="true"> ジャンル: <%= @cd.genre.genre %>
-	<p>
+			<h3>商品情報</h3>
+			<p class="glyphicon glyphicon-user" aria-hidden="true"> アーティスト: <%= @cd.artist.artist %>
+			</p>
+			<br>
+			<p class="glyphicon glyphicon-film" aria-hidden="true"> レーベル: <%= @cd.label.label %>
+			</p>
+			<br>
+			<p class="glyphicon glyphicon-folder-open" aria-hidden="true"> ジャンル: <%= @cd.genre.genre %>
+			</p>
 
-<!-- カートに入れる情報 -->
-	<h3 class="">商品名: <%= @cd.cd_name %></h3>
-	<h3 class="">価格(税込): <%= (@cd.price * 1.1).floor %> 円</h3>
-	<p class="">販売ステータス: <%= @cd.sales_status.sales_status %></p>
-	<p class="">在庫数: <%= @cd.stock %> 枚</p>
+		<!-- カートに入れる情報 -->
+			<h3 class="">商品名: <%= @cd.cd_name %></h3>
+			<h3 class="">価格(税込): <%= (@cd.price * 1.1).floor %> 円</h3>
+			<p class="">販売ステータス: <%= @cd.sales_status.sales_status %></p>
+			<p class="">在庫数: <%= @cd.stock %> 枚</p>
 
-<% if @cd.sales_status.sales_status == "販売中" %>
-	<%= form_for @cart, url: cd_cart_path, method: :post, remote: true do |c| %>
-   		<%= select_tag 'quantity', options_for_select((1..@cd.stock)) %>
-   		<%= c.hidden_field :cd_id, value:@cd.id %>
-   		<button id="cart-button" class="btn btn-default glyphicon glyphicon-shopping-cart"></button>
-   	<% end %>
-<% else %>
-   		<p>販売中止のため購入できません<button id="cart-button" class="btn btn-default glyphicon glyphicon-shopping-cart" disabled="disabled"></button>
-   		</p>
-<% end %>
+		<% if @cd.sales_status.sales_status == "販売中" %>
+			<%= form_for @cart, url: cd_cart_path, method: :post, remote: true do |c| %>
+		   		<%= select_tag 'quantity', options_for_select((1..@cd.stock)) %>
+		   		<%= c.hidden_field :cd_id, value:@cd.id %>
+		   		<button id="cart-button" class="btn btn-default glyphicon glyphicon-shopping-cart"></button>
+		   	<% end %>
+		<% else %>
+		   		<p>販売中止のため購入できません<button id="cart-button" class="btn btn-default glyphicon glyphicon-shopping-cart" disabled="disabled"></button>
+		   		</p>
+		<% end %>
 
+			</div>
+
+
+
+		  <hr class="hr" size="5">
+
+			<div class="show_container songs">
+				<% @discs.each do |disc| %>
+				<p class="glyphicon glyphicon-headphones" aria-hidden="true"> ディスク: <%= disc.disc %>. <%= disc.sort %>
+				</p><br>
+				<p class="glyphicon glyphicon-music" aria-hidden="true"> ~曲名~
+				</p><br>
+				<% disc.songs.each do |song| %>
+				<p><%= song.song_order %>. <%= song.song %>
+				</p><br>
+				<% end %>
+				<% end %>
+			</div>
+
+
+			<!-- レビューここから -->
+			<h3>レビュー</h3>
+				<%= form_for [@cd, @review] do |r| %>
+					<%= r.text_area :body, class: "col-xs-10 margin-tb" %>
+					<%= r.submit '投稿する', class: "col-xs-2 margin-tb btn btn-info review_btn" %>
+				<% end %>
+				<div class="col-xs-3 table_title"><strong>ユーザー</strong></div>
+				<div class="col-xs-3 table_title"><strong>投稿日時</strong></div>
+				<div class="col-xs-6 table_title"><strong>本文</strong></div>
+				<div class="scroll col-xs-12">
+					<table class="review_table">
+					<thead class="table_head">
+						<tr>
+							<th class="col-xs-3"></th>
+							<th class="col-xs-3"></th>
+							<th class="col-xs-6"></th>
+						</tr>
+					</thead>
+					<tbody class="table_scroll">
+						<% @reviews.each do |rr| %>
+						<% if rr.user == current_user %>
+						<tr>
+							<td class="col-xs-12">
+								<%= link_to '削除する　↓',cd_reviews_path(rr.id), method: :delete, class: "btn btn-danger col-xs-12" %>
+							</td>
+						</tr>
+						<% end %>
+						<tr>
+							<td class="review_td"><%= attachment_image_tag rr.user, :profile_image, :fill, 300, 300, format: 'jpeg', fallback: "no_image.jpg", size:'60x60' %>
+								<%= rr.user.kana_first_name %>
+							</td>
+							<td class="review_td"><%= rr.created_at.strftime('%Y/%m/%d') %>
+							</td>
+							<td class="review_td table_body"><%= rr.body %></td>
+						</tr>
+						<% end %>
+					</tbody>
+					</table>
+				</div>
+		</div>
 	</div>
-
 </div>
 
-  <hr class="hr" size="5">
 
-	<div class="show_container songs">
-		<% @discs.each do |disc| %>
-		<p class="glyphicon glyphicon-headphones" aria-hidden="true"> ディスク: <%= disc.disc %>. <%= disc.sort %>
-		</p><br>
-		<p class="glyphicon glyphicon-music" aria-hidden="true"> ~曲名~
-		</p><br>
-		<% disc.songs.each do |song| %>
-		<p><%= song.song_order %>. <%= song.song %>
-		</p><br>
-		<% end %>
-		<% end %>
-	</div>
-
-</div>

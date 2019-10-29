@@ -56,6 +56,8 @@ class CdsController < ApplicationController
     @cart = Cart.new
     @cd = Cd.find(params[:id])
     @discs = @cd.discs
+    @review = Review.new
+    @reviews = @cd.reviews
     # ransackの記載
     @search = Cd.ransack(params[:q])
     @search_cds = @search.result
