@@ -4,7 +4,7 @@
 
     <% @users.each do |user| %>
     <div class="col-xs-4">
-      <p class="text-center"><%= attachment_image_tag user, :profile_image, :fill, 300, 300, format: 'jpeg', fallback: "no_image.jpg", size:'200x200' %></p>
+      <p class="text-center"><%= attachment_image_tag user, :profile_image, fallback: "no_image.jpg", size:'200x200' %></p>
       <p class="text-center"><%= user.first_name %>  <%= user.last_name %></p>
       <p class="text-center"><%= user.kana_first_name %>  <%= user.kana_last_name %></p>
       <p class="text-center"><%= link_to "購入履歴", user_admins_path(user.id), class: 'btn btn-info btn-block' %></p>
